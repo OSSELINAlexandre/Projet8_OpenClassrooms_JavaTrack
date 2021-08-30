@@ -36,12 +36,22 @@ public class RewardsService {
 		proximityBuffer = defaultProximityBuffer;
 	}
 	
+
+	public RewardCentral getRewardsCentral() {
+		return rewardsCentral;
+	}
+
 	public void calculateRewards(User user) {
 		List<VisitedLocation> userLocations = user.getVisitedLocations();
 		List<Attraction> attractions = gpsUtil.getAttractions();
 		
 		for(VisitedLocation visitedLocation : userLocations) {
 			for(Attraction attraction : attractions) {
+/**
+ * Si dans l'ensemble des rewards reçu par l'utilisateur l'attraction n'y est pas, alors /
+ * Ok, je pense que le but c'est de vérifier par rapport à la localisation actuelle. 
+ * Du coup, si une personne à déjà visité une localisation, aucun nouveau point ne lui est donné.
+ */
 				if(user.getUserRewards().stream().filter(r -> r.attraction.attractionName.equals(attraction.attractionName)).count() == 0) {
 					if(nearAttraction(visitedLocation, attraction)) {
 						user.addUserReward(new UserReward(visitedLocation, attraction, getRewardPoints(attraction, user)));
