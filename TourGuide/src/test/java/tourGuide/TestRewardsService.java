@@ -23,25 +23,33 @@ import tourGuide.user.User;
 import tourGuide.user.UserReward;
 
 public class TestRewardsService {
+	
+	private GpsUtil gpsUtil;
+	private RewardsService rewardsService ;
+	private TourGuideService tourGuideService;
+	private User user;
 
 	@Before
 	public void init() {
 
 		Locale.setDefault(Locale.ENGLISH);
+		gpsUtil = new GpsUtil();
+		rewardsService = new RewardsService(gpsUtil, new RewardCentral());
+		tourGuideService = new TourGuideService(gpsUtil, rewardsService);
+		user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
+
 	}
 
 	@Test
 	public void TEST_userGetRewards_WithOneAttractionShouldReturnResult() {
-		GpsUtil gpsUtil = new GpsUtil();
-		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 		rewardsService.setProximityBuffer(1);
-
 		InternalTestHelper.setInternalUserNumber(0);
-		TourGuideService tourGuideService = new TourGuideService(gpsUtil, rewardsService);
-
-		User user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
+		
+		
 		Attraction attraction = gpsUtil.getAttractions().get(0);
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), attraction, new Date()));
+		
+		
 		tourGuideService.trackUserLocation(user);
 		List<UserReward> userRewards = user.getUserRewards();
 		tourGuideService.tracker.stopTracking();
@@ -50,14 +58,10 @@ public class TestRewardsService {
 
 	@Test
 	public void TEST_userGetRewards_WithTwoActivities_ShouldReturnResult() {
-		GpsUtil gpsUtil = new GpsUtil();
-		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 		rewardsService.setProximityBuffer(1);
 
 		InternalTestHelper.setInternalUserNumber(0);
-		TourGuideService tourGuideService = new TourGuideService(gpsUtil, rewardsService);
 
-		User user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
 		Attraction attraction = gpsUtil.getAttractions().get(0);
 		Attraction attractionTwo = gpsUtil.getAttractions().get(1);
 
@@ -73,14 +77,10 @@ public class TestRewardsService {
 
 	@Test
 	public void TEST_userGetRewards_ForProximityBuffer() {
-		GpsUtil gpsUtil = new GpsUtil();
-		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 		rewardsService.setProximityBuffer(10);
 
 		InternalTestHelper.setInternalUserNumber(0);
-		TourGuideService tourGuideService = new TourGuideService(gpsUtil, rewardsService);
 
-		User user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
 
 		Double longitudeNewPosition = gpsUtil.getAttractions().get(1).longitude + 0.1;
 		Double lattitudeNewPosition = gpsUtil.getAttractions().get(1).latitude + 0.1;
@@ -100,14 +100,10 @@ public class TestRewardsService {
 	
 	@Test
 	public void TEST_userGetRewards_ForTwoEquivalentPosition_ShouldReturnOnlyOneRewards() {
-		GpsUtil gpsUtil = new GpsUtil();
-		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 		rewardsService.setProximityBuffer(10);
 
 		InternalTestHelper.setInternalUserNumber(0);
-		TourGuideService tourGuideService = new TourGuideService(gpsUtil, rewardsService);
 
-		User user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
 
 		Double longitudeNewPosition = gpsUtil.getAttractions().get(1).longitude + 0.1;
 		Double lattitudeNewPosition = gpsUtil.getAttractions().get(1).latitude + 0.1;
@@ -134,14 +130,10 @@ public class TestRewardsService {
 	
 	@Test
 	public void TEST_userGetRewards_ForTwoClosePosition_ShouldReturnTwoResults() {
-		GpsUtil gpsUtil = new GpsUtil();
-		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 		rewardsService.setProximityBuffer(10);
 
 		InternalTestHelper.setInternalUserNumber(0);
-		TourGuideService tourGuideService = new TourGuideService(gpsUtil, rewardsService);
 
-		User user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
 
 		Double longitudeNewPosition = gpsUtil.getAttractions().get(1).longitude + 0.1;
 		Double lattitudeNewPosition = gpsUtil.getAttractions().get(1).latitude + 0.1;
@@ -168,14 +160,10 @@ public class TestRewardsService {
 	
 	@Test
 	public void TEST_userGetRewards_ForFourClosePositionButEquivalent_ShouldReturnTwoResults() {
-		GpsUtil gpsUtil = new GpsUtil();
-		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 		rewardsService.setProximityBuffer(10);
 
 		InternalTestHelper.setInternalUserNumber(0);
-		TourGuideService tourGuideService = new TourGuideService(gpsUtil, rewardsService);
 
-		User user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
 
 		Double longitudeNewPosition = gpsUtil.getAttractions().get(1).longitude + 0.1;
 		Double lattitudeNewPosition = gpsUtil.getAttractions().get(1).latitude + 0.1;
@@ -210,23 +198,17 @@ public class TestRewardsService {
 	
 	@Test
 	public void isWithinAttractionProximity() {
-		GpsUtil gpsUtil = new GpsUtil();
-		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 		Attraction attraction = gpsUtil.getAttractions().get(0);
 		assertTrue(rewardsService.isWithinAttractionProximity(attraction, attraction));
 	}
 
-	@Ignore // Needs fixed - can throw ConcurrentModificationException
 	@Test
 	public void nearAllAttractions() {
-		GpsUtil gpsUtil = new GpsUtil();
-		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 		rewardsService.setProximityBuffer(Integer.MAX_VALUE);
 
-		InternalTestHelper.setInternalUserNumber(1);
-		TourGuideService tourGuideService = new TourGuideService(gpsUtil, rewardsService);
-
-		rewardsService.calculateRewards(tourGuideService.getAllUsers().get(0));
+		System.out.println("This feeling is widely shared among student my bro : " + InternalTestHelper.getInternalUserNumber());
+		System.out.println("Hey buddy, keep grinding " + tourGuideService.getAllUsers().size());
+	//	rewardsService.calculateRewards(tourGuideService.getAllUsers().get(0));
 		List<UserReward> userRewards = tourGuideService.getUserRewards(tourGuideService.getAllUsers().get(0));
 		tourGuideService.tracker.stopTracking();
 

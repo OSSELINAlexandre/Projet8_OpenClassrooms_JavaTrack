@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -34,6 +35,7 @@ public class TourGuideService {
 	private final GpsUtil gpsUtil;
 	private final RewardsService rewardsService;
 	private final TripPricer tripPricer = new TripPricer();
+	public final static ReentrantLock lock = new ReentrantLock();
 	public final Tracker tracker;
 	boolean testMode = true;
 
@@ -75,6 +77,12 @@ public class TourGuideService {
 		}
 	}
 
+	
+	
+	public RewardsService getRewardsService() {
+		return rewardsService;
+	}
+
 	public List<Provider> getTripDeals(User user) {
 		int cumulatativeRewardPoints = user.getUserRewards().stream().mapToInt(i -> i.getRewardPoints()).sum();
 		List<Provider> providers = tripPricer.getPrice(tripPricerApiKey, user.getUserId(),
@@ -85,10 +93,16 @@ public class TourGuideService {
 	}
 
 	public VisitedLocation trackUserLocation(User user) {
+		
+		lock.lock();
 		VisitedLocation visitedLocation = gpsUtil.getUserLocation(user.getUserId());
 		user.addToVisitedLocations(visitedLocation);
+		
+		
 		logger.info("Is this thing running ? I really don't know.");
 		rewardsService.calculateRewards(user);
+		lock.unlock();
+		notifyAll();
 		return visitedLocation;
 	}	
 

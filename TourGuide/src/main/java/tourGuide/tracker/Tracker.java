@@ -9,6 +9,7 @@ import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import tourGuide.service.RewardsService;
 import tourGuide.service.TourGuideService;
 import tourGuide.user.User;
 
@@ -47,6 +48,16 @@ public class Tracker extends Thread {
 				break;
 			}
 
+			if(tourGuideService.lock.isLocked()) {
+				
+				try {
+					Thread.currentThread().wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+			}
+			
 			List<User> users = tourGuideService.getAllUsers();
 			logger.debug("Begin Tracker. Tracking " + users.size() + " users.");
 			stopWatch.start();

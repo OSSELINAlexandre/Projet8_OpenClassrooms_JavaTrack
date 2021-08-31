@@ -1,6 +1,7 @@
 package tourGuide.service;
 
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class RewardsService {
 	private int attractionProximityRange = 10;
 	private final GpsUtil gpsUtil;
 	private final RewardCentral rewardsCentral;
+	
 
 	public RewardsService(GpsUtil gpsUtil, RewardCentral rewardCentral) {
 		this.gpsUtil = gpsUtil;
@@ -55,6 +57,7 @@ public class RewardsService {
 	public void calculateRewards(User user) {
 		List<VisitedLocation> userLocations = user.getVisitedLocations();
 		List<Attraction> attractions = gpsUtil.getAttractions();
+		
 
 		for (VisitedLocation visitedLocation : userLocations) {
 
@@ -76,6 +79,7 @@ public class RewardsService {
 				}
 			}
 		}
+		
 	}
 
 	public boolean isWithinAttractionProximity(Attraction attraction, Location location) {
