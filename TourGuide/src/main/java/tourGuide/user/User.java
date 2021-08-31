@@ -5,10 +5,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import gpsUtil.location.VisitedLocation;
 import tripPricer.Provider;
 
 public class User {
+	private Logger logger = LoggerFactory.getLogger(User.class);
 	private final UUID userId;
 	private final String userName;
 	private String phoneNumber;
@@ -70,9 +74,8 @@ public class User {
 	}
 	
 	public void addUserReward(UserReward userReward) {
-		if(userRewards.stream().filter(r -> !r.attraction.attractionName.equals(userReward.attraction)).count() == 0) {
+			logger.info("pretty sure it never goes even there man ! :)");
 			userRewards.add(userReward);
-		}
 	}
 	
 	public List<UserReward> getUserRewards() {

@@ -87,9 +87,10 @@ public class TourGuideService {
 	public VisitedLocation trackUserLocation(User user) {
 		VisitedLocation visitedLocation = gpsUtil.getUserLocation(user.getUserId());
 		user.addToVisitedLocations(visitedLocation);
+		logger.info("Is this thing running ? I really don't know.");
 		rewardsService.calculateRewards(user);
 		return visitedLocation;
-	}
+	}	
 
 	public List<Attraction> getNearByAttractions(VisitedLocation visitedLocation) {
 		List<Attraction> nearbyAttractions = new ArrayList<>();
@@ -174,6 +175,7 @@ public class TourGuideService {
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			public void run() {
 				tracker.stopTracking();
+				logger.info("I've been called at the end of the program my dear");
 			}
 		});
 	}
@@ -186,7 +188,7 @@ public class TourGuideService {
 	private static final String tripPricerApiKey = "test-server-api-key";
 	// Database connection will be used for external users, but for testing purposes
 	// internal users are provided and stored in memory
-	private final Map<String, User> internalUserMap = new HashMap<>();
+	private Map<String, User> internalUserMap = new HashMap<>();
 
 	private void initializeInternalUsers() {
 		IntStream.range(0, InternalTestHelper.getInternalUserNumber()).forEach(i -> {
@@ -224,5 +226,15 @@ public class TourGuideService {
 		LocalDateTime localDateTime = LocalDateTime.now().minusDays(new Random().nextInt(30));
 		return Date.from(localDateTime.toInstant(ZoneOffset.UTC));
 	}
+
+	public Map<String, User> getInternalUserMap() {
+		return internalUserMap;
+	}
+
+	public void setInternalUserMap(Map<String, User> internalUserMap) {
+		this.internalUserMap = internalUserMap;
+	}
+	
+	
 
 }

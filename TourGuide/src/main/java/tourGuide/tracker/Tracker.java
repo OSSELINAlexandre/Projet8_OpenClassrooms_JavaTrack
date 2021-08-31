@@ -14,17 +14,22 @@ import tourGuide.user.User;
 
 public class Tracker extends Thread {
 	private Logger logger = LoggerFactory.getLogger(Tracker.class);
-	private static final long trackingPollingInterval = TimeUnit.MINUTES.toSeconds(5);
+	// Changing the average tracking interval
+	// private static final long trackingPollingInterval =
+	// TimeUnit.MINUTES.toSeconds(0,5);
+
+	private static final long trackingPollingInterval = TimeUnit.SECONDS.toSeconds(5);
 	private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 	private final TourGuideService tourGuideService;
 	private boolean stop = false;
 
 	public Tracker(TourGuideService tourGuideService) {
 		this.tourGuideService = tourGuideService;
-		
+
 		executorService.submit(this);
+		// I think that this lauch the run process in Java.
 	}
-	
+
 	/**
 	 * Assures to shut down the Tracker thread
 	 */
@@ -32,30 +37,32 @@ public class Tracker extends Thread {
 		stop = true;
 		executorService.shutdownNow();
 	}
-	
+
 	@Override
 	public void run() {
 		StopWatch stopWatch = new StopWatch();
-		while(true) {
-			if(Thread.currentThread().isInterrupted() || stop) {
+		while (true) {
+			if (Thread.currentThread().isInterrupted() || stop) {
 				logger.debug("Tracker stopping");
 				break;
 			}
-			
+
 			List<User> users = tourGuideService.getAllUsers();
 			logger.debug("Begin Tracker. Tracking " + users.size() + " users.");
 			stopWatch.start();
 			users.forEach(u -> tourGuideService.trackUserLocation(u));
 			stopWatch.stop();
-			logger.debug("Tracker Time Elapsed: " + TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime()) + " seconds."); 
+			logger.debug("Tracker Time Elapsed: " + TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime()) + " seconds.");
 			stopWatch.reset();
+			logger.info("" + trackingPollingInterval);
 			try {
 				logger.debug("Tracker sleeping");
 				TimeUnit.SECONDS.sleep(trackingPollingInterval);
 			} catch (InterruptedException e) {
 				break;
 			}
+			logger.info("LOLILOL");
 		}
-		
+
 	}
 }

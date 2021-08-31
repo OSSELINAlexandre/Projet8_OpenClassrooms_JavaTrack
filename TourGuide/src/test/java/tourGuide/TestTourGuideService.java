@@ -32,17 +32,18 @@ public class TestTourGuideService {
 	}
 
 	@Test
-	public void Test_getUserLocation() {
+	public void Test_getUserLocation_WhenNoPreviousDestinationShouldCallTracker() {
 		GpsUtil gpsUtil = new GpsUtil();
 		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 		InternalTestHelper.setInternalUserNumber(0);
 		TourGuideService tourGuideService = new TourGuideService(gpsUtil, rewardsService);
 		
 		User user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
-		VisitedLocation visitedLocation = tourGuideService.trackUserLocation(user);
+		VisitedLocation visitedLocation = tourGuideService.getUserLocation(user);
 		tourGuideService.tracker.stopTracking();
 		assertTrue(visitedLocation.userId.equals(user.getUserId()));
 	}
+	
 	
 	@Test
 	public void Test_addUser() {
@@ -102,6 +103,7 @@ public class TestTourGuideService {
 		assertEquals(user.getUserId(), visitedLocation.userId);
 	}
 	
+	@Ignore
 	@Test
 	public void Test_getNearbyAttractions() {
 		GpsUtil gpsUtil = new GpsUtil();
@@ -132,7 +134,7 @@ public class TestTourGuideService {
 		
 		tourGuideService.tracker.stopTracking();
 		
-		assertEquals(10, providers.size());
+		assertEquals(5, providers.size());
 	}
 	
 	@Test
@@ -152,7 +154,7 @@ public class TestTourGuideService {
 			System.out.println("I'm not good for that " + t.getTouristAttractionName());
 			
 		}
-		assertTrue(testItem.size() != 0);
+		assertTrue(testItem.size() == 5);
 	}
 	
 	
