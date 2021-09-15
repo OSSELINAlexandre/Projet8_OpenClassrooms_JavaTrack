@@ -1,16 +1,16 @@
 package tourGuide.user;
 
+import gpsUtil.location.VisitedLocation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import tripPricer.Provider;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import gpsUtil.location.VisitedLocation;
-import tripPricer.Provider;
 
 public class User {
 	private Logger logger = LoggerFactory.getLogger(User.class);
@@ -19,8 +19,8 @@ public class User {
 	private String phoneNumber;
 	private String emailAddress;
 	private Date latestLocationTimestamp;
-	private List<VisitedLocation> visitedLocations = new ArrayList<>();
-	private List<UserReward> userRewards = new ArrayList<>();
+	private CopyOnWriteArrayList<VisitedLocation> visitedLocations = new  CopyOnWriteArrayList<>();
+	private CopyOnWriteArrayList<UserReward> userRewards = new  CopyOnWriteArrayList<>();
 	private UserPreferences userPreferences = new UserPreferences();
 	private List<Provider> tripDeals = new ArrayList<>();
 	private ReentrantLock lock = new ReentrantLock();
@@ -69,7 +69,7 @@ public class User {
 		visitedLocations.add(visitedLocation);
 	}
 	
-	public List<VisitedLocation> getVisitedLocations() {
+	public  CopyOnWriteArrayList<VisitedLocation> getVisitedLocations() {
 		return visitedLocations;
 	}
 	
@@ -78,11 +78,13 @@ public class User {
 	}
 	
 	public void addUserReward(UserReward userReward) {
+		if(userRewards.stream().filter(r -> r.attraction.attractionName.equals(userReward.attraction.attractionName)).count() == 0) {
 			logger.info("pretty sure it never goes even there man ! :)");
 			userRewards.add(userReward);
+		}
 	}
 	
-	public List<UserReward> getUserRewards() {
+	public  CopyOnWriteArrayList<UserReward> getUserRewards() {
 		return userRewards;
 	}
 	

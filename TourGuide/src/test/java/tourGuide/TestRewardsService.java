@@ -1,26 +1,25 @@
 package tourGuide;
 
-import static org.junit.Assert.*;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
-
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import gpsUtil.GpsUtil;
 import gpsUtil.location.Attraction;
 import gpsUtil.location.Location;
 import gpsUtil.location.VisitedLocation;
+import org.junit.Before;
+import org.junit.Test;
 import rewardCentral.RewardCentral;
 import tourGuide.helper.InternalTestHelper;
 import tourGuide.service.RewardsService;
 import tourGuide.service.TourGuideService;
 import tourGuide.user.User;
 import tourGuide.user.UserReward;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestRewardsService {
 	
@@ -68,7 +67,7 @@ public class TestRewardsService {
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), attraction, new Date()));
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), attractionTwo, new Date()));
 
-		tourGuideService.trackUserLocation(user); // Cette partie est extrêmement chronophage. plus de 30 seconds je
+		tourGuideService.trackUserLocation(user); // Cette partie est extrmement chronophage. plus de 30 seconds je
 													// dirais facile.
 		List<UserReward> userRewards = user.getUserRewards();
 		tourGuideService.tracker.stopTracking();
@@ -90,7 +89,7 @@ public class TestRewardsService {
 
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), newLoc, new Date()));
 
-		tourGuideService.trackUserLocation(user); // Cette partie est extrêmement chronophage. plus de 30 seconds je
+		tourGuideService.trackUserLocation(user); // Cette partie est extrmement chronophage. plus de 30 seconds je
 													// dirais facile.
 		List<UserReward> userRewards = user.getUserRewards();
 		tourGuideService.tracker.stopTracking();
@@ -120,7 +119,7 @@ public class TestRewardsService {
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), newLocTwo, new Date()));
 
 		
-		tourGuideService.trackUserLocation(user); // Cette partie est extrêmement chronophage. plus de 30 seconds je
+		tourGuideService.trackUserLocation(user); // Cette partie est extrmement chronophage. plus de 30 seconds je
 													// dirais facile.
 		List<UserReward> userRewards = user.getUserRewards();
 		tourGuideService.tracker.stopTracking();
@@ -150,7 +149,7 @@ public class TestRewardsService {
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), newLocTwo, new Date()));
 
 		
-		tourGuideService.trackUserLocation(user); // Cette partie est extrêmement chronophage. plus de 30 seconds je
+		tourGuideService.trackUserLocation(user); // Cette partie est extrmement chronophage. plus de 30 seconds je
 													// dirais facile.
 		List<UserReward> userRewards = user.getUserRewards();
 		tourGuideService.tracker.stopTracking();
@@ -188,7 +187,7 @@ public class TestRewardsService {
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), newLocThree, new Date()));
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), newLocFour, new Date()));
 		
-		tourGuideService.trackUserLocation(user); // Cette partie est extrêmement chronophage. plus de 30 seconds je
+		tourGuideService.trackUserLocation(user); // Cette partie est extrmement chronophage. plus de 30 seconds je
 													// dirais facile.
 		List<UserReward> userRewards = user.getUserRewards();
 		tourGuideService.tracker.stopTracking();
@@ -205,11 +204,8 @@ public class TestRewardsService {
 	@Test
 	public void nearAllAttractions() {
 		rewardsService.setProximityBuffer(Integer.MAX_VALUE);
-
-		System.out.println("This feeling is widely shared among student my bro : " + InternalTestHelper.getInternalUserNumber());
-		System.out.println("Hey buddy, keep grinding " + tourGuideService.getAllUsers().size());
-	//	rewardsService.calculateRewards(tourGuideService.getAllUsers().get(0));
 		List<UserReward> userRewards = tourGuideService.getUserRewards(tourGuideService.getAllUsers().get(0));
+		rewardsService.calculateRewards(tourGuideService.getAllUsers().get(0));
 		tourGuideService.tracker.stopTracking();
 
 		assertEquals(gpsUtil.getAttractions().size(), userRewards.size());

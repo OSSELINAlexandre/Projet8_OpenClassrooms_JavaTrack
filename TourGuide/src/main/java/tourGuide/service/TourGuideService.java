@@ -1,27 +1,16 @@
 package tourGuide.service;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-
 import gpsUtil.GpsUtil;
 import gpsUtil.location.Attraction;
 import gpsUtil.location.Location;
 import gpsUtil.location.VisitedLocation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tourGuide.dto.VisitedLocationTwo;
 import tourGuide.helper.InternalTestHelper;
+import tourGuide.proxy.GpsUtilProxy;
 import tourGuide.tracker.Tracker;
 import tourGuide.user.User;
 import tourGuide.user.UserNearbyAttraction;
@@ -29,8 +18,19 @@ import tourGuide.user.UserReward;
 import tripPricer.Provider;
 import tripPricer.TripPricer;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 @Service
 public class TourGuideService {
+
+	@Autowired
+	GpsUtilProxy gpsUtilProxy;
+
 	private Logger logger = LoggerFactory.getLogger(TourGuideService.class);
 	private final GpsUtil gpsUtil;
 	private final RewardsService rewardsService;
@@ -58,8 +58,11 @@ public class TourGuideService {
 	}
 
 	public VisitedLocation getUserLocation(User user) {
-		VisitedLocation visitedLocation = (user.getVisitedLocations().size() > 0) ? user.getLastVisitedLocation()
-				: trackUserLocation(user);
+
+		// Je vais tenter un trucc
+		//VisitedLocation visitedLocation = (user.getVisitedLocations().size() > 0) ? user.getLastVisitedLocation()
+		//	: trackUserLocation(user);
+		VisitedLocation visitedLocation = trackUserLocation(user);
 		return visitedLocation;
 	}
 
@@ -93,18 +96,26 @@ public class TourGuideService {
 	}
 
 	public VisitedLocation trackUserLocation(User user) {
-		
-		lock.lock();
+
 		VisitedLocation visitedLocation = gpsUtil.getUserLocation(user.getUserId());
 		user.addToVisitedLocations(visitedLocation);
 		
 		
 		logger.info("Is this thing running ? I really don't know.");
 		rewardsService.calculateRewards(user);
-		lock.unlock();
-		notifyAll();
+
 		return visitedLocation;
-	}	
+	}
+
+	public VisitedLocationTwo trackUserLocationTestingPurposes(User user) {
+
+		VisitedLocationTwo visitedLocation = gpsUtilProxy.recuperateTheLocation(user.getUserId());
+
+		logger.info("Is this thing running ? I really don't know. I think it is working pretty well man ahahha lets go to the cloub");
+		//rewardsService.calculateRewards(user);
+		//I want to see if it can work properly
+		return visitedLocation;
+	}
 
 	public List<Attraction> getNearByAttractions(VisitedLocation visitedLocation) {
 		List<Attraction> nearbyAttractions = new ArrayList<>();

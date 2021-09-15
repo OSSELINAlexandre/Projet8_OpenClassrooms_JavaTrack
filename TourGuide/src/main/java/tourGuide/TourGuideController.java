@@ -1,21 +1,20 @@
 package tourGuide;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.jsoniter.output.JsonStream;
+import gpsUtil.location.Location;
+import gpsUtil.location.VisitedLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.jsoniter.output.JsonStream;
-
-import gpsUtil.location.Location;
-import gpsUtil.location.VisitedLocation;
+import tourGuide.dto.VisitedLocationTwo;
 import tourGuide.service.TourGuideService;
 import tourGuide.user.User;
 import tripPricer.Provider;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class TourGuideController {
@@ -30,7 +29,7 @@ public class TourGuideController {
 
 	@RequestMapping("/getLocation")
 	public String getLocation(@RequestParam String userName) {
-		VisitedLocation visitedLocation = tourGuideService.getUserLocation(getUser(userName));
+		VisitedLocationTwo visitedLocation = tourGuideService.trackUserLocationTestingPurposes(getUser(userName));
 		return JsonStream.serialize(visitedLocation.location);
 	}
 

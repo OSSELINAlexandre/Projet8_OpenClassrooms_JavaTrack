@@ -1,21 +1,22 @@
 package tourGuide.service;
 
-import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
-
-import org.springframework.stereotype.Service;
-
 import gpsUtil.GpsUtil;
 import gpsUtil.location.Attraction;
 import gpsUtil.location.Location;
 import gpsUtil.location.VisitedLocation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import rewardCentral.RewardCentral;
 import tourGuide.user.User;
 import tourGuide.user.UserReward;
 
+import java.util.List;
+
 @Service
 public class RewardsService {
 	private static final double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
+	private Logger logger = LoggerFactory.getLogger(RewardsService.class);
 
 	// proximity in miles used to be 10, switch to 2000
 	private int defaultProximityBuffer = 10;
@@ -63,15 +64,15 @@ public class RewardsService {
 
 			for (Attraction attraction : attractions) {
 				/**
-				 * Si dans l'ensemble des rewards reçu par l'utilisateur l'attraction n'y est
-				 * pas, alors / Ok, je pense que le but c'est de vérifier par rapport à la
-				 * localisation actuelle. Du coup, si une personne à déjà visité une
-				 * localisation, aucun nouveau point ne lui est donné.
+				 * Si dans l'ensemble des rewards recu par l'utilisateur l'attraction n'y est
+				 * pas, alors / Ok, je pense que le but c'est de verifier par rapport a la
+				 * localisation actuelle. Du coup, si une personne a deja visite une
+				 * localisation, aucun nouveau point ne lui est donne.
 				 */
 				if (user.getUserRewards().stream()
 						.filter(r -> r.attraction.attractionName.equals(attraction.attractionName)).count() == 0) {
 					if (nearAttraction(visitedLocation, attraction)) {
-
+						logger.info("DO WE GET THERE ? ");
 						user.addUserReward(
 								new UserReward(visitedLocation, attraction, getRewardPoints(attraction, user)));
 
