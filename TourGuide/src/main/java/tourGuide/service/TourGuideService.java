@@ -130,7 +130,7 @@ public class TourGuideService {
 		return nearbyAttractions;
 	}
 
-	public List<UserNearbyAttraction> getNearByFifthClosestAttractions(VisitedLocation visitedLocation) {
+	public List<UserNearbyAttraction> getNearByFifthClosestAttractions(VisitedLocation visitedLocation, User u) {
 		List<UserNearbyAttraction> nearbyAttractions = new ArrayList<>();
 		List<Attraction> resultAttraction = new ArrayList<>();
 
@@ -191,7 +191,7 @@ public class TourGuideService {
 			 * null thing.
 			 */
 			newItem.setRewardsLinkedToTheAttraction(
-					rewardsService.getRewardPoints(null, null));
+					rewardsService.getRewardPoints(e, u));
 			nearbyAttractions.add(newItem);
 		}
 

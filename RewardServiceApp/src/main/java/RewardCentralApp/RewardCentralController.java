@@ -17,12 +17,7 @@ public class RewardCentralController {
 
     private static Logger logger = LoggerFactory.getLogger(RewardCentralController.class);
 
-
-    @GetMapping("/")
-    public String getTheThing(){
-        return "MDR";
-    }
-
+    
     @GetMapping("/getReward")
     public int getTheReward(@RequestParam("attId")UUID attraction, @RequestParam("userId") UUID user){
 

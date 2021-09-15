@@ -1,6 +1,7 @@
 package GpsUtilApp;
 
 import gpsUtil.GpsUtil;
+import gpsUtil.location.Attraction;
 import gpsUtil.location.VisitedLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,19 +24,20 @@ public class GpsUtilController {
     @Autowired
     GpsUtilService gpsUtilService;
 
-    @GetMapping("/lol")
-    public String getTheLol(){
 
-        return "MDR";
-    }
-
-    @GetMapping("/UserLocation")
+    @GetMapping("/getLocation")
     public VisitedLocation getTheCrapingLocation(@RequestParam("userName") UUID theId){
 
         logger.info("Been there, just keep faith, be strong and courageous");
 
         return gpsUtilService.getTheUser(theId);
 
+    }
+
+    @GetMapping("/getAttraction")
+    public List<Attraction> getTheAttraction(){
+
+        return gpsUtilService.getAllAttraction();
     }
 
 }

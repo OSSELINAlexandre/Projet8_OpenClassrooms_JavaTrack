@@ -15,10 +15,6 @@ public class TripPricerController {
     @Autowired
     TripPricerService tripPricerService;
 
-    @GetMapping("/")
-    public String getTheThing(){
-        return "lol";
-    }
 
     @GetMapping("/getPrice")
     public List<Provider> getThePrices(@RequestParam("Apikey") String key, @RequestParam("UserId") UUID userId, @RequestParam("adults") int adults, @RequestParam("children") int children, @RequestParam("duration") int duration, @RequestParam("rewards") int rewardcumulated){
