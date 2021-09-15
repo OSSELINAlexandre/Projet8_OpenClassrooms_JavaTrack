@@ -1,20 +1,9 @@
 package tourGuide;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
-
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-
-import gpsUtil.GpsUtil;
-import gpsUtil.location.Attraction;
-import gpsUtil.location.VisitedLocation;
 import rewardCentral.RewardCentral;
+import tourGuide.dto.gpsutildto.VisitedLocation;
 import tourGuide.helper.InternalTestHelper;
 import tourGuide.service.RewardsService;
 import tourGuide.service.TourGuideService;
@@ -22,9 +11,16 @@ import tourGuide.user.User;
 import tourGuide.user.UserNearbyAttraction;
 import tripPricer.Provider;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class TestTourGuideService {
 	
-	private GpsUtil gpsUtil;
+
 	private RewardsService rewardsService;
 	private TourGuideService tourGuideService;
 	
@@ -32,9 +28,8 @@ public class TestTourGuideService {
 	public void init() {
 		
 		Locale.setDefault(Locale.ENGLISH);
-		gpsUtil = new GpsUtil();
-		rewardsService = new RewardsService(gpsUtil, new RewardCentral());
-		tourGuideService = new TourGuideService(gpsUtil, rewardsService);
+		rewardsService = new RewardsService(new RewardCentral());
+		tourGuideService = new TourGuideService(rewardsService);
 		InternalTestHelper.setInternalUserNumber(0);
 		
 	}

@@ -1,6 +1,7 @@
 package tourGuide.user;
 
-import gpsUtil.location.Location;
+
+import tourGuide.dto.gpsutildto.Location;
 
 public class UserNearbyAttraction {
 

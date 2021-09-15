@@ -1,22 +1,22 @@
 package tourGuide.service;
 
-import gpsUtil.GpsUtil;
-import gpsUtil.location.Attraction;
-import gpsUtil.location.Location;
-import gpsUtil.location.VisitedLocation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tourGuide.dto.VisitedLocationTwo;
+import tourGuide.dto.gpsutildto.Attraction;
+import tourGuide.dto.gpsutildto.Location;
+import tourGuide.dto.gpsutildto.VisitedLocation;
+import tourGuide.dto.trippricerdto.Provider;
 import tourGuide.helper.InternalTestHelper;
 import tourGuide.proxy.GpsUtilProxy;
+import tourGuide.proxy.TripPricerProxy;
 import tourGuide.tracker.Tracker;
 import tourGuide.user.User;
 import tourGuide.user.UserNearbyAttraction;
 import tourGuide.user.UserReward;
-import tripPricer.Provider;
-import tripPricer.TripPricer;
+
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -31,16 +31,17 @@ public class TourGuideService {
 	@Autowired
 	GpsUtilProxy gpsUtilProxy;
 
+	@Autowired
+	TripPricerProxy tripPricerProxy;
+
 	private Logger logger = LoggerFactory.getLogger(TourGuideService.class);
-	private final GpsUtil gpsUtil;
+
 	private final RewardsService rewardsService;
-	private final TripPricer tripPricer = new TripPricer();
 	public final static ReentrantLock lock = new ReentrantLock();
 	public final Tracker tracker;
 	boolean testMode = true;
 
-	public TourGuideService(GpsUtil gpsUtil, RewardsService rewardsService) {
-		this.gpsUtil = gpsUtil;
+	public TourGuideService(RewardsService rewardsService) {
 		this.rewardsService = rewardsService;
 
 		if (testMode) {
@@ -60,9 +61,9 @@ public class TourGuideService {
 	public VisitedLocation getUserLocation(User user) {
 
 		// Je vais tenter un trucc
-		//VisitedLocation visitedLocation = (user.getVisitedLocations().size() > 0) ? user.getLastVisitedLocation()
-		//	: trackUserLocation(user);
-		VisitedLocation visitedLocation = trackUserLocation(user);
+		VisitedLocation visitedLocation = (user.getVisitedLocations().size() > 0) ? user.getLastVisitedLocation()
+			: trackUserLocation(user);
+
 		return visitedLocation;
 	}
 
@@ -88,7 +89,7 @@ public class TourGuideService {
 
 	public List<Provider> getTripDeals(User user) {
 		int cumulatativeRewardPoints = user.getUserRewards().stream().mapToInt(i -> i.getRewardPoints()).sum();
-		List<Provider> providers = tripPricer.getPrice(tripPricerApiKey, user.getUserId(),
+		List<Provider> providers = tripPricerProxy.getPrices(tripPricerApiKey, user.getUserId(),
 				user.getUserPreferences().getNumberOfAdults(), user.getUserPreferences().getNumberOfChildren(),
 				user.getUserPreferences().getTripDuration(), cumulatativeRewardPoints);
 		user.setTripDeals(providers);
@@ -97,9 +98,9 @@ public class TourGuideService {
 
 	public VisitedLocation trackUserLocation(User user) {
 
-		VisitedLocation visitedLocation = gpsUtil.getUserLocation(user.getUserId());
+		VisitedLocation visitedLocation = gpsUtilProxy.recuperateTheLocation(user.getUserId());
 		user.addToVisitedLocations(visitedLocation);
-		
+
 		
 		logger.info("Is this thing running ? I really don't know.");
 		rewardsService.calculateRewards(user);
@@ -107,19 +108,20 @@ public class TourGuideService {
 		return visitedLocation;
 	}
 
-	public VisitedLocationTwo trackUserLocationTestingPurposes(User user) {
+	public VisitedLocation trackUserLocationTestingPurposes(User user) {
 
-		VisitedLocationTwo visitedLocation = gpsUtilProxy.recuperateTheLocation(user.getUserId());
+		VisitedLocation visitedLocation = gpsUtilProxy.recuperateTheLocation(user.getUserId());
+		user.addToVisitedLocations(visitedLocation);
 
 		logger.info("Is this thing running ? I really don't know. I think it is working pretty well man ahahha lets go to the cloub");
-		//rewardsService.calculateRewards(user);
+		rewardsService.calculateRewards(user);
 		//I want to see if it can work properly
 		return visitedLocation;
 	}
 
 	public List<Attraction> getNearByAttractions(VisitedLocation visitedLocation) {
 		List<Attraction> nearbyAttractions = new ArrayList<>();
-		for (Attraction attraction : gpsUtil.getAttractions()) {
+		for (Attraction attraction : gpsUtilProxy.recuperateTheAttraction()) {
 			if (rewardsService.isWithinAttractionProximity(attraction, visitedLocation.location)) {
 				nearbyAttractions.add(attraction);
 			}
@@ -135,7 +137,7 @@ public class TourGuideService {
 		Double distancedToBeChanged = 0.0;
 		Integer indexToBeChange = null;
 
-		for (Attraction attraction : gpsUtil.getAttractions()) {
+		for (Attraction attraction : gpsUtilProxy.recuperateTheAttraction()) {
 
 			if (resultAttraction.size() < 5) {
 
@@ -189,7 +191,7 @@ public class TourGuideService {
 			 * null thing.
 			 */
 			newItem.setRewardsLinkedToTheAttraction(
-					rewardsService.getRewardsCentral().getAttractionRewardPoints(null, null));
+					rewardsService.getRewardPoints(null, null));
 			nearbyAttractions.add(newItem);
 		}
 

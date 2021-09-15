@@ -1,16 +1,15 @@
 package tourGuide;
 
 import com.jsoniter.output.JsonStream;
-import gpsUtil.location.Location;
-import gpsUtil.location.VisitedLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import tourGuide.dto.VisitedLocationTwo;
+import tourGuide.dto.gpsutildto.Location;
+import tourGuide.dto.gpsutildto.VisitedLocation;
+import tourGuide.dto.trippricerdto.Provider;
 import tourGuide.service.TourGuideService;
 import tourGuide.user.User;
-import tripPricer.Provider;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +28,7 @@ public class TourGuideController {
 
 	@RequestMapping("/getLocation")
 	public String getLocation(@RequestParam String userName) {
-		VisitedLocationTwo visitedLocation = tourGuideService.trackUserLocationTestingPurposes(getUser(userName));
+		VisitedLocation visitedLocation = tourGuideService.trackUserLocationTestingPurposes(getUser(userName));
 		return JsonStream.serialize(visitedLocation.location);
 	}
 

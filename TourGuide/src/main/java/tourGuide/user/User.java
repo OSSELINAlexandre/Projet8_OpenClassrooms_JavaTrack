@@ -1,9 +1,9 @@
 package tourGuide.user;
 
-import gpsUtil.location.VisitedLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import tripPricer.Provider;
+import tourGuide.dto.gpsutildto.VisitedLocation;
+import tourGuide.dto.trippricerdto.Provider;
 
 import java.util.ArrayList;
 import java.util.Date;
