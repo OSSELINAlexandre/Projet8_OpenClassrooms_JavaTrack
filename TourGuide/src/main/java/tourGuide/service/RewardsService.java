@@ -28,9 +28,9 @@ public class RewardsService {
 	private Logger logger = LoggerFactory.getLogger(RewardsService.class);
 
 	// proximity in miles used to be 10, switch to Max
-	private int defaultProximityBuffer = Integer.MAX_VALUE;
+	private int defaultProximityBuffer = 10;
 	private int proximityBuffer = defaultProximityBuffer;
-	private int attractionProximityRange = Integer.MAX_VALUE;
+	private int attractionProximityRange = 10;
 	
 
 	public RewardsService() {

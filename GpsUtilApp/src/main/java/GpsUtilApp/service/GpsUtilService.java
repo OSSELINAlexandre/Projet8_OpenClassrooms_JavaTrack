@@ -1,4 +1,4 @@
-package GpsUtilApp;
+package GpsUtilApp.service;
 
 import gpsUtil.GpsUtil;
 import gpsUtil.location.Attraction;

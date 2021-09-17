@@ -2,14 +2,17 @@ package tourGuide;
 
 import org.junit.Before;
 import org.junit.Test;
-import rewardCentral.RewardCentral;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import tourGuide.dto.gpsutildto.VisitedLocation;
+import tourGuide.dto.trippricerdto.Provider;
 import tourGuide.helper.InternalTestHelper;
 import tourGuide.service.RewardsService;
 import tourGuide.service.TourGuideService;
 import tourGuide.user.User;
 import tourGuide.user.UserNearbyAttraction;
-import tripPricer.Provider;
 
 import java.util.List;
 import java.util.Locale;
@@ -18,18 +21,21 @@ import java.util.UUID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class TestTourGuideService {
 	
 
+	@Autowired
 	private RewardsService rewardsService;
+
+	@Autowired
 	private TourGuideService tourGuideService;
 	
 	@Before
 	public void init() {
 		
 		Locale.setDefault(Locale.ENGLISH);
-		rewardsService = new RewardsService(new RewardCentral());
-		tourGuideService = new TourGuideService(rewardsService);
 		InternalTestHelper.setInternalUserNumber(0);
 		
 	}
@@ -103,7 +109,7 @@ public class TestTourGuideService {
 		User user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
 		VisitedLocation visitedLocation = tourGuideService.trackUserLocation(user);
 		
-		List<UserNearbyAttraction> attractions = tourGuideService.getNearByFifthClosestAttractions(visitedLocation);
+		List<UserNearbyAttraction> attractions = tourGuideService.getNearByFifthClosestAttractions(visitedLocation, user);
 		
 		tourGuideService.tracker.stopTracking();
 		

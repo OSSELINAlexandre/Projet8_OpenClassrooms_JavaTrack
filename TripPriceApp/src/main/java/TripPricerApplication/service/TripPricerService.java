@@ -1,4 +1,4 @@
-package TripPricerApplication;
+package TripPricerApplication.service;
 
 import org.springframework.stereotype.Service;
 import tripPricer.Provider;

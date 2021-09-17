@@ -1,4 +1,4 @@
-package RewardCentralApp;
+package RewardCentralApp.service;
 
 import org.springframework.stereotype.Service;
 import rewardCentral.RewardCentral;

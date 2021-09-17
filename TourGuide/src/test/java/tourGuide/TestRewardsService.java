@@ -1,13 +1,19 @@
 package tourGuide;
 
-import gpsUtil.GpsUtil;
-import gpsUtil.location.Attraction;
-import gpsUtil.location.Location;
-import gpsUtil.location.VisitedLocation;
+
 import org.junit.Before;
 import org.junit.Test;
-import rewardCentral.RewardCentral;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import tourGuide.dto.gpsutildto.Attraction;
+import tourGuide.dto.gpsutildto.Location;
+import tourGuide.dto.gpsutildto.VisitedLocation;
 import tourGuide.helper.InternalTestHelper;
+import tourGuide.proxy.GpsUtilProxy;
+import tourGuide.proxy.RewardCentralProxy;
+import tourGuide.proxy.TripPricerProxy;
 import tourGuide.service.RewardsService;
 import tourGuide.service.TourGuideService;
 import tourGuide.user.User;
@@ -21,20 +27,31 @@ import java.util.UUID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class TestRewardsService {
-	
-	private GpsUtil gpsUtil;
+
+	@Autowired
 	private RewardsService rewardsService ;
+
+	@Autowired
 	private TourGuideService tourGuideService;
+
 	private User user;
+
+	@Autowired
+	GpsUtilProxy gpsUtilProxy;
+
+	@Autowired
+	RewardCentralProxy rewardCentralProxy;
+
+	@Autowired
+	TripPricerProxy tripPricerProxy;
 
 	@Before
 	public void init() {
 
 		Locale.setDefault(Locale.ENGLISH);
-		gpsUtil = new GpsUtil();
-		rewardsService = new RewardsService(gpsUtil, new RewardCentral());
-		tourGuideService = new TourGuideService(gpsUtil, rewardsService);
 		user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
 
 	}
@@ -45,7 +62,7 @@ public class TestRewardsService {
 		InternalTestHelper.setInternalUserNumber(0);
 		
 		
-		Attraction attraction = gpsUtil.getAttractions().get(0);
+		Attraction attraction = gpsUtilProxy.recuperateTheAttraction().get(0);
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), attraction, new Date()));
 		
 		
@@ -61,8 +78,8 @@ public class TestRewardsService {
 
 		InternalTestHelper.setInternalUserNumber(0);
 
-		Attraction attraction = gpsUtil.getAttractions().get(0);
-		Attraction attractionTwo = gpsUtil.getAttractions().get(1);
+		Attraction attraction = gpsUtilProxy.recuperateTheAttraction().get(0);
+		Attraction attractionTwo = gpsUtilProxy.recuperateTheAttraction().get(1);
 
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), attraction, new Date()));
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), attractionTwo, new Date()));
@@ -81,8 +98,8 @@ public class TestRewardsService {
 		InternalTestHelper.setInternalUserNumber(0);
 
 
-		Double longitudeNewPosition = gpsUtil.getAttractions().get(1).longitude + 0.1;
-		Double lattitudeNewPosition = gpsUtil.getAttractions().get(1).latitude + 0.1;
+		Double longitudeNewPosition = gpsUtilProxy.recuperateTheAttraction().get(1).longitude + 0.1;
+		Double lattitudeNewPosition = gpsUtilProxy.recuperateTheAttraction().get(1).latitude + 0.1;
 
 		Location newLoc = new Location(lattitudeNewPosition, longitudeNewPosition);
 
@@ -104,13 +121,13 @@ public class TestRewardsService {
 		InternalTestHelper.setInternalUserNumber(0);
 
 
-		Double longitudeNewPosition = gpsUtil.getAttractions().get(1).longitude + 0.1;
-		Double lattitudeNewPosition = gpsUtil.getAttractions().get(1).latitude + 0.1;
+		Double longitudeNewPosition = gpsUtilProxy.recuperateTheAttraction().get(1).longitude + 0.1;
+		Double lattitudeNewPosition = gpsUtilProxy.recuperateTheAttraction().get(1).latitude + 0.1;
 
 		Location newLoc = new Location(lattitudeNewPosition, longitudeNewPosition);
 		
-		Double longitudeNewPositionTwo = gpsUtil.getAttractions().get(1).longitude + 0.1;
-		Double lattitudeNewPositionTwo = gpsUtil.getAttractions().get(1).latitude + 0.1;
+		Double longitudeNewPositionTwo = gpsUtilProxy.recuperateTheAttraction().get(1).longitude + 0.1;
+		Double lattitudeNewPositionTwo = gpsUtilProxy.recuperateTheAttraction().get(1).latitude + 0.1;
 
 		Location newLocTwo = new Location(lattitudeNewPositionTwo, longitudeNewPositionTwo);
 
@@ -134,13 +151,13 @@ public class TestRewardsService {
 		InternalTestHelper.setInternalUserNumber(0);
 
 
-		Double longitudeNewPosition = gpsUtil.getAttractions().get(1).longitude + 0.1;
-		Double lattitudeNewPosition = gpsUtil.getAttractions().get(1).latitude + 0.1;
+		Double longitudeNewPosition = gpsUtilProxy.recuperateTheAttraction().get(1).longitude + 0.1;
+		Double lattitudeNewPosition = gpsUtilProxy.recuperateTheAttraction().get(1).latitude + 0.1;
 
 		Location newLoc = new Location(lattitudeNewPosition, longitudeNewPosition);
 		
-		Double longitudeNewPositionTwo = gpsUtil.getAttractions().get(2).longitude + 0.1;
-		Double lattitudeNewPositionTwo = gpsUtil.getAttractions().get(2).latitude + 0.1;
+		Double longitudeNewPositionTwo = gpsUtilProxy.recuperateTheAttraction().get(2).longitude + 0.1;
+		Double lattitudeNewPositionTwo = gpsUtilProxy.recuperateTheAttraction().get(2).latitude + 0.1;
 
 		Location newLocTwo = new Location(lattitudeNewPositionTwo, longitudeNewPositionTwo);
 
@@ -164,21 +181,21 @@ public class TestRewardsService {
 		InternalTestHelper.setInternalUserNumber(0);
 
 
-		Double longitudeNewPosition = gpsUtil.getAttractions().get(1).longitude + 0.1;
-		Double lattitudeNewPosition = gpsUtil.getAttractions().get(1).latitude + 0.1;
+		Double longitudeNewPosition = gpsUtilProxy.recuperateTheAttraction().get(1).longitude + 0.1;
+		Double lattitudeNewPosition = gpsUtilProxy.recuperateTheAttraction().get(1).latitude + 0.1;
 		Location newLoc = new Location(lattitudeNewPosition, longitudeNewPosition);
 		
-		Double longitudeNewPositionTwo = gpsUtil.getAttractions().get(2).longitude + 0.1;
-		Double lattitudeNewPositionTwo = gpsUtil.getAttractions().get(2).latitude + 0.1;
+		Double longitudeNewPositionTwo = gpsUtilProxy.recuperateTheAttraction().get(2).longitude + 0.1;
+		Double lattitudeNewPositionTwo = gpsUtilProxy.recuperateTheAttraction().get(2).latitude + 0.1;
 		Location newLocTwo = new Location(lattitudeNewPositionTwo, longitudeNewPositionTwo);
 
 		
-		Double longitudeNewPositionThree = gpsUtil.getAttractions().get(1).longitude + 0.1;
-		Double lattitudeNewPositionThree = gpsUtil.getAttractions().get(1).latitude + 0.1;
+		Double longitudeNewPositionThree = gpsUtilProxy.recuperateTheAttraction().get(1).longitude + 0.1;
+		Double lattitudeNewPositionThree = gpsUtilProxy.recuperateTheAttraction().get(1).latitude + 0.1;
 		Location newLocThree = new Location(lattitudeNewPositionThree, longitudeNewPositionThree);
 		
-		Double longitudeNewPositionFour = gpsUtil.getAttractions().get(2).longitude + 0.1;
-		Double lattitudeNewPositionFour = gpsUtil.getAttractions().get(2).latitude + 0.1;
+		Double longitudeNewPositionFour = gpsUtilProxy.recuperateTheAttraction().get(2).longitude + 0.1;
+		Double lattitudeNewPositionFour = gpsUtilProxy.recuperateTheAttraction().get(2).latitude + 0.1;
 		Location newLocFour = new Location(lattitudeNewPositionFour, longitudeNewPositionFour);
 		
 		
@@ -197,7 +214,7 @@ public class TestRewardsService {
 	
 	@Test
 	public void isWithinAttractionProximity() {
-		Attraction attraction = gpsUtil.getAttractions().get(0);
+		Attraction attraction = gpsUtilProxy.recuperateTheAttraction().get(0);
 		assertTrue(rewardsService.isWithinAttractionProximity(attraction, attraction));
 	}
 
@@ -208,7 +225,7 @@ public class TestRewardsService {
 		rewardsService.calculateRewards(tourGuideService.getAllUsers().get(0));
 		tourGuideService.tracker.stopTracking();
 
-		assertEquals(gpsUtil.getAttractions().size(), userRewards.size());
+		assertEquals(gpsUtilProxy.recuperateTheAttraction().size(), userRewards.size());
 	}
 
 }

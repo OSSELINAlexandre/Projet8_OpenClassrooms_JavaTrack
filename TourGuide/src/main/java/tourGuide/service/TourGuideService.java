@@ -36,13 +36,15 @@ public class TourGuideService {
 
 	private Logger logger = LoggerFactory.getLogger(TourGuideService.class);
 
-	private final RewardsService rewardsService;
+	@Autowired
+	private RewardsService rewardsService;
+
 	public final static ReentrantLock lock = new ReentrantLock();
 	public final Tracker tracker;
 	boolean testMode = true;
 
-	public TourGuideService(RewardsService rewardsService) {
-		this.rewardsService = rewardsService;
+	public TourGuideService() {
+
 
 		if (testMode) {
 			logger.info("TestMode enabled");

@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class tourGuide.TestPerformance</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class tourGuide.TestPerformance</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/tourGuide.html">tourGuide</a> &gt; TestPerformance</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">1m45.72s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">highVolumeTrackLocation</td>
+<td class="success">1m45.72s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>15:17:44.583 [Test worker] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class tourGuide.TestPerformance]
+15:17:44.594 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+15:17:44.612 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+15:17:44.689 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [tourGuide.TestPerformance] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+15:17:44.725 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [tourGuide.TestPerformance], using SpringBootContextLoader
+15:17:44.737 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [tourGuide.TestPerformance]: class path resource [tourGuide/TestPerformance-context.xml] does not exist
+15:17:44.737 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [tourGuide.TestPerformance]: class path resource [tourGuide/TestPerformanceContext.groovy] does not exist
+15:17:44.738 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [tourGuide.TestPerformance]: no resource found for suffixes {-context.xml, Context.groovy}.
+15:17:44.740 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [tourGuide.TestPerformance]: TestPerformance does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:17:44.827 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [tourGuide.TestPerformance]
+15:17:44.964 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\FamilleOSSELIN\Desktop\Projet8Finale\TourGuide\build\classes\java\main\tourGuide\Application.class]
+15:17:44.977 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration tourGuide.Application for test class tourGuide.TestPerformance
+15:17:45.193 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [tourGuide.TestPerformance]: using defaults.
+15:17:45.194 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+15:17:45.215 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+15:17:45.216 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+15:17:45.217 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2493ec15, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@44d5292d, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@680840d5, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@13572252, org.springframework.test.context.support.DirtiesContextTestExecutionListener@289f9769, org.springframework.test.context.event.EventPublishingTestExecutionListener@456e4f16, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@6fcaa186, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@45254b9f, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@11d5b88d, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@26f4435e, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@1c880097, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@739ec92a]
+15:17:45.221 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [tourGuide.TestPerformance]
+15:17:45.222 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [tourGuide.TestPerformance]
+15:17:45.223 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [tourGuide.TestPerformance]
+15:17:45.224 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [tourGuide.TestPerformance]
+15:17:45.226 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [tourGuide.TestPerformance]
+15:17:45.226 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [tourGuide.TestPerformance]
+15:17:45.230 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [tourGuide.TestPerformance]
+15:17:45.230 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [tourGuide.TestPerformance]
+15:17:45.231 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [tourGuide.TestPerformance]
+15:17:45.231 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [tourGuide.TestPerformance]
+15:17:45.247 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@6bcb0f8a testClass = TestPerformance, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@984c404 testClass = TestPerformance, locations = '{}', classes = '{class tourGuide.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@5c7695be, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@29c3025c, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@161c5f24, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@57c51e67, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@1eb62304], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true]], class annotated with @DirtiesContext [false] with mode [null].
+15:17:45.251 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [tourGuide.TestPerformance]
+15:17:45.251 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [tourGuide.TestPerformance]
+15:17:45.288 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.3.8.RELEASE)
+
+2021-09-16 15:17:46.704  INFO 9704 --- [    Test worker] tourGuide.TestPerformance                : No active profile set, falling back to default profiles: default
+2021-09-16 15:17:47.745  INFO 9704 --- [    Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=ddb5b062-ab77-3553-a47a-7e01a1295c36
+2021-09-16 15:17:47.880  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : TestMode enabled
+2021-09-16 15:17:47.880 DEBUG 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Initializing users
+2021-09-16 15:17:47.916  INFO 9704 --- [    Test worker] o.j.m.DefaultMonetaryContextFactory      : Using custom MathContext: precision=256, roundingMode=HALF_EVEN
+2021-09-16 15:17:47.984 DEBUG 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Created 1000 internal test users.
+2021-09-16 15:17:47.984 DEBUG 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Finished initializing users
+2021-09-16 15:17:47.988 DEBUG 9704 --- [pool-1-thread-1] tourGuide.tracker.Tracker                : Begin Tracker. Tracking 1000 users.
+2021-09-16 15:17:48.731  WARN 9704 --- [    Test worker] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2021-09-16 15:17:48.744  WARN 9704 --- [    Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2021-09-16 15:17:48.744  INFO 9704 --- [    Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-09-16 15:17:48.758  WARN 9704 --- [    Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2021-09-16 15:17:48.758  INFO 9704 --- [    Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-09-16 15:17:49.004  INFO 9704 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-09-16 15:17:49.985  INFO 9704 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-09-16 15:17:50.047  INFO 9704 --- [    Test worker] tourGuide.TestPerformance                : Started TestPerformance in 4.739 seconds (JVM running for 6.586)
+========================FCUK  1000
+2021-09-16 15:17:50.782  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:51.242  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:51.369  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:51.547  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:51.727  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:51.837  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:52.043  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:52.191  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:52.296  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:52.391  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:52.475  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:52.646  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:52.829  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:53.004  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:53.110  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:53.276  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:53.399  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:53.489  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:53.609  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:53.674  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:53.811  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:53.892  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:54.030  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:54.262  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:54.367  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:54.520  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:54.645  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:54.763  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:54.848  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:55.006  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:55.192  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:55.260  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:55.433  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:55.594  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:55.728  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:55.822  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:55.930  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:56.133  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:56.263  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:56.453  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:56.555  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:56.786  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:56.916  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:56.987  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:57.066  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:57.139  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:57.198  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:57.303  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:57.422  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:57.523  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:57.586  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:57.719  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:57.834  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:57.968  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:58.088  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:58.203  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:58.315  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:58.391  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:58.555  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:58.657  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:58.750  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:58.840  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:58.915  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:59.017  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:59.126  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:59.226  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:59.350  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:59.439  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:59.565  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:59.720  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:59.793  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:59.865  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:17:59.981  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:00.061  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:00.178  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:00.270  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:00.454  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:00.587  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:00.704  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:00.847  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:00.962  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:01.089  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:01.172  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:01.250  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:01.353  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:01.458  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:01.537  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:01.635  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:02.203  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:02.432  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:02.548  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:02.623  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:02.734  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:02.926  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:03.043  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:03.168  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:03.294  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:03.446  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:03.569  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:03.686  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:03.868  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:04.015  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:04.213  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:04.329  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:04.409  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:04.550  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:04.685  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:04.793  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:04.866  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:04.925  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:05.137  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:05.263  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:05.354  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:05.473  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:05.600  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:05.714  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:05.781  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:05.883  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:05.994  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:06.067  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:06.172  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:06.361  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:06.435  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:06.508  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:06.624  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:06.742  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:06.914  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:07.059  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:07.172  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:07.397  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:07.593  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:07.685  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:07.743  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:07.831  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:07.921  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:08.009  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:08.122  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:08.204  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:08.284  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:08.387  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:08.516  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:08.610  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:08.726  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:08.802  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:08.864  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:08.947  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:09.047  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:09.157  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:09.267  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:09.376  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:09.481  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:09.590  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:09.702  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:09.796  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:09.927  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:10.023  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:10.165  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:10.289  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:10.385  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:10.449  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:10.561  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:10.660  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:10.758  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:20.375  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:20.462  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:20.608  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:20.704  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:20.818  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:20.896  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:20.967  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:21.073  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:21.150  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:21.218  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:21.347  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:21.451  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:21.540  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:21.608  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:21.722  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:21.773  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:21.836  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:21.964  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:22.029  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:22.126  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:22.209  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:22.298  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:22.424  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:22.551  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:22.638  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:22.741  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:22.811  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:22.924  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.002  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.066  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.184  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.264  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.334  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.431  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.482  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.565  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.642  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.758  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.874  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:23.927  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:24.016  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:24.097  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:24.175  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:24.271  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:24.363  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:24.472  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:24.550  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:24.607  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:24.712  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:24.829  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:24.945  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:25.011  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:25.091  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:25.167  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:25.285  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:25.407  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:25.512  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:25.612  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:25.720  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:25.821  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:25.885  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:25.954  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:26.041  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:26.138  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:26.254  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:26.346  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:26.416  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:26.553  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:26.639  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:26.753  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:26.905  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:26.966  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:27.042  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:27.131  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:27.220  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:27.308  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:27.438  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:27.563  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:27.692  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:27.790  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:27.851  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.008  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.113  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.223  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.301  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.386  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.464  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.542  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.616  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.693  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.781  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.889  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:28.967  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:29.068  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:29.204  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:29.300  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:29.392  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:29.566  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:29.621  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:29.761  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:29.837  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:29.949  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:30.014  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:30.121  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:30.238  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:30.389  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:30.529  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:30.613  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:30.720  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:30.773  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:30.895  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:30.994  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:31.149  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:31.230  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:31.323  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:31.437  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:31.509  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:31.637  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:31.741  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:31.840  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:31.945  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:32.025  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:32.224  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:32.285  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:32.385  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:32.476  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:32.539  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:32.651  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:32.776  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:32.888  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:33.026  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:33.095  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:33.179  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:33.289  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:33.397  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:33.498  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:33.600  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:33.699  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:33.767  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:33.850  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:33.960  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:34.065  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:34.171  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:34.260  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:34.355  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:34.442  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:34.536  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:34.648  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:34.698  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:34.825  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:34.946  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:35.023  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:35.099  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:35.206  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:35.288  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:35.365  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:35.480  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:35.620  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:35.712  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:35.807  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:35.897  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:35.974  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:36.042  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:36.157  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:36.327  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:36.395  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:36.471  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:36.544  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:36.643  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:36.694  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:36.811  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:36.877  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:36.949  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.013  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.104  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.161  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.275  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.393  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.464  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.518  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.597  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.701  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.802  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.923  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:37.990  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:38.096  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:38.161  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:38.282  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:38.387  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:38.492  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:38.586  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:38.693  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:38.801  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:38.854  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:38.967  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:39.046  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:39.170  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:39.293  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:39.340  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:39.441  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:39.560  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:39.667  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:39.762  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:39.858  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:39.942  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:40.036  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:40.134  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:40.208  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:40.300  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:40.411  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:40.486  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:40.582  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:40.695  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:40.806  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:40.889  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:40.976  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:41.072  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:41.134  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:41.259  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:41.326  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:41.398  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:41.462  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:41.579  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:41.682  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:41.795  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:41.869  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:41.962  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.019  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.091  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.214  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.281  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.380  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.432  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.505  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.598  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.650  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.775  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.880  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:42.995  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:43.083  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:43.203  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:43.281  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:43.345  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:43.451  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:43.553  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:43.615  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:43.675  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:43.736  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:43.813  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:43.933  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.017  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.091  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.196  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.293  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.362  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.447  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.510  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.598  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.657  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.735  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.854  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:44.960  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.054  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.121  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.217  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.287  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.388  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.506  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.564  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.636  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.724  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.825  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.904  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:45.980  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:46.077  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:46.160  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:46.268  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:46.377  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:46.456  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:46.533  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:46.625  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:46.701  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:46.756  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:46.828  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:46.956  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:47.020  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:47.120  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:47.230  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:47.325  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:47.450  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:47.512  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:47.623  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:47.735  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:47.809  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:47.891  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:47.997  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.067  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.136  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.231  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.312  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.367  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.456  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.570  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.681  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.738  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.817  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.888  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:48.951  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.013  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.103  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.159  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.245  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.358  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.435  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.489  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.589  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.688  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.808  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.884  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:49.950  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.050  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.133  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.226  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.338  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.401  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.471  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.568  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.623  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.698  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.772  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.849  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:50.938  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.021  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.089  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.176  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.251  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.317  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.412  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.497  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.580  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.672  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.764  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.858  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:51.924  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:52.024  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:52.111  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:52.203  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:52.324  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:52.438  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:52.512  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:52.605  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:52.738  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:52.855  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:52.973  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:53.065  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:53.187  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:53.299  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:53.402  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:53.523  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:53.605  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:53.705  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:53.819  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:53.920  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.003  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.119  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.188  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.282  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.345  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.466  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.544  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.623  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.720  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.810  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.869  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:54.999  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:55.124  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:55.224  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:55.347  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:55.396  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:55.489  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:55.671  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:55.726  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:55.782  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:55.865  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:55.943  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:56.065  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:56.171  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:56.280  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:56.338  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:56.524  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:56.673  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:56.793  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:56.989  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:57.115  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:57.254  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:57.353  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:57.419  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:57.478  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:57.590  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:57.690  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:57.788  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:57.902  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:57.966  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:58.072  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:58.126  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:58.256  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:58.314  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:58.408  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:58.493  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:58.586  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:58.698  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:58.793  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:58.868  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:58.959  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:59.077  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:59.197  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:59.309  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:59.369  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:59.473  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:59.533  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:59.641  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:59.757  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:59.864  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:18:59.947  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:00.034  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:00.107  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:00.185  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:00.272  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:00.374  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:00.432  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:00.535  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:00.653  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:00.726  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:00.825  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:00.932  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:01.026  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:01.121  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:01.171  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:01.224  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:01.335  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:01.443  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:01.556  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:01.664  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:01.748  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:01.844  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:01.971  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.066  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.178  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.294  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.364  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.426  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.482  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.544  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.645  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.737  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.842  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.910  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:02.984  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.055  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.160  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.211  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.288  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.362  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.425  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.472  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.593  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.646  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.711  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.812  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:03.905  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:04.003  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:04.073  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:04.177  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:04.236  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:04.316  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:04.437  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:04.518  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:04.652  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:04.722  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:04.796  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:04.919  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.013  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.127  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.246  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.370  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.466  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.527  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.587  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.666  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.771  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.838  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.889  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:05.994  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.097  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.163  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.217  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.304  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.400  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.498  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.573  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.635  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.719  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.787  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.845  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:06.901  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.020  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.113  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.221  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.287  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.386  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.487  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.560  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.621  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.679  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.743  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.858  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:07.950  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.061  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.118  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.187  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.264  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.348  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.409  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.458  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.519  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.602  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.713  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.797  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.896  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:08.955  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.057  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.158  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.241  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.303  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.378  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.435  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.528  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.597  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.649  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.767  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.884  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:09.969  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:10.088  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:10.151  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:10.264  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:10.362  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:10.471  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:10.548  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:10.607  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:10.708  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:10.801  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:10.887  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:10.990  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.061  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.156  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.250  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.322  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.393  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.490  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.572  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.637  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.698  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.799  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.870  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:11.942  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:12.035  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:12.156  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:12.227  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:12.297  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:12.409  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:12.471  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:12.561  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:12.666  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:12.769  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:12.894  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:12.997  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.073  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.132  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.195  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.263  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.324  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.383  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.491  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.556  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.626  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.751  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.838  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:13.952  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.030  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.115  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.180  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.285  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.345  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.405  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.501  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.573  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.660  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.735  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.829  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.919  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:14.999  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:15.115  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:15.237  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:15.348  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:15.418  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:15.471  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:15.589  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:15.656  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:15.706  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:15.823  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:15.878  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:15.950  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:16.021  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:16.132  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:16.207  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:16.302  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:16.416  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:16.525  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:16.634  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:16.744  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:16.814  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:16.903  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:16.972  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:17.076  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:17.162  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:17.239  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:17.357  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:17.444  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:17.543  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:17.659  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:17.762  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:17.883  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:17.930  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.043  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.117  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.224  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.305  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.385  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.488  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.565  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.666  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.745  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.803  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.859  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:18.986  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.068  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.185  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.266  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.347  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.397  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.473  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.563  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.632  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.734  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.817  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.871  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.940  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:19.997  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.084  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.137  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.208  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.300  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.378  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.435  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.504  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.611  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.674  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.738  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.792  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.877  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:20.936  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.051  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.151  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.251  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.333  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.439  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.526  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.596  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.705  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.804  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.869  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.927  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:21.996  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.080  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.159  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.251  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.328  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.387  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.446  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.580  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.642  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.717  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.763  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.821  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.895  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:22.951  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:23.055  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:23.169  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:23.281  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:23.396  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:23.520  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:23.597  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:23.680  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:23.733  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:23.834  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:23.914  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.014  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.110  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.205  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.310  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.375  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.449  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.528  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.594  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.686  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.804  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.867  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:24.976  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:25.053  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:25.134  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:25.214  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:25.318  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:25.416  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:25.482  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:25.562  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:25.673  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:25.767  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:25.825  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:25.939  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:26.030  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:26.139  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:26.216  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:26.316  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:26.408  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:26.497  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:26.584  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:26.702  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:26.802  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:26.926  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:27.027  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:27.131  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:27.206  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:27.302  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:27.428  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:27.524  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:27.586  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:27.662  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:27.768  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:27.875  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:27.974  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:28.036  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:28.145  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:28.224  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:28.302  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:28.419  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:28.497  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:28.578  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:28.669  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:28.756  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:28.843  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:28.957  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:29.100  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:29.231  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:29.316  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:29.393  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:29.469  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:29.556  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:29.646  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:29.729  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:29.779  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:29.852  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:29.914  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:30.018  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:30.122  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:30.180  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:30.266  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:30.324  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:30.441  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:30.533  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:30.652  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:30.751  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:30.867  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:30.948  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:31.021  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:31.100  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:31.180  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:31.291  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:31.384  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:31.506  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:31.565  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:31.688  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:31.817  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:31.887  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:31.947  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.031  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.098  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.177  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.242  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.338  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.390  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.519  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.599  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.686  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.801  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.892  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:32.996  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:33.142  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:33.234  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:33.328  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:33.416  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:33.535  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:33.614  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:33.717  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:33.788  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:33.872  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:33.992  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:34.100  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:34.191  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:34.302  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:34.361  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:34.448  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:34.502  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:34.565  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:34.659  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:34.718  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:34.841  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:34.963  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:35.010  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:35.100  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:35.210  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:35.280  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:35.350  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:35.436  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:35.594  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:35.654  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:35.733  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+2021-09-16 15:19:35.808  INFO 9704 --- [    Test worker] tourGuide.service.TourGuideService       : Is this thing running ? I really don't know.
+||||highVolumeTrackLocation: Time Elapsed: 105 seconds.
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 4.8.1</a> at 16 sept. 2021 15:19:36</p>
+</div>
+</div>
+</body>
+</html>

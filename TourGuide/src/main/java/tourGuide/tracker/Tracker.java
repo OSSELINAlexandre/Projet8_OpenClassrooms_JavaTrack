@@ -17,7 +17,7 @@ public class Tracker extends Thread {
 	// private static final long trackingPollingInterval =
 	// TimeUnit.MINUTES.toSeconds(0,5);
 
-	private static final long trackingPollingInterval = TimeUnit.SECONDS.toSeconds(5);
+	private static final long trackingPollingInterval = TimeUnit.MINUTES.toSeconds(5);
 	private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 	private final TourGuideService tourGuideService;
 	private boolean stop = false;
