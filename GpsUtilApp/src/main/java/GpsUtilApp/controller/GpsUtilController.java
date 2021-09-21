@@ -1,12 +1,10 @@
 package GpsUtilApp.controller;
 
-import GpsUtilApp.Application;
 import GpsUtilApp.model.Attraction;
 import GpsUtilApp.model.Location;
 import GpsUtilApp.model.User;
 import GpsUtilApp.model.UserNearbyAttraction;
 import GpsUtilApp.service.GpsUtilService;
-import com.jsoniter.output.JsonStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.Future;
 
 @RestController
 public class GpsUtilController {
@@ -30,6 +26,8 @@ public class GpsUtilController {
     @PostMapping("/getLocation")
     public User getTheCrapingLocation(@RequestBody User theId){
 
+
+        logger.info("i'd like that he goes there ");
         User result = gpsUtilService.trackTheUser(theId);
 
         return result;

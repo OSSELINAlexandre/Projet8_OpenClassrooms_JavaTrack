@@ -1,6 +1,6 @@
 package RewardCentralApp.controller;
 
-import RewardCentralApp.dto.UserAndAttractionDTO;
+import RewardCentralApp.model.User;
 import RewardCentralApp.service.RewardCentralService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,7 @@ public class RewardCentralController {
     }
 
     @PostMapping("/calculateReward")
-    public UserAndAttractionDTO calculateTheRewardsForThisUser(@RequestBody UserAndAttractionDTO theUser){
+    public User calculateTheRewardsForThisUser(@RequestBody User theUser){
 
         return rewardCentralService.calculateRewards(theUser);
     }

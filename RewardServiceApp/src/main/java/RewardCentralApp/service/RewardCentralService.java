@@ -1,6 +1,5 @@
 package RewardCentralApp.service;
 
-import RewardCentralApp.dto.UserAndAttractionDTO;
 import RewardCentralApp.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,7 @@ public class RewardCentralService {
         return rewardCentral.getAttractionRewardPoints(attraction, user);
     }
 
-    public UserAndAttractionDTO calculateRewards(UserAndAttractionDTO user) {
+    public User calculateRewards(User user) {
         List<VisitedLocation> userLocations = user.getVisitedLocations();
         List<Attraction> attractions = user.getAttractions();
 

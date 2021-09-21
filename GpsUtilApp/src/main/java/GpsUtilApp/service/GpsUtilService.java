@@ -58,8 +58,6 @@ public class GpsUtilService {
 
         VisitedLocation visitedLocation = getTheUser(user.getUserId());
         user.addToVisitedLocations(visitedLocation);
-
-
         return user;
 
 

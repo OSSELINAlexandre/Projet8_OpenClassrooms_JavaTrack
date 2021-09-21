@@ -4,25 +4,22 @@ package RewardCentralApp.model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class User {
 	private Logger logger = LoggerFactory.getLogger(User.class);
-	private  UUID userId;
-	private  String userName;
+
+	private UUID userId;
+	private String userName;
 	private String phoneNumber;
 	private String emailAddress;
 	private Date latestLocationTimestamp;
-	private CopyOnWriteArrayList<VisitedLocation> visitedLocations = new  CopyOnWriteArrayList<>();
-	private CopyOnWriteArrayList<UserReward> userRewards = new  CopyOnWriteArrayList<>();
-	private UserPreferences userPreferences = new UserPreferences();
-	private List<Provider> tripDeals = new ArrayList<>();
-	private ReentrantLock lock = new ReentrantLock();
+	private CopyOnWriteArrayList<VisitedLocation> visitedLocations;
+	private CopyOnWriteArrayList<UserReward> userRewards;
+	private List<Attraction> attractions;
 	
 	
 	public User(UUID userId, String userName, String phoneNumber, String emailAddress) {
@@ -89,25 +86,16 @@ public class User {
 	public  CopyOnWriteArrayList<UserReward> getUserRewards() {
 		return userRewards;
 	}
-	
-	public UserPreferences getUserPreferences() {
-		return userPreferences;
-	}
-	
-	public void setUserPreferences(UserPreferences userPreferences) {
-		this.userPreferences = userPreferences;
-	}
 
 	public VisitedLocation TheLastVisitedLocation() {
 		return visitedLocations.get(visitedLocations.size() - 1);
 	}
-	
-	public void setTripDeals(List<Provider> tripDeals) {
-		this.tripDeals = tripDeals;
-	}
-	
-	public List<Provider> getTripDeals() {
-		return tripDeals;
+
+	public List<Attraction> getAttractions() {
+		return attractions;
 	}
 
+	public void setAttractions(List<Attraction> attractions) {
+		this.attractions = attractions;
+	}
 }
