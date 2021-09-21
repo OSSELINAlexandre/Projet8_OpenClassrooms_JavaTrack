@@ -1,15 +1,17 @@
 package GpsUtilApp.controller;
 
 import GpsUtilApp.Application;
+import GpsUtilApp.model.Attraction;
+import GpsUtilApp.model.Location;
+import GpsUtilApp.model.User;
+import GpsUtilApp.model.UserNearbyAttraction;
 import GpsUtilApp.service.GpsUtilService;
-import gpsUtil.location.Attraction;
-import gpsUtil.location.VisitedLocation;
+import com.jsoniter.output.JsonStream;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,37 +27,36 @@ public class GpsUtilController {
     GpsUtilService gpsUtilService;
 
 
-    @GetMapping("/getLocation")
-    public VisitedLocation getTheCrapingLocation(@RequestParam("userName") UUID theId){
+    @PostMapping("/getLocation")
+    public User getTheCrapingLocation(@RequestBody User theId){
 
-        Future<VisitedLocation> futureVisited = Application.executorService.submit(() -> gpsUtilService.getTheUser(theId));
-        logger.info("Been there, just keep faith, be strong and courageous");
-        try{
+        User result = gpsUtilService.trackTheUser(theId);
 
-            VisitedLocation result = futureVisited.get();
-            return result;
-        }catch(Exception e){
-
-            return null;
-        }
-
+        logger.info("If it's send here " + result.getUserName() + " let's have some fun " + result.getUserRewards().size());
+        return result;
 
     }
 
     @GetMapping("/getAttraction")
     public List<Attraction> getTheAttraction(){
 
-        Future<List<Attraction>> listOfAllFuture = Application.executorService.submit(() -> gpsUtilService.getAllAttraction());
+        return gpsUtilService.getAllAttraction();
+    }
 
-        try{
-            List<Attraction> result = listOfAllFuture.get();
-            return null;
+    @PostMapping("/getNearbyAttractions")
+    public List<UserNearbyAttraction> getNearbyAttractions(@RequestBody User user){
 
-        }catch(Exception e){
 
-            return null;
-        }
+        return gpsUtilService.getNearByFifthClosestAttractions(user);
+    }
 
+
+    @PostMapping("/getAllCurrentLocations")
+    public List<Location> getAllCurrentLocation(@RequestBody List<User> users){
+
+        List<Location> visitedLocations = gpsUtilService.getAllTheList(users);
+
+        return visitedLocations;
     }
 
 }
