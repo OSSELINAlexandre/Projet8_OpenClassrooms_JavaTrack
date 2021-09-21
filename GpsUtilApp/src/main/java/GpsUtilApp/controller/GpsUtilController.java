@@ -32,7 +32,6 @@ public class GpsUtilController {
 
         User result = gpsUtilService.trackTheUser(theId);
 
-        logger.info("If it's send here " + result.getUserName() + " let's have some fun " + result.getUserRewards().size());
         return result;
 
     }
