@@ -1,23 +1,15 @@
 package GpsUtilApp;
 
 import GpsUtilApp.model.*;
-import GpsUtilApp.proxy.RewardCentralProxy;
 import GpsUtilApp.service.GpsUtilService;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -26,8 +18,6 @@ public class UnitTest {
     @Autowired
     GpsUtilService gpsUtilService;
 
-    @Mock
-    RewardCentralProxy rewardCentralProxy;
 
     @Before
     public void init(){
@@ -52,15 +42,7 @@ public class UnitTest {
 
     }
 
-    @Test
-    public void Test_nearAttraction(){
-        Attraction testAttraction = new Attraction("Zoo Tampa at Lowry Park", "Tampa", "FL", 28.012804D, -82.469269D);
-        Location testLocation = new Location(28.012804D, -82.469269D);
-        VisitedLocation testVisited = new VisitedLocation(UUID.randomUUID(), testLocation, new Date());
-        Boolean result = gpsUtilService.nearAttraction(testVisited, testAttraction);
-        assertTrue(result);
 
-    }
 
    @Test
     public void Test_getAllTheList(){
@@ -102,8 +84,7 @@ public class UnitTest {
        User userA = new User(x, "Jon", "000", "@@");
        userA.addToVisitedLocations(testVisitedA);
 
-       when(rewardCentralProxy.getTheReward(uuidOfA, x)).thenReturn(5);
-       gpsUtilService.setTheReward(rewardCentralProxy);
+
 
        List<UserNearbyAttraction> result = gpsUtilService.getNearByFifthClosestAttractions(userA);
 
@@ -113,7 +94,7 @@ public class UnitTest {
        // GETTING ALL THE DISTANCES POSSIBLE FROM THE GIVEN POINT
        for(Attraction a : gpsUtilService.getAllAttraction()){
 
-           testingTheDistance.add(gpsUtilService.getDistance(a, userA.getLastVisitedLocation().location));
+           testingTheDistance.add(gpsUtilService.getDistance(a, userA.TheLastVisitedLocation().location));
        }
 
         Double minA = Collections.min(testingTheDistance);
@@ -144,22 +125,6 @@ public class UnitTest {
        && minimals.contains(result.get(4).getDistanceInMilesBetweenUserAndAttraction()));
     }
 
-    @Test
-    public void Test_calculateRewards(){
-
-
-        Attraction A = new Attraction("Franklin Park Zoo", "Boston", "MA", 42.302601D, -71.086731D);
-        UUID uuidOfA = A.attractionId;
-        Location testLocationA = new Location(42.302601D, -71.086731D);
-        VisitedLocation testVisitedA = new VisitedLocation(UUID.randomUUID(), testLocationA, new Date());
-        UUID x = UUID.randomUUID();
-        User userA = new User(x, "Jon", "000", "@@");
-        userA.addToVisitedLocations(testVisitedA);
-
-        gpsUtilService.calculateRewards(userA);
-        assertTrue(userA.getUserRewards().size() != 0);
-
-    }
 
 
 }

@@ -1,16 +1,13 @@
 package RewardCentralApp.controller;
 
-import RewardCentralApp.Application;
+import RewardCentralApp.dto.UserAndAttractionDTO;
 import RewardCentralApp.service.RewardCentralService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
-import java.util.concurrent.Future;
 
 @RestController
 public class RewardCentralController {
@@ -24,17 +21,16 @@ public class RewardCentralController {
     @GetMapping("/getReward")
     public int getTheReward(@RequestParam("attId")UUID attraction, @RequestParam("userId") UUID user){
 
-        Future<Integer> rewards = Application.executorService.submit(() -> rewardCentralService.getAttractionRewardPoints(attraction, user));
+        Integer rewards = rewardCentralService.getAttractionRewardPoints(attraction, user);
 
-        try {
+        return rewards;
 
-            int rewardsResult = rewards.get();
-            return rewardsResult;
+    }
 
-        }catch(Exception e){
+    @PostMapping("/calculateReward")
+    public UserAndAttractionDTO calculateTheRewardsForThisUser(@RequestBody UserAndAttractionDTO theUser){
 
-            return 0;
-        }
+        return rewardCentralService.calculateRewards(theUser);
     }
 
 }

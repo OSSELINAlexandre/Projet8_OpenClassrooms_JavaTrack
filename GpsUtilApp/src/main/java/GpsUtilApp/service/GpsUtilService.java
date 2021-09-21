@@ -1,12 +1,10 @@
 package GpsUtilApp.service;
 
 import GpsUtilApp.model.*;
-import GpsUtilApp.proxy.RewardCentralProxy;
 import gpsUtil.GpsUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,8 +15,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Service
 public class GpsUtilService {
 
-    @Autowired
-    RewardCentralProxy rewardCentralProxy;
 
     private static Logger logger = LoggerFactory.getLogger(GpsUtilService.class);
 
@@ -62,44 +58,17 @@ public class GpsUtilService {
 
         VisitedLocation visitedLocation = getTheUser(user.getUserId());
         user.addToVisitedLocations(visitedLocation);
-        calculateRewards(user);
+
 
         return user;
 
 
     }
 
-    public void calculateRewards(User user) {
-        List<VisitedLocation> userLocations = user.getVisitedLocations();
-        List<Attraction> attractions = getAllAttraction();
-
-        logger.info("============= HERE OR NOT ? " + user.getUserName());
-        for (VisitedLocation visitedLocation : userLocations) {
-
-            for (Attraction attraction : attractions) {
-                /**
-                 * Si dans l'ensemble des rewards recu par l'utilisateur l'attraction n'y est
-                 * pas, alors / Ok, je pense que le but c'est de verifier par rapport a la
-                 * localisation actuelle. Du coup, si une personne a deja visite une
-                 * localisation, aucun nouveau point ne lui est donne.
-                 */
-                if (user.getUserRewards().stream().parallel()
-                        .filter(r -> r.attraction.attractionName.equals(attraction.attractionName)).count() == 0) {
-                    if (nearAttraction(visitedLocation, attraction)) {
-                        logger.info("We should get till this point ! ");
-                        user.addUserReward(new UserReward(visitedLocation, attraction, getRewardPoints(attraction, user)));
-                        logger.info("///////// This user " + user.getUserName() + "has " + user.getUserRewards().size());
-                    }
-                }
-            }
-        }
-
-    }
 
     public List<UserNearbyAttraction> getNearByFifthClosestAttractions(User u) {
 
         VisitedLocation visitedLocation = (u.getVisitedLocations().size() > 0 ? u.TheLastVisitedLocation() : trackTheUser(u).TheLastVisitedLocation());
-        logger.info("DO WE GET HERE MAN ????? " + visitedLocation + " it's a hard job for freemon " + u.TheLastVisitedLocation());
         List<UserNearbyAttraction> nearbyAttractions = new ArrayList<>();
         List<Attraction> resultAttraction = new ArrayList<>();
 
@@ -159,8 +128,7 @@ public class GpsUtilService {
              * Think to see about the attractionRewardsPoint and send the user, not some
              * null thing.
              */
-            newItem.setRewardsLinkedToTheAttraction(
-                    getRewardPoints(e, u));
+
             nearbyAttractions.add(newItem);
         }
 
@@ -168,14 +136,6 @@ public class GpsUtilService {
     }
 
 
-    public boolean nearAttraction(VisitedLocation visitedLocation, Attraction attraction) {
-        return getDistance(attraction, visitedLocation.location) > proximityBuffer ? false : true;
-    }
-
-    public int getRewardPoints(Attraction attraction, User user) {
-        logger.info("I think it's called when we do an Add but not automatically");
-        return rewardCentralProxy.getTheReward(attraction.attractionId, user.getUserId());
-    }
 
     public double getDistance(Location loc1, Location loc2) {
         double lat1 = Math.toRadians(loc1.latitude);
@@ -205,7 +165,4 @@ public class GpsUtilService {
         return result;
     }
 
-    public void setTheReward(RewardCentralProxy aRewardWay){
-        this.rewardCentralProxy = aRewardWay;
-    }
 }
