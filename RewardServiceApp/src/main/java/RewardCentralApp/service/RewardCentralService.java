@@ -34,7 +34,6 @@ public class RewardCentralService {
         List<VisitedLocation> userLocations = user.getVisitedLocations();
         List<Attraction> attractions = user.getAttractions();
 
-        logger.info("============= HERE OR NOT ? " + user.getUserName());
         for (VisitedLocation visitedLocation : userLocations) {
 
             for (Attraction attraction : attractions) {
@@ -47,9 +46,7 @@ public class RewardCentralService {
                 if (user.getUserRewards().stream().parallel()
                         .filter(r -> r.attraction.attractionName.equals(attraction.attractionName)).count() == 0) {
                     if (nearAttraction(visitedLocation, attraction)) {
-                        logger.info("We should get till this point ! ");
                         user.addUserReward(new UserReward(visitedLocation, attraction, rewardCentral.getAttractionRewardPoints(attraction.attractionId, user.getUserId())));
-                        logger.info("///////// This user " + user.getUserName() + "has " + user.getUserRewards().size());
 
                     }
                 }

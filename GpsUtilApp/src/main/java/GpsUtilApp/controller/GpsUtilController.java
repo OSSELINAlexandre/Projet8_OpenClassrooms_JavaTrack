@@ -27,7 +27,7 @@ public class GpsUtilController {
     public User getTheCrapingLocation(@RequestBody User theId){
 
 
-        logger.info("i'd like that he goes there ");
+        logger.info("i'd like that he goes there " + theId.getUserName());
         User result = gpsUtilService.trackTheUser(theId);
 
         return result;
