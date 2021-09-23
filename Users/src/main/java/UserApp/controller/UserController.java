@@ -3,15 +3,15 @@ package UserApp.controller;
 import UserApp.dto.UserPreferencesDTO;
 import UserApp.model.*;
 import UserApp.proxy.GpsUtilProxy;
+import UserApp.proxy.RewardProxy;
 import UserApp.service.UserService;
-import org.javamoney.moneta.Money;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.money.Monetary;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @RestController
@@ -25,58 +25,14 @@ public class UserController {
     UserService userService;
 
     @Autowired
-    GpsUtilProxy TE;
+    RewardProxy rewardProx;
 
+    @Autowired
+    GpsUtilProxy gpsProxy;
 
-    /*
-    *
-    * Endpoints related to the User itself
-    *
-    *
-    * */
-
-    @GetMapping("/hey")
-    public VisitedLocation poilo(){
-
-
-        VisitedLocation lol = userService.trackUserLocation(userService.users.get(2));
-
-        return lol;
-    }
-
-    @GetMapping("/test")
-    public UserPreferences lol(){
-
-        UserPreferences newLol = new UserPreferences();
-        newLol.setAttractionProximity(150);
-        newLol.setLowerPricePoint(Money.of(1500, "USD"));
-        newLol.setHighPricePoint(Money.of(1750, "USD"));
-        newLol.setNumberOfAdults(15000);
-        newLol.setNumberOfChildren(450);
-        newLol.setTicketQuantity(750);
-        newLol.setTripDuration(850);
-
-        return newLol;
-    }
-
-    @PostMapping("/again")
-    public UserPreferences polo(@RequestParam("currency") String currency, @RequestParam("numberAdults") int number){
-
-        UserPreferences lol = new UserPreferences();
-        lol.setCurrency(Monetary.getCurrency(currency));
-        lol.setLowerPricePoint(Money.of(lol.getLowerPricePoint().getNumber(), lol.getCurrency()));
-        lol.setHighPricePoint(Money.of(lol.getHighPricePoint().getNumber(), lol.getCurrency()));
-        lol.setNumberOfAdults(number);
-        return lol;
-
-    }
-
-    @PostMapping("/testing")
-    public void mdr(@RequestBody UserPreferences lol){
-
-        logger.info(lol.toString());
-
-    }
+    // ***********************************************************************************************************
+    // ************                            LIEE AU Users themselves                   ************************
+    // ***********************************************************************************************************
 
     @PostMapping("/addUser")
     public User addAUser(@RequestBody User userName){
@@ -106,11 +62,6 @@ public class UserController {
 
     }
 
-
-    /*
-    *
-    * NotWorking if it's with a JsonStream.I think i will use Jackson instead in the coming thing to see why.
-    * */
     @GetMapping("/getUserPreference")
     public UserPreferences getTheUserPreference(@RequestParam("userName") String user){
         return userService.getUserPreference(user);
@@ -118,34 +69,31 @@ public class UserController {
 
     @GetMapping("/getRewards")
     public CopyOnWriteArrayList<UserReward> getTheRewards(@RequestParam("userName") String user){
-        logger.info("WE ARE IN THE CONTROLLER, Should be allright here");
         return userService.getUserRewards(user);
 
     }
 
     @GetMapping("/getUser")
     public User getTheUser(@RequestParam("userName") String user){
-
         return userService.getASpecificUser(user);
     }
 
-    /*
-    *
-    * RelatedToTheApplicationItself
-    *
-    *
-    * */
-
-    @GetMapping("/getLocation")
-    public VisitedLocation getTheLocationOfUser(@RequestParam("UserName") String user){
-
-        return userService.getUserLocation(user);
-    }
 
     @GetMapping("/getAllLocationUser")
-    public CopyOnWriteArrayList<VisitedLocation> getAllTheLocationOfGivenUser(@RequestParam("UserName") String user){
+    public CopyOnWriteArrayList<VisitedLocation> getAllTheLocationOfGivenUser(@RequestParam("userName") String user){
 
         return userService.getAllUserLocationGivenUser(user);
+    }
+
+
+    // ***********************************************************************************************************
+    // ************                            LIEE AU GpsUtilProxy                       ************************
+    // ***********************************************************************************************************
+
+    @GetMapping("/getLocation")
+    public VisitedLocation getTheLocationOfUser(@RequestParam("userName") String user){
+
+        return userService.getUserLocation(user);
     }
 
     @GetMapping("/getAttraction")
@@ -154,23 +102,44 @@ public class UserController {
         return userService.getAllAttraction();
     }
 
-    @GetMapping("/getLastLocationOfAllUsers")
-    public List<VisitedLocation> getAllTheLastLocationOfAllUsers(){
-
-        return userService.getAllLastLocationUsers();
-    }
 
     @GetMapping("/getNearbyAttractions")
-    public List<UserNearbyAttraction> getNearbyAttractions(@RequestParam("UserName") String userName) {
+    public List<UserNearbyAttraction> getNearbyAttractions(@RequestParam("userName") String userName) {
 
 
         return userService.getAllFifthClosestAttraction(userName);
     }
 
+
+    @GetMapping("/getAllCurrentLocations")
+    public List<VisitedLocation> getAllTheLastLocationOfAllUsers(){
+
+        return userService.getAllLastLocationUsers();
+    }
+
+
+
+    // ***********************************************************************************************************
+    // ************                            LIEE AU TripPricerProxy                    ************************
+    // ***********************************************************************************************************
     @GetMapping("/getTripDeals")
     public List<Provider> getTheDifferentTripDeals(@RequestParam String userName){
         return userService.getAllTheDeals(userName);
     }
+
+    // ***********************************************************************************************************
+    // ************                            LIEE AU RewardProxy                    ************************
+    // ***********************************************************************************************************
+
+
+    @GetMapping("/getReward")
+    public int getTheReward(@RequestParam("attId") UUID attraction, @RequestParam("userId") UUID user){
+
+
+        return userService.getAttractionRewardsPoints(attraction, user);
+    }
+
+
 
 
 }

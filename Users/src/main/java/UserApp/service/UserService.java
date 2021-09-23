@@ -1,9 +1,11 @@
 package UserApp.service;
 
-import UserApp.dto.UserDTO;
+import UserApp.dto.UserAndAttractionDTO;
+import UserApp.dto.UserGpsDTO;
 import UserApp.dto.UserPreferencesDTO;
 import UserApp.model.*;
 import UserApp.proxy.GpsUtilProxy;
+import UserApp.proxy.RewardProxy;
 import UserApp.proxy.TripPricerProxy;
 import UserApp.testers.InternalUsersSetters;
 import UserApp.tracker.Tracker;
@@ -28,30 +30,34 @@ public class UserService {
     @Autowired
     TripPricerProxy tripPricerProxy;
 
+    @Autowired
+    RewardProxy rewardProxy;
+
     private Logger logger = LoggerFactory.getLogger(UserService.class);
 
 
     public Tracker tracker;
     public static CopyOnWriteArrayList<User> users = new CopyOnWriteArrayList<>();
     public final static ReentrantLock lock = new ReentrantLock();
-    public static Boolean testMode = true;
+    public static Boolean testMode = false;
 
-    /*
-    *
-    * This part is present in order to create some Data for testing our application.
-    *
-    *
-    *
-    *
-    * */
+
+    // ***********************************************************************************************************
+    // ************                            INITIALIZING & TEST part                   ************************
+    // ***********************************************************************************************************
 
     public UserService(){
 
         if(testMode){
 
+
+        }else{
+
+            tracker = new Tracker(this);
             initializeAListOfUser();
         }
-        tracker = new Tracker(this);
+
+
     }
 
     private void initializeAListOfUser() {
@@ -96,103 +102,17 @@ public class UserService {
 
 
 
-    /*
-    *
-    * Part in relationship with the controllers.
-    *
-    *
-    * */
-
-
-    private UserDTO tranformUserIntoDto(User user) {
-
-        UserDTO result = new UserDTO();
-        UserPreferencesDTO resultPref = new UserPreferencesDTO();
-
-        // Setting all characteristics from the UserDTO
-        result.setLatestLocationTimestamp(user.getLatestLocationTimestamp());
-        result.setEmailAddress(user.getEmailAddress());
-        result.setPhoneNumber(user.getPhoneNumber());
-        result.setUserId(user.getUserId());
-        result.setUserRewards(user.getUserRewards());
-        result.setUserName(user.getUserName());
-        result.setTripDeals(user.getTripDeals());
-        result.setVisitedLocations(user.getVisitedLocations());
-
-
-        UserPreferences formerPref = user.getUserPreferences();
-        resultPref.setAttractionProximity(formerPref.getAttractionProximity());
-        resultPref.setCurrency(formerPref.getCurrency().getCurrencyCode());
-        resultPref.setHighPricePoint(formerPref.getHighPricePoint().getNumber().intValue());
-        resultPref.setLowerPricePoint(formerPref.getLowerPricePoint().getNumber().intValue());
-        resultPref.setNumberOfAdults(formerPref.getNumberOfAdults());
-        resultPref.setTicketQuantity(formerPref.getTicketQuantity());
-        resultPref.setNumberOfChildren(formerPref.getNumberOfChildren());
-        resultPref.setTripDuration(formerPref.getTripDuration());
-        result.setUserPreferences(resultPref);
-
-        return result;
-
-    }
-
-    private User tranformDTOintoUser(UserDTO user) {
-
-        User result = new User();
-        UserPreferences resultPref = new UserPreferences();
-
-        // Setting all characteristics from the UserDTO
-        result.setLatestLocationTimestamp(user.getLatestLocationTimestamp());
-        result.setEmailAddress(user.getEmailAddress());
-        result.setPhoneNumber(user.getPhoneNumber());
-        result.setUserId(user.getUserId());
-        result.setUserRewards(user.getUserRewards());
-        result.setUserName(user.getUserName());
-        result.setTripDeals(user.getTripDeals());
-        result.setVisitedLocations(user.getVisitedLocations());
-
-
-        UserPreferencesDTO formerPref = user.getUserPreferences();
-
-        resultPref.setAttractionProximity(formerPref.getAttractionProximity());
-        resultPref.setCurrency(Monetary.getCurrency(formerPref.getCurrency()));
-        resultPref.setLowerPricePoint(Money.of(formerPref.getLowerPricePoint(), resultPref.getCurrency()));
-        resultPref.setHighPricePoint(Money.of(formerPref.getHighPricePoint(), resultPref.getCurrency()));
-        resultPref.setNumberOfAdults(formerPref.getNumberOfAdults());
-        resultPref.setTicketQuantity(formerPref.getTicketQuantity());
-        resultPref.setNumberOfChildren(formerPref.getNumberOfChildren());
-        resultPref.setTripDuration(formerPref.getTripDuration());
-        result.setUserPreferences(resultPref);
-
-        return result;
-
-    }
+    // ***********************************************************************************************************
+    // ************                            User Domain Services                       ************************
+    // ***********************************************************************************************************
 
     public User addAUser(User user) {
 
-        UserDTO transform = tranformUserIntoDto(user);
-        UserDTO transformWithResult = gpsUtilProxy.getTheLocation(transform);
-        User result = tranformDTOintoUser(transformWithResult);
-        users.add(result);
-
-        int theIndex = users.indexOf(result);
-        User theUser = users.get(theIndex);
+        users.add(user);
+        int indexOfUser = users.indexOf(user);
+        User theUser = users.get(indexOfUser);
 
         return theUser;
-    }
-
-
-    public VisitedLocation trackUserLocation(User u) {
-
-        int indexOfUser = users.indexOf(u);
-        UserDTO resultToSend = tranformUserIntoDto(u);
-        UserDTO newResult = gpsUtilProxy.getTheLocation(resultToSend);
-        User finalResult = tranformDTOintoUser(newResult);
-
-        users.remove(indexOfUser);
-        users.add(indexOfUser, finalResult);
-
-        return finalResult.getLastVisitedLocation();
-
     }
 
     public Boolean deleteAUser(String userName) {
@@ -205,26 +125,6 @@ public class UserService {
             return true;
         }
         return false;
-    }
-
-    public VisitedLocation getUserLocation(String userName) {
-
-        User theUser = getTheUserBasedOnName(userName);
-        int indexOfUser = users.indexOf(theUser);
-        UserDTO toBeSendResult = tranformUserIntoDto(theUser);
-        UserDTO updatedResult = gpsUtilProxy.getTheLocation(toBeSendResult);
-        User result = tranformDTOintoUser(updatedResult);
-
-        users.remove(indexOfUser);
-        users.add(indexOfUser, result);
-
-        return result.getLastVisitedLocation();
-    }
-
-    public List<Attraction> getAllAttraction() {
-
-        List<Attraction> result = gpsUtilProxy.getAllAttraction();
-        return result;
     }
 
     public User updateUserPreferences(String user, UserPreferencesDTO userPref) {
@@ -253,13 +153,13 @@ public class UserService {
         return null;
     }
 
-    private User getTheUserBasedOnName(String userName) {
+    public UserPreferences getUserPreference(String userName) {
 
-       Optional<User> result = users.stream().filter(n -> n.getUserName().equals(userName)).findAny();
-
-
-        return result.orElse(null);
+        User result = getTheUserBasedOnName(userName);
+        UserPreferences userResult = result.getUserPreferences();
+        return userResult;
     }
+
 
     public CopyOnWriteArrayList<UserReward> getUserRewards(String userName) {
 
@@ -268,11 +168,9 @@ public class UserService {
 
     }
 
-    public UserPreferences getUserPreference(String userName) {
-
-        User result = getTheUserBasedOnName(userName);
-        UserPreferences userResult = result.getUserPreferences();
-        return userResult;
+    public User getASpecificUser(String user) {
+        User theUser = getTheUserBasedOnName(user);
+        return theUser;
     }
 
     public CopyOnWriteArrayList<VisitedLocation> getAllUserLocationGivenUser(String userName) {
@@ -293,20 +191,61 @@ public class UserService {
         return result;
     }
 
+
+    // ***********************************************************************************************************
+    // ************                            LIEE AU Domain du GPS                      ************************
+    // ***********************************************************************************************************
+
+    //@TODO I think that this method shoud just send some Location information, no saving. Just the tracker should do so.
+    public VisitedLocation getUserLocation(String userName) {
+
+        User theUser = getTheUserBasedOnName(userName);
+
+        if(theUser != null){
+            UserGpsDTO resultToSend = transformUserIntoUserGpsDto(theUser);
+            UserGpsDTO updatedResult = gpsUtilProxy.getTheLocation(resultToSend);
+            return updatedResult.getVisitedLocations().get(updatedResult.getVisitedLocations().size() - 1);
+
+        }else{
+
+            return null;
+        }
+
+    }
+
+    public List<Attraction> getAllAttraction() {
+
+        List<Attraction> result = gpsUtilProxy.getAllAttraction();
+        return result;
+    }
+
+    //TODO do not send a random UUID
     public List<UserNearbyAttraction> getAllFifthClosestAttraction(String userName) {
 
-        Optional<User> theUser = users.stream().filter(n -> n.getUserName().equals(userName)).findAny();
-        if(theUser.isPresent()){
+        User theUser = getTheUserBasedOnName(userName);
+
+        if(theUser != null){
+
+            UserGpsDTO resultToBeSend = transformUserIntoUserGpsDto(theUser);
+
+            List<UserNearbyAttraction> result = gpsUtilProxy.getFifthClosestAttraction(resultToBeSend);
 
 
-         UserDTO sendingResult = tranformUserIntoDto(theUser.get());
+            //TODO remettre une boucle dans le getRewards.
+            result.forEach(n -> n.setRewardsLinkedToTheAttraction(rewardProxy.getTheReward(UUID.randomUUID(), resultToBeSend.getUserId())));
 
-        return gpsUtilProxy.getFifthClosestAttraction(sendingResult);
+            return result;
 
         }
 
         return null;
     }
+
+
+    // ***********************************************************************************************************
+    // ************                            LIEE AU TripPricerProxy                    ************************
+    // ***********************************************************************************************************
+
 
     //TODO check a quoi sert la clé API et où la mettre !
     public List<Provider> getAllTheDeals(String userName) {
@@ -319,8 +258,151 @@ public class UserService {
         return tripPricerProxy.getPrices("Hey", theUser.getUserId(), theUser.getUserPreferences().getNumberOfAdults(), theUser.getUserPreferences().getNumberOfChildren(), theUser.getUserPreferences().getTripDuration(), totalAmountOfRewards);
     }
 
-    public User getASpecificUser(String user) {
-        User theUser = getTheUserBasedOnName(user);
-        return theUser;
+
+    // ***********************************************************************************************************
+    // ************                            LIEE AU Reward Domain                      ************************
+    // ***********************************************************************************************************
+
+    public int getAttractionRewardsPoints(UUID attraction, UUID user) {
+
+        return rewardProxy.getTheReward(attraction, user);
+
+    }
+
+    public User calculateTheRewardsOfUser(User u, List<Attraction> attractions){
+
+        UserAndAttractionDTO sendingResult = transformUserGpsDTOIntoUserAndAttractionDTO(u, attractions);
+        UserAndAttractionDTO updatedResultTwo = rewardProxy.calculateTheUserReward(sendingResult);
+        User result = saveTheUserAndAttractionDTOreturnUser(updatedResultTwo);
+        return result;
+    }
+
+
+
+    // ***********************************************************************************************************
+    // ************                            THE TRACKER                                ************************
+    // ***********************************************************************************************************
+
+
+    public VisitedLocation trackUserLocation(User u) {
+
+
+        UserGpsDTO resultToSend = transformUserIntoUserGpsDto(u);
+        UserGpsDTO newResult = gpsUtilProxy.getTheLocation(resultToSend);
+        User updatedResult = saveTheUserDTOAndReturnUser(newResult);
+        UserAndAttractionDTO sendingResult = transformUserGpsDTOIntoUserAndAttractionDTO(updatedResult, gpsUtilProxy.getAllAttraction());
+        UserAndAttractionDTO updatedResultTwo = rewardProxy.calculateTheUserReward(sendingResult);
+        User result = saveTheUserAndAttractionDTOreturnUser(updatedResultTwo);
+        return result.getLastVisitedLocation();
+    }
+
+
+
+
+    // ***********************************************************************************************************
+    // ************                            UTIL                                        ************************
+    // ***********************************************************************************************************
+
+
+    public User getTheUserBasedOnName(String userName) {
+
+       Optional<User> result = users.stream().filter(n -> n.getUserName().equals(userName)).findAny();
+
+
+        return result.orElse(null);
+    }
+
+    public User saveTheUserDTOAndReturnUser(UserGpsDTO newResult) {
+
+        User result = getTheUserBasedOnId(newResult.getUserId());
+        int indexOfResult = users.indexOf(result);
+        result.getVisitedLocations().add(newResult.getVisitedLocations().get(0));
+        users.remove(indexOfResult);
+        users.add(indexOfResult, result);
+        return result;
+    }
+
+
+    public User getTheUserBasedOnId(UUID theId){
+
+        Optional<User> result = users.stream().filter(n -> n.getUserId().equals(theId)).findAny();
+
+        return result.orElse(null);
+
+    }
+
+
+    public UserGpsDTO transformUserIntoUserGpsDto(User theUser) {
+
+        UserGpsDTO result = new UserGpsDTO();
+        result.setEmailAddress(theUser.getEmailAddress());
+        result.setLatestLocationTimestamp(theUser.getLatestLocationTimestamp());
+        result.setPhoneNumber(theUser.getPhoneNumber());
+        result.setUserId(theUser.getUserId());
+        result.setUserName(theUser.getUserName());
+        result.setVisitedLocations(theUser.getVisitedLocations());
+
+        return result;
+    }
+
+    public User saveTheUserAndAttractionDTOreturnUser(UserAndAttractionDTO updatedResultTwo) {
+
+
+        User result = getTheUserBasedOnId(updatedResultTwo.getUserId());
+        int indexOfResult = users.indexOf(result);
+        CopyOnWriteArrayList<UserReward> results = result.getUserRewards();
+        results.addAll(updatedResultTwo.getUserRewards());
+        result.setUserRewards(results);
+        users.remove(indexOfResult);
+        users.add(indexOfResult, result);
+        return result;
+    }
+
+
+
+    //TODO je suis obligé de refaire le lien avec le Users pour que les bonnes données soient présentes.
+    public UserAndAttractionDTO transformUserGpsDTOIntoUserAndAttractionDTO(User newResult, List<Attraction> attractions) {
+
+        UserAndAttractionDTO result = new UserAndAttractionDTO();
+        result.getVisitedLocations().add((newResult.getVisitedLocations().get(newResult.getVisitedLocations().size() -1)));
+        result.setUserRewards(newResult.getUserRewards());
+        result.setUserName(newResult.getUserName());
+        result.setUserId(newResult.getUserId());
+        result.setPhoneNumber(newResult.getPhoneNumber());
+        result.setLatestLocationTimestamp(newResult.getLatestLocationTimestamp());
+        result.setEmailAddress(newResult.getEmailAddress());
+        result.setAttractions(attractions);
+
+        return result;
+
+    }
+
+
+    // ***********************************************************************************************************
+    // ************                Getters and Setters for testing purposes               ************************
+    // ***********************************************************************************************************
+
+    public GpsUtilProxy getGpsUtilProxy() {
+        return gpsUtilProxy;
+    }
+
+    public void setGpsUtilProxy(GpsUtilProxy gpsUtilProxy) {
+        this.gpsUtilProxy = gpsUtilProxy;
+    }
+
+    public TripPricerProxy getTripPricerProxy() {
+        return tripPricerProxy;
+    }
+
+    public void setTripPricerProxy(TripPricerProxy tripPricerProxy) {
+        this.tripPricerProxy = tripPricerProxy;
+    }
+
+    public RewardProxy getRewardProxy() {
+        return rewardProxy;
+    }
+
+    public void setRewardProxy(RewardProxy rewardProxy) {
+        this.rewardProxy = rewardProxy;
     }
 }

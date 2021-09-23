@@ -1,6 +1,7 @@
 package UserApp;
 
 import UserApp.proxy.GpsUtilProxy;
+import UserApp.proxy.RewardProxy;
 import UserApp.proxy.TripPricerProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +26,9 @@ public class Application {
 
     @Autowired
     TripPricerProxy tripPricerProxy;
+
+    @Autowired
+    RewardProxy rewardProxy;
 
     public static void main(String[] args) {
         Locale.setDefault(Locale.ENGLISH);

@@ -5,24 +5,18 @@ services:
     container_name: gpsutilappcontainer
     ports:
       - "8081:8081"
-    network:
-      - default 
   
   rewardapp:
     image: rewardsapp
     container_name: rewardappcontainer
     ports:
       - "8082:8082"
-    network:
-      - default
 
   tripapp:
     image: tripapp
     container_name: tripappcontainer
     ports:
       - "8083:8083"
-    network:
-      - default
     
   userapp:
     depends_on:
@@ -33,9 +27,4 @@ services:
     container_name: userappcontainer
     ports:
       - "8080:8080"
-    network:
-      - default
 
-network:
-  default:
-    driver: custom-driver-1
