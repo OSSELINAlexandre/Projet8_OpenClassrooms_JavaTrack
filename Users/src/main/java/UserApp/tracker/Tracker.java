@@ -72,7 +72,6 @@ public class Tracker extends Thread{
             } catch (InterruptedException e) {
                 break;
             }
-            logger.info("========LOLILOL");
         }
 
     }

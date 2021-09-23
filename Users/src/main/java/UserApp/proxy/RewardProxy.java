@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.UUID;
 
-@FeignClient(name="RewardCentralApp", url="localhost:8082")
+@FeignClient(name="RewardCentralApp", url="http://rewardapp:8082")
 public interface RewardProxy {
 
     @GetMapping("/getReward?attId={x}&userId={y}")

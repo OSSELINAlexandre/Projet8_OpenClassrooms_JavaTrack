@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.UUID;
 
-@FeignClient(name="TripPricerApp", url="localhost:8083")
+@FeignClient(name="TripPricerApp", url="http://tripapp:8083")
 public interface TripPricerProxy {
 
     @GetMapping("/getPrice?Apikey={api}&UserId={id}&adults={adults}&children={children}&duration={duration}&rewards={rewards}")

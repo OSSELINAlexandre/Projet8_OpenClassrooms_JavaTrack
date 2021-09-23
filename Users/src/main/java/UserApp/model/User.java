@@ -81,7 +81,6 @@ public class User {
 	
 	public void addUserReward(UserReward userReward) {
 		if(userRewards.stream().filter(r -> r.attraction.attractionName.equals(userReward.attraction.attractionName)).count() == 0) {
-			logger.info("pretty sure it never goes even there man ! :)");
 			userRewards.add(userReward);
 		}
 	}
