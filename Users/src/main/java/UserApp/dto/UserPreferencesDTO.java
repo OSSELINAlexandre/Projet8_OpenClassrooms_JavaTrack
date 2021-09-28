@@ -1,5 +1,12 @@
 package UserApp.dto;
 
+/**
+ * <p>UserPreferencesDTO is used in order to facilitate the modification of user's preferences</p>
+ * <p>Indeed, the JavaMoney library provided by the client is a complex type, especially for transfer of information between microservices.</p>
+ * <p>Solely few information's of the UserPreferences are needed for the API in charge of the pricing.</p>
+ * <p>Therefore, this class facilitate the posting of new preferences for the client of the application. </p>
+ * <p>Plus, it asks only the required information for the API in charge of the pricing (in our case, TripApp).</p>
+ */
 public class UserPreferencesDTO {
 
 

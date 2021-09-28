@@ -15,7 +15,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
- * <b>UserController is the controller of our Users application.</b>
+ * <b>UserController is the controller of our 'Users' application.</b>
  *
  * <p>The controller centralize all the endpoints needed for the application to direct the client request to the proper service.</p>
  *
@@ -85,10 +85,11 @@ public class UserController {
     /**
      *
      * <b>updateThePreferences request a userName as parameter and new preferences as body and update the preferences of a user of the application</b>
-     * <p>The preferences of a user are the registered preferences of a user.</p>
-     * <p>The main function of preferences is to set a price for differents trip by differents travel agencies</p>
+     * <p>The preferences of a user are the registered preferences of a user .</p>
+     * <p>The main function of preferences is to set a price for different trip by different travel agencies</p>
      *
      *
+     * @see UserPreferences
      * @param user
      * @param userPref
      * @return User
@@ -115,7 +116,7 @@ public class UserController {
      *
      * <p>getTheUserPreferences request a userName as parameter and send the preferences of the given user.</p>
      *
-     * <p>It send Null if the user does not exist in the application.</p>
+     * <p>It sends Null if the user does not exist in the application.</p>
      *
      * @see UserPreferences
      * @param user
@@ -128,7 +129,7 @@ public class UserController {
 
     /**
      * <b>getTheRewards request a userName as parameter and send all the rewards for this given user.</b>
-     * <p>It returns an empty list if the user has no rewards.</p>
+     * <p>It returns an empty list if the user has no rewards (this result is dependant on the API in charge of the rewards, in our case, RewardApp).</p>
      * <p>It returns null if the user does not exist in the application.</p>
      *
      *
@@ -143,9 +144,10 @@ public class UserController {
     }
 
     /**
-     * <p>getTheUser request a UserName as parameter and return all the attributes of this given user.</p>
+     * <p>getTheUser requests a UserName as parameter and return all the attributes of this given user.</p>
      * <p>It returns null if the user does not exist in the application.</p>
      *
+     * @see User
      * @param user
      * @return User
      */
@@ -157,7 +159,7 @@ public class UserController {
 
     /**
      *
-     * <p>getAllTheLocationOfGivenUser request a userName as a parameter and returns all the visited location of this given user </p>
+     * <p>getAllTheLocationOfGivenUser request a userName as a parameter and returns all the visited location of this given user. </p>
      *
      * <p>It returns an empty list if no 'visitedLocation' has been added to the user (therefore if the 'tracker' hasn't yet provided the updated list of users to the others microservices.)</p>
      * <p>It returns null if the user does not exist in the application.</p>
@@ -184,6 +186,7 @@ public class UserController {
      *
      *
      * <p>For coherence with the application, solely the tracker save a new visited location to a user.</p>
+     * <p>Therefore getTheLocationOfUser will not update the given user with the 'VisitedLocation' sent back by this method.</p>
      *
      *
      * @see VisitedLocation
@@ -198,7 +201,7 @@ public class UserController {
 
     /**
      *
-     * <b>getAllTheAttractions returns a list of all the attractions provided by the Api (GpsUtillApp in our case).</b>
+     * <b>getAllTheAttractions returns a list of all the attractions provided by the API (GpsUtillApp in our case).</b>
      *
      *
      * @see Attraction
@@ -214,9 +217,9 @@ public class UserController {
     /**
      *
      * <p>getNearbyAttractions request a userName as a parameter,
-     * and returns the fifth closest attractions to the last visited location of the given user</p>
-     *
+     * and returns the fifth closest attractions to the last visited location of the given user (according to the attractions provided by the API).</p>
      * <p>It returns null if the user isn't registered to the application. </p>
+     *
      * @see UserNearbyAttraction
      * @param userName
      * @return List<UserNearbyAttraction>
@@ -230,8 +233,8 @@ public class UserController {
 
 
     /**
-     *  <p>getAllTheLastLocationOfAllUsers returns a list of all the VisitedLocation of all Users of the application.</p>
-     *  <p>The VisitedLocation has an attribute of the UserId, allowing the request to analyze the data. </p>
+     *  <p>getAllTheLastLocationOfAllUsers returns a list of all the 'VisitedLocation' of all the users of the application.</p>
+     *  <p>The 'VisitedLocation' has an attribute of the UserId, allowing the requester to analyze the data. </p>
      * @see VisitedLocation
      * @return
      */
@@ -248,7 +251,7 @@ public class UserController {
     // ***********************************************************************************************************
 
     /**
-     * <p>getTheDifferentTripDeals request a userName as a parameter and finds all the offered deals in function of his preferences.</p>
+     * <p>getTheDifferentTripDeals requests a userName as a parameter and finds all the offered deals in function of his preferences.</p>
      *
      *
      * @param userName
@@ -266,7 +269,7 @@ public class UserController {
 
     /**
      *
-     * <p>getTheReward request the UUID of an attraction and the UUID of a User and returns the rewards points related to it.</p>
+     * <p>getTheReward requests the UUID of an attraction and the UUID of a User and returns the rewards points related to it.</p>
      *
      * @param attraction
      * @param user
@@ -282,7 +285,7 @@ public class UserController {
     /**
      *
      * <p>findAllResultsOfUsers request a list of attraction as a body.</p>
-     * <p>It will returns a Map composed with all the users of the applications and the rewards points given to every users if have been attributed.</p>
+     * <p>It will return a Map composed with all the users of the applications and the rewards points given to every user if have been attributed.</p>
      *
      *
      * @param attractionList

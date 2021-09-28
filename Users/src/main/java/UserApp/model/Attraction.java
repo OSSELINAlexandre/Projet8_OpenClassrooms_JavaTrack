@@ -2,6 +2,12 @@ package UserApp.model;
 
 import java.util.UUID;
 
+/**
+ * <p>The Attraction class represents an attraction.</p>
+ * <p>This class is shared by all API's.</p>
+ * <p>The original library (setting the standard) is available in the GpsUtilApp, and was provided in the project.</p>
+ *
+ */
 public class Attraction extends Location{
 
     public  String attractionName;

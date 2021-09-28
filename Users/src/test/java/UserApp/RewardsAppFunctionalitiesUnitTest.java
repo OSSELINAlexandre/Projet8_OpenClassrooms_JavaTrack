@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class RewadsAppUnitTest {
+public class RewardsAppFunctionalitiesUnitTest {
 
     @Mock
     RewardProxy rewardProxy;

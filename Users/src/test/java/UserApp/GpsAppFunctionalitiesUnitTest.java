@@ -23,7 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class GpsAppUnitTest {
+public class GpsAppFunctionalitiesUnitTest {
 
     @Mock
     GpsUtilProxy gpsUtilProxy;

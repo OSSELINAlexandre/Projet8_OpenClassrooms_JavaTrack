@@ -11,6 +11,17 @@ import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * <p>The User class represents a user of the application.</p>
+ * <p>The User class is central to the application because it centralizes most of information's.</p>
+ * <p>In the most notable attributes, we can see :</p>
+ * <ul>
+ *     <li>A list of visited locations of a user. (set by the API in charge of the localization, in our case GpsUtilApp).</li>
+ *     <li>A list of all the rewards of a user (rewards are calculated by the API in charge of rewards, in our case RewardApp).</li>
+ *     <li>A list of all the possible choices of providers (provided by the API in charge of the trips, in our case TripApp).</li>
+ * </ul>
+ *
+ */
 public class User {
 	private Logger logger = LoggerFactory.getLogger(User.class);
 	private UUID userId;

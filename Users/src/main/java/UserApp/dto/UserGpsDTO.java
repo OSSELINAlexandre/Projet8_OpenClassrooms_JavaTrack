@@ -8,6 +8,11 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * <p>UserGpsDTO is the type corresponding with the API in charge of the localization of users (in our case, GpsUtil app)</p>
+ * <p>It centralizes less information's than User in order to avoid useless transfer of information's.</p>
+ *
+ */
 public class UserGpsDTO {
 
     private Logger logger = LoggerFactory.getLogger(UserGpsDTO.class);

@@ -13,6 +13,14 @@ import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ *
+ * <p>UserAndAttractionDTO is the type corresponding to the API in charge if the rewards (in our case, RewardApp). </p>
+ * <p>It centralizes less information's than User in order to avoid useless transfer of information's.</p>
+ * <p>The type also has an additional attribute (attractions) to facilitate the independence of the API. </p>
+ * <p>Indeed, the API can be completely autonomous and stateless if the DTO itself provided the list of attractions (the Reward API does not need to communicate with the API in charge of the attractions.)</p>
+ *
+ */
 public class UserAndAttractionDTO{
     private Logger logger = LoggerFactory.getLogger(UserAndAttractionDTO.class);
     private ReentrantLock lock = new ReentrantLock();

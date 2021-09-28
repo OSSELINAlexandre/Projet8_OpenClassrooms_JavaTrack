@@ -6,6 +6,12 @@ import javax.money.CurrencyUnit;
 import javax.money.Monetary;
 
 
+/**
+ * <p>The UserPreferences class centralize all needed information's needed for a user in order to set the price of a given attraction.</p>
+ * <p>The formula that establish a price in function of these criteria is available in the API in charge of the trips (in our case, TripPriceApp).</p>
+ *
+ *
+ */
 public class UserPreferences {
 	
 	private int attractionProximity = Integer.MAX_VALUE;

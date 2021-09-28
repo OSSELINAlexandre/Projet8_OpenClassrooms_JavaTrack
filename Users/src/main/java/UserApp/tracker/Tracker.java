@@ -9,14 +9,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-;
-
+/**
+ * <p>The Tracker class is the 'heart' of our application.</p>
+ * <p>It extends the Thread class and assemble all the bricks of the User App in order to make it functional.</p>
+ * <p>It takes the list of all the users in the application, recuperate a new visited location, and calculate the rewards points related to the newly visited location</p>
+ * <p>This thread run continuously, for an always available app.</p>
+ * <p>An interval for tracking the users is set.</p>
+ *
+ */
 public class Tracker extends Thread{
 
     private Logger logger = LoggerFactory.getLogger(Tracker.class);
-    // Changing the average tracking interval
-    // private static final long trackingPollingInterval =
-    // TimeUnit.MINUTES.toSeconds(0,5);
 
     private static final long trackingPollingInterval = TimeUnit.SECONDS.toSeconds(20);
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -26,7 +29,6 @@ public class Tracker extends Thread{
     public Tracker(UserService userService) {
         this.userService = userService;
         executorService.submit(this);
-        // I think that this lauch the run process in Java.
     }
 
     /**

@@ -13,7 +13,7 @@ import springfox.documentation.spring.web.plugins.Docket;
  * Swagger 2 documents the application endpoints.
  *
  * Therefore, the http://localhost:8080/v2/api-docs and http://localhost:8080/swagger-ui.html
- * can be access.
+ * can be accessed.
  *
  *
  */
