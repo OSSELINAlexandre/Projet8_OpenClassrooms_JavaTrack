@@ -202,7 +202,7 @@ public class UserService {
 
 
     // ***********************************************************************************************************
-    // ************                            LIEE AU Domain du GPS                      ************************
+    // ************                           GpsApp Domain services                      ************************
     // ***********************************************************************************************************
 
     //@TODO I think that this method shoud just send some Location information, no saving. Just the tracker should do so.
@@ -273,7 +273,7 @@ public class UserService {
 
 
     // ***********************************************************************************************************
-    // ************                            LIEE AU TripPricerProxy                    ************************
+    // ************                          TripPricer domain services                   ************************
     // ***********************************************************************************************************
 
 
@@ -290,7 +290,7 @@ public class UserService {
 
 
     // ***********************************************************************************************************
-    // ************                            LIEE AU Reward Domain                      ************************
+    // ************                            RewardApp domain services                  ************************
     // ***********************************************************************************************************
 
     public int getAttractionRewardsPoints(UUID attraction, UUID user) {
@@ -435,7 +435,6 @@ public class UserService {
 
 
 
-    //TODO je suis obligé de refaire le lien avec le Users pour que les bonnes données soient présentes.
     public UserAndAttractionDTO transformUserIntoUserAndAttractionDTO(User newResult, List<Attraction> attractions) {
 
         UserAndAttractionDTO result = new UserAndAttractionDTO();
