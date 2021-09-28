@@ -10,6 +10,18 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 import java.util.Locale;
 
+
+/**
+ * <b>The Application class is our main class for the Users application</b>
+ *
+ * <p>The Application class is annotated with EnableFeignClients and  SpringBootApplication</p>
+ *
+ * <ul>
+ *     <li>SpringBootApplication is the annotation that construct the basic parameters for a spring boot application</li>
+ *     <li>EnableFeignClients provide the application with the Feign library functionality easing the communication between microservices</li>
+ * </ul>
+ *
+ */
 @EnableFeignClients
 @SpringBootApplication
 public class Application {

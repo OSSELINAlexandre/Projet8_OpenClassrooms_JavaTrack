@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.zalando.jackson.datatype.money.MoneyModule;
 
+/**
+ * <p>The UserModule class is the class that configure some beans needed for the IoC to function properly</p>
+ */
 @Configuration
 public class UserModule {
 
@@ -15,6 +18,11 @@ public class UserModule {
         return new UserService();
     }
 
+    /**
+     * This bean enable the javamoney library to be used (this library was provided by the client).
+     *
+     * @return
+     */
     @Bean
     public ObjectMapper objectMapper(){
         return new ObjectMapper().registerModule(new MoneyModule());
