@@ -5,20 +5,19 @@ import UserApp.proxy.GpsUtilProxy;
 import UserApp.proxy.RewardProxy;
 import UserApp.proxy.TripPricerProxy;
 import UserApp.service.UserService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserIntegrationTest {
 
@@ -44,8 +43,14 @@ public class UserIntegrationTest {
 
     User user;
 
-    @Before
+    @BeforeEach
     public void init(){
+
+        userService.setGpsUtilProxy(gpsUtilProxy);
+        userService.setRewardProxy(rewardProxy);
+        userService.setTripPricerProxy(tripPricerProxy);
+
+        userService.setTheProfileTrueForTestFalseForExperience(true);
         String userName = "TestUser";
         String phone = "000";
         String email = userName + "@tourguide.com";
@@ -84,6 +89,31 @@ public class UserIntegrationTest {
         List<UserNearbyAttraction> result = userService.getAllFifthClosestAttraction(user.getUserName());
 
         assertTrue(result != null);
+
+    }
+
+
+    @Test
+    public void integrationTest_getAllLastLocationUsers(){
+
+        CopyOnWriteArrayList<User> usersTemp = new CopyOnWriteArrayList<>();
+
+        IntStream.range(0, 5).forEach(i -> {
+            String userName = "internalUser" + i;
+            String phone = "000";
+            String email = userName + "@tourguide.com";
+            User user = new User(UUID.randomUUID(), userName, phone, email);
+
+            usersTemp.add(user);
+        });
+
+        userService.users = usersTemp;
+
+
+        List<VisitedLocation> result = userService.getAllLocationOfUsers();
+
+        assertTrue(result.size() == 5);
+
 
     }
 

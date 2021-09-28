@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GpsUtilService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GpsUtilApp</a> &gt; <a href="index.source.html" class="el_package">GpsUtilApp.service</a> &gt; <span class="el_source">GpsUtilService.java</span></div><h1>GpsUtilService.java</h1><pre class="source lang-java linenums">package GpsUtilApp.service;
+
+import GpsUtilApp.model.*;
+import gpsUtil.GpsUtil;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.*;
+
+@Service
+public class GpsUtilService {
+
+
+<span class="fc" id="L19">    private static Logger logger = LoggerFactory.getLogger(GpsUtilService.class);</span>
+
+    private static final double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
+
+<span class="fc" id="L23">    private int defaultProximityBuffer = Integer.MAX_VALUE;</span>
+<span class="fc" id="L24">    private int proximityBuffer = defaultProximityBuffer;</span>
+<span class="fc" id="L25">    private int attractionProximityRange = Integer.MAX_VALUE;</span>
+    public  ExecutorService executorService;
+
+    private final GpsUtil gpsUtil;
+
+
+<span class="fc" id="L31">    public GpsUtilService(){</span>
+
+<span class="fc" id="L33">        gpsUtil = new GpsUtil();</span>
+<span class="fc" id="L34">    }</span>
+
+
+    public VisitedLocation getTheUser(UUID theId) {
+
+<span class="fc" id="L39">        gpsUtil.location.VisitedLocation intermediaryResult = gpsUtil.getUserLocation(theId);</span>
+<span class="fc" id="L40">        gpsUtil.location.Location intermediaryLoc = intermediaryResult.location;</span>
+<span class="fc" id="L41">        Location resultLoc = new Location(intermediaryLoc.latitude, intermediaryLoc.longitude);</span>
+<span class="fc" id="L42">        VisitedLocation result = new VisitedLocation(intermediaryResult.userId, resultLoc, intermediaryResult.timeVisited);</span>
+
+
+<span class="fc" id="L45">        return result;</span>
+
+    }
+
+    public List&lt;Attraction&gt; getAllAttraction() {
+
+<span class="fc" id="L51">        List&lt;gpsUtil.location.Attraction&gt; mediumResult = gpsUtil.getAttractions();</span>
+<span class="fc" id="L52">        List&lt;Attraction&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L53">        mediumResult.forEach(n -&gt; result.add(new Attraction(n.attractionName, n.city, n.state, n.latitude, n.longitude)));</span>
+
+<span class="fc" id="L55">        return result;</span>
+    }
+
+    public User trackTheUser(User user) {
+
+<span class="fc" id="L60">        VisitedLocation visitedLocation = getTheUser(user.getUserId());</span>
+<span class="fc" id="L61">        user.addToVisitedLocations(visitedLocation);</span>
+<span class="fc" id="L62">        return user;</span>
+
+
+    }
+
+
+    public List&lt;UserNearbyAttraction&gt; getNearByFifthClosestAttractions(User u) {
+
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        VisitedLocation visitedLocation = (u.getVisitedLocations().size() &gt; 0 ? u.TheLastVisitedLocation() : trackTheUser(u).TheLastVisitedLocation());</span>
+<span class="fc" id="L71">        List&lt;UserNearbyAttraction&gt; nearbyAttractions = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L72">        List&lt;Attraction&gt; resultAttraction = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L74">        Double distancedToBeChanged = 0.0;</span>
+<span class="fc" id="L75">        Integer indexToBeChange = null;</span>
+
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        for (Attraction attraction : getAllAttraction()) {</span>
+
+<span class="fc bfc" id="L79" title="All 2 branches covered.">            if (resultAttraction.size() &lt; 5) {</span>
+
+<span class="fc" id="L81">                resultAttraction.add(attraction);</span>
+
+            } else {
+
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                for (int i = 0; i &lt; resultAttraction.size(); i++) {</span>
+
+<span class="fc" id="L87">                    Location attractionLoc = new Location(attraction.latitude, attraction.longitude);</span>
+
+<span class="fc" id="L89">                    Double attractionTestDist = getDistance(attractionLoc, visitedLocation.location);</span>
+<span class="fc" id="L90">                    Double attractionBeingTested = getDistance(resultAttraction.get(i),</span>
+                            visitedLocation.location);
+
+<span class="fc bfc" id="L93" title="All 2 branches covered.">                    if (attractionTestDist &lt; attractionBeingTested) {</span>
+
+<span class="fc bfc" id="L95" title="All 2 branches covered.">                        if (attractionBeingTested &gt; distancedToBeChanged) {</span>
+
+<span class="fc" id="L97">                            indexToBeChange = i;</span>
+<span class="fc" id="L98">                            distancedToBeChanged = attractionBeingTested;</span>
+
+                        }
+
+                    }
+                }
+
+<span class="fc bfc" id="L105" title="All 2 branches covered.">                if (indexToBeChange != null) {</span>
+
+<span class="fc" id="L107">                    resultAttraction.set(indexToBeChange, attraction);</span>
+<span class="fc" id="L108">                    indexToBeChange = null;</span>
+<span class="fc" id="L109">                    distancedToBeChanged = 0.0;</span>
+
+                }
+
+            }
+
+<span class="fc" id="L115">        }</span>
+
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        for (Attraction e : resultAttraction) {</span>
+
+<span class="fc" id="L119">            UserNearbyAttraction newItem = new UserNearbyAttraction();</span>
+<span class="fc" id="L120">            newItem.setUserLocation(visitedLocation.location);</span>
+<span class="fc" id="L121">            newItem.setTouristAttractionName(e.attractionName);</span>
+<span class="fc" id="L122">            Location attractionLoc = new Location(e.latitude, e.longitude);</span>
+<span class="fc" id="L123">            newItem.setAttractionLocation(attractionLoc);</span>
+<span class="fc" id="L124">            newItem.setDistanceInMilesBetweenUserAndAttraction(getDistance(e, visitedLocation.location));</span>
+
+            /**
+             * Think to see about the attractionRewardsPoint and send the user, not some
+             * null thing.
+             */
+
+<span class="fc" id="L131">            nearbyAttractions.add(newItem);</span>
+<span class="fc" id="L132">        }</span>
+
+<span class="fc" id="L134">        return nearbyAttractions;</span>
+    }
+
+
+
+    public double getDistance(Location loc1, Location loc2) {
+<span class="fc" id="L140">        double lat1 = Math.toRadians(loc1.latitude);</span>
+<span class="fc" id="L141">        double lon1 = Math.toRadians(loc1.longitude);</span>
+<span class="fc" id="L142">        double lat2 = Math.toRadians(loc2.latitude);</span>
+<span class="fc" id="L143">        double lon2 = Math.toRadians(loc2.longitude);</span>
+
+<span class="fc" id="L145">        double angle = Math</span>
+<span class="fc" id="L146">                .acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2));</span>
+
+<span class="fc" id="L148">        double nauticalMiles = 60 * Math.toDegrees(angle);</span>
+<span class="fc" id="L149">        double statuteMiles = STATUTE_MILES_PER_NAUTICAL_MILE * nauticalMiles;</span>
+<span class="fc" id="L150">        return statuteMiles;</span>
+    }
+
+    public List&lt;User&gt; getAllTheList(List&lt;User&gt; users) {
+<span class="fc" id="L154">        executorService = Executors.newFixedThreadPool(1000);</span>
+
+<span class="fc" id="L156">        CopyOnWriteArrayList&lt;User&gt; result = new CopyOnWriteArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L158" title="All 2 branches covered.">        for(User u : users){</span>
+
+<span class="fc" id="L160">            logger.info(&quot;wait for it --- &quot; + u.getUserName());</span>
+
+<span class="fc" id="L162">            CompletableFuture.supplyAsync(() -&gt; result.add(trackTheUser(u)), executorService);</span>
+
+<span class="fc" id="L164">        }</span>
+
+
+
+        try {
+<span class="fc" id="L169">            executorService.shutdown();</span>
+<span class="fc" id="L170">            executorService.awaitTermination(15, TimeUnit.MINUTES);</span>
+<span class="nc" id="L171">        }catch(Exception e){</span>
+<span class="nc" id="L172">            executorService.shutdown();</span>
+<span class="fc" id="L173">        }</span>
+<span class="fc" id="L174">        logger.info(&quot;MDRRRRRR :::::::::::::::::::::::::::::::::::::&quot; + result.size());</span>
+
+
+<span class="fc" id="L177">        return result;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

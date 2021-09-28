@@ -8,6 +8,7 @@ import rewardCentral.RewardCentral;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.*;
 
 @Service
 public class RewardCentralService {
@@ -16,7 +17,9 @@ public class RewardCentralService {
 
     private static final double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
 
-    private static int distanceRequired = Integer.MAX_VALUE;
+    public static int distanceRequired = 10000;
+
+    private ExecutorService executorService;
 
 
     private final RewardCentral rewardCentral;
@@ -31,6 +34,7 @@ public class RewardCentralService {
     }
 
     public User calculateRewards(User user) {
+        logger.info(("--------------- " + user.getUserName() + " passed for calculateRewards."));
         List<VisitedLocation> userLocations = user.getVisitedLocations();
         List<Attraction> attractions = user.getAttractions();
 
@@ -43,7 +47,7 @@ public class RewardCentralService {
                  * localisation actuelle. Du coup, si une personne a deja visite une
                  * localisation, aucun nouveau point ne lui est donne.
                  */
-                if (user.getUserRewards().stream().parallel()
+                if (user.getUserRewards().stream()
                         .filter(r -> r.attraction.attractionName.equals(attraction.attractionName)).count() == 0) {
                     if (nearAttraction(visitedLocation, attraction)) {
                         user.addUserReward(new UserReward(visitedLocation, attraction, rewardCentral.getAttractionRewardPoints(attraction.attractionId, user.getUserId())));
@@ -75,4 +79,28 @@ public class RewardCentralService {
         return statuteMiles;
     }
 
+    public List<User> calculateAllTheRewards(List<User> theUsers) {
+
+        executorService = Executors.newFixedThreadPool(1500);
+        CopyOnWriteArrayList<User> theResult = new CopyOnWriteArrayList<>();
+
+        for(User u : theUsers){
+            CompletableFuture.supplyAsync( () -> theResult.add(calculateRewards(u)), executorService );
+        }
+
+        executorService.shutdown();
+
+        try {
+            executorService.shutdown();
+            executorService.awaitTermination(15, TimeUnit.MINUTES);
+        }catch(Exception e){
+            executorService.shutdown();
+        }
+
+        logger.info("In rewardApp, the size of the list sent is : " + theResult.size());
+
+
+        return theResult;
+
+    }
 }

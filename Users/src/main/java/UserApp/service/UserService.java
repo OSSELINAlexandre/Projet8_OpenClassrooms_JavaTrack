@@ -10,8 +10,6 @@ import UserApp.proxy.TripPricerProxy;
 import UserApp.testers.InternalUsersSetters;
 import UserApp.tracker.Tracker;
 import org.javamoney.moneta.Money;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.money.Monetary;
@@ -33,7 +31,6 @@ public class UserService {
     @Autowired
     RewardProxy rewardProxy;
 
-    private Logger logger = LoggerFactory.getLogger(UserService.class);
 
 
     public Tracker tracker;
@@ -53,8 +50,9 @@ public class UserService {
 
         }else{
 
-            tracker = new Tracker(this);
             initializeAListOfUser();
+            tracker = new Tracker(this);
+
         }
 
 
@@ -108,11 +106,22 @@ public class UserService {
 
     public User addAUser(User user) {
 
-        users.add(user);
-        int indexOfUser = users.indexOf(user);
-        User theUser = users.get(indexOfUser);
+        List<UUID> verification = new ArrayList<>();
+        users.forEach(n -> verification.add(n.getUserId()));
 
-        return theUser;
+        if(!verification.contains(user.getUserId())) {
+
+            users.add(user);
+            int indexOfUser = users.indexOf(user);
+            User theUser = users.get(indexOfUser);
+            return theUser;
+
+        }else{
+
+            return null;
+
+        }
+
     }
 
     public Boolean deleteAUser(String userName) {
@@ -242,6 +251,27 @@ public class UserService {
     }
 
 
+    public List<VisitedLocation> getAllLocationOfUsers() {
+
+        CopyOnWriteArrayList<UserGpsDTO> toBeSendResult = new CopyOnWriteArrayList<>();
+        users.forEach( n -> toBeSendResult.add( transformUserIntoUserGpsDto( n )));
+        List<UserGpsDTO> result = gpsUtilProxy.getAllLocationOfUsers(toBeSendResult);
+        List<User> intermediaryResult = new ArrayList<>();
+        for(UserGpsDTO gpsDto : result){
+            intermediaryResult.add(saveTheUserDTOAndReturnUser(gpsDto));
+        }
+        List<VisitedLocation> finalRenderingList = new ArrayList<>();
+
+        for(User u : intermediaryResult){
+            finalRenderingList.add(u.getLastVisitedLocation());
+        }
+
+
+        return finalRenderingList;
+    }
+
+
+
     // ***********************************************************************************************************
     // ************                            LIEE AU TripPricerProxy                    ************************
     // ***********************************************************************************************************
@@ -271,11 +301,42 @@ public class UserService {
 
     public User calculateTheRewardsOfUser(User u, List<Attraction> attractions){
 
-        UserAndAttractionDTO sendingResult = transformUserGpsDTOIntoUserAndAttractionDTO(u, attractions);
+        UserAndAttractionDTO sendingResult = transformUserIntoUserAndAttractionDTO(u, attractions);
         UserAndAttractionDTO updatedResultTwo = rewardProxy.calculateTheUserReward(sendingResult);
         User result = saveTheUserAndAttractionDTOreturnUser(updatedResultTwo);
         return result;
     }
+
+
+    public Map<String, List<UserReward>> getAllRewardsPointsOfUsers(List<Attraction> attractionList) {
+
+        List<UserAndAttractionDTO> toBeSentList = new ArrayList<>();
+        Map<String, List<UserReward>> finalResult = new HashMap<>();
+
+        for(User u : users){
+
+            toBeSentList.add(transformUserIntoUserAndAttractionDTO(u, attractionList));
+        }
+
+        List<UserAndAttractionDTO> result = rewardProxy.calculateTheRewardsForAllTheUsers(toBeSentList);
+
+        for(UserAndAttractionDTO u : result){
+
+            saveTheUserAndAttractionDTOreturnUser(u);
+        }
+        for(User user : users){
+
+            finalResult.put(user.getUserName(), user.getUserRewards());
+
+        }
+
+        return finalResult;
+
+    }
+
+
+
+
 
 
 
@@ -284,16 +345,29 @@ public class UserService {
     // ***********************************************************************************************************
 
 
-    public VisitedLocation trackUserLocation(User u) {
+    public void trackUserLocation() {
 
 
-        UserGpsDTO resultToSend = transformUserIntoUserGpsDto(u);
-        UserGpsDTO newResult = gpsUtilProxy.getTheLocation(resultToSend);
-        User updatedResult = saveTheUserDTOAndReturnUser(newResult);
-        UserAndAttractionDTO sendingResult = transformUserGpsDTOIntoUserAndAttractionDTO(updatedResult, gpsUtilProxy.getAllAttraction());
-        UserAndAttractionDTO updatedResultTwo = rewardProxy.calculateTheUserReward(sendingResult);
-        User result = saveTheUserAndAttractionDTOreturnUser(updatedResultTwo);
-        return result.getLastVisitedLocation();
+        CopyOnWriteArrayList<UserGpsDTO> toBeSendData = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<UserAndAttractionDTO> toBeSendDataAttraction = new CopyOnWriteArrayList<>();
+        List<Attraction> allAttractions = gpsUtilProxy.getAllAttraction();
+
+        for(User u : users){
+            toBeSendData.add(transformUserIntoUserGpsDto(u));
+        }
+        List<UserGpsDTO> newResult = gpsUtilProxy.getAllLocationOfUsers(toBeSendData);
+
+        for(UserGpsDTO gpsDto : newResult){
+            saveTheUserDTOAndReturnUser(gpsDto);
+        }
+        for(User u : users){
+            toBeSendDataAttraction.add(transformUserIntoUserAndAttractionDTO(u, allAttractions));
+        }
+        List<UserAndAttractionDTO> updatedResultTwo = rewardProxy.calculateTheRewardsForAllTheUsers(toBeSendDataAttraction);
+        for(UserAndAttractionDTO attDto : updatedResultTwo){
+
+            saveTheUserAndAttractionDTOreturnUser(attDto);
+        }
     }
 
 
@@ -316,7 +390,7 @@ public class UserService {
 
         User result = getTheUserBasedOnId(newResult.getUserId());
         int indexOfResult = users.indexOf(result);
-        result.getVisitedLocations().add(newResult.getVisitedLocations().get(0));
+        result.setVisitedLocations(newResult.getVisitedLocations());
         users.remove(indexOfResult);
         users.add(indexOfResult, result);
         return result;
@@ -348,11 +422,12 @@ public class UserService {
     public User saveTheUserAndAttractionDTOreturnUser(UserAndAttractionDTO updatedResultTwo) {
 
 
+        // L'erreur est là, enfaite, comme une nouvelle ArrayList est créee dans le DTO
+        //alors on rajoute à chaque fois la liste des résultats lorsque la requête revient, ce qui superpose
+        // des résultats pourtants indentiques.
         User result = getTheUserBasedOnId(updatedResultTwo.getUserId());
         int indexOfResult = users.indexOf(result);
-        CopyOnWriteArrayList<UserReward> results = result.getUserRewards();
-        results.addAll(updatedResultTwo.getUserRewards());
-        result.setUserRewards(results);
+        result.setUserRewards(updatedResultTwo.getUserRewards());
         users.remove(indexOfResult);
         users.add(indexOfResult, result);
         return result;
@@ -361,10 +436,11 @@ public class UserService {
 
 
     //TODO je suis obligé de refaire le lien avec le Users pour que les bonnes données soient présentes.
-    public UserAndAttractionDTO transformUserGpsDTOIntoUserAndAttractionDTO(User newResult, List<Attraction> attractions) {
+    public UserAndAttractionDTO transformUserIntoUserAndAttractionDTO(User newResult, List<Attraction> attractions) {
 
         UserAndAttractionDTO result = new UserAndAttractionDTO();
-        result.getVisitedLocations().add((newResult.getVisitedLocations().get(newResult.getVisitedLocations().size() -1)));
+        //result.getVisitedLocations().add((newResult.getVisitedLocations().get(newResult.getVisitedLocations().size() -1)));
+        result.getVisitedLocations().add((newResult.getLastVisitedLocation()));
         result.setUserRewards(newResult.getUserRewards());
         result.setUserName(newResult.getUserName());
         result.setUserId(newResult.getUserId());
@@ -405,4 +481,11 @@ public class UserService {
     public void setRewardProxy(RewardProxy rewardProxy) {
         this.rewardProxy = rewardProxy;
     }
+
+    public void setTheProfileTrueForTestFalseForExperience(Boolean result){
+
+        this.testMode = result;
+    }
+
+
 }

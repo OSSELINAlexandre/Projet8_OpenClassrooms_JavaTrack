@@ -98,7 +98,11 @@ public class User {
 	}
 
 	public VisitedLocation getLastVisitedLocation() {
-		return visitedLocations.get(visitedLocations.size() - 1);
+		if(visitedLocations.size() > 0) {
+			return visitedLocations.get(visitedLocations.size() - 1);
+		}else{
+			return null;
+		}
 	}
 	
 	public void setTripDeals(List<Provider> tripDeals) {

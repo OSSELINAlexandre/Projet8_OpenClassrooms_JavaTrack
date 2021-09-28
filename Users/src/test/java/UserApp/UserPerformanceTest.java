@@ -1,32 +1,22 @@
 package UserApp;
 
-import UserApp.model.Attraction;
-import UserApp.model.Location;
-import UserApp.model.User;
-import UserApp.model.VisitedLocation;
+import UserApp.model.*;
 import UserApp.proxy.GpsUtilProxy;
 import UserApp.proxy.TripPricerProxy;
 import UserApp.service.UserService;
 import org.apache.commons.lang3.time.StopWatch;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertTrue;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserPerformanceTest {
 
@@ -41,15 +31,15 @@ public class UserPerformanceTest {
     UserService userService;
 
 
-    @Before
+    @BeforeEach
     public void init() {
-
+        userService.setTheProfileTrueForTestFalseForExperience(true);
         Locale.setDefault(Locale.ENGLISH);
 
 
     }
 
-    @Ignore
+
     @Test
     public void highVolumeTrackLocation() {
 
@@ -58,12 +48,13 @@ public class UserPerformanceTest {
 
         CopyOnWriteArrayList<User> usersTemp = new CopyOnWriteArrayList<>();
 
-        IntStream.range(0, 1000).forEach(i -> {
+        Integer wantedOccurences = 1000;
+
+        IntStream.range(0, wantedOccurences).forEach(i -> {
             String userName = "internalUser" + i;
             String phone = "000";
             String email = userName + "@tourguide.com";
             User user = new User(UUID.randomUUID(), userName, phone, email);
-
 
             usersTemp.add(user);
         });
@@ -72,24 +63,22 @@ public class UserPerformanceTest {
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        for (User user : userService.users) {
 
-            VisitedLocation result = userService.getUserLocation(user.getUserName());
-            user.getVisitedLocations().add(result);
+        List<VisitedLocation> result = userService.getAllLocationOfUsers();
 
-        }
         stopWatch.stop();
-        for(User u : userService.users){
 
-            assertTrue(u.getVisitedLocations().size() == 1 );
-        }
+        System.out.println("What is the size of it ???? " + result.size());
+        assertTrue(result.size() == wantedOccurences);
+
 
         System.out.println("||||highVolumeTrackLocation: Time Elapsed: "
                 + TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime()) + " seconds.");
         assertTrue(TimeUnit.MINUTES.toSeconds(15) >= TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime()));
     }
 
-    @Ignore
+
+
     @Test
     public void highVolumeGetRewards() {
 
@@ -102,7 +91,10 @@ public class UserPerformanceTest {
         VisitedLocation testVisited = new VisitedLocation(UUID.randomUUID(), testLocation, new Date());
         List<Attraction> attractions = userService.getAllAttraction();
 
-        IntStream.range(0, 50).forEach(i -> {
+        Integer wantedOccurences = 100000;
+
+
+        IntStream.range(0, wantedOccurences).forEach(i -> {
             String userName = "internalUser" + i;
             String phone = "000";
             String email = userName + "@tourguide.com";
@@ -117,13 +109,11 @@ public class UserPerformanceTest {
         stopWatch.start();
 
 
-        userService.users.forEach(u -> userService.calculateTheRewardsOfUser(u, attractions));
+        Map<String, List<UserReward>> result =  userService.getAllRewardsPointsOfUsers(attractions);
 
-        for (User user : userService.users) {
-            assertTrue(user.getUserRewards().size() == 1 );
-        }
+        assertTrue(result.size() == wantedOccurences);
         stopWatch.stop();
-
+        System.out.println("Size of result from Rewards central : " + result.size());
         System.out.println("highVolumeGetRewards: Time Elapsed: " + TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime())
                 + " seconds.");
         assertTrue(TimeUnit.MINUTES.toSeconds(20) >= TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime()));

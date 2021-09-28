@@ -2,16 +2,16 @@ package GpsUtilApp;
 
 import GpsUtilApp.model.*;
 import GpsUtilApp.service.GpsUtilService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 public class UnitTest {
 
@@ -19,7 +19,7 @@ public class UnitTest {
     GpsUtilService gpsUtilService;
 
 
-    @Before
+    @BeforeEach
     public void init(){
 
         Locale.setDefault(Locale.ENGLISH);
@@ -47,24 +47,24 @@ public class UnitTest {
    @Test
     public void Test_getAllTheList(){
 
-       Location testLocation = new Location(28.012804D, -82.469269D);
-       VisitedLocation testVisited = new VisitedLocation(UUID.randomUUID(), testLocation, new Date());
+/*       Location testLocation = new Location(28.012804D, -82.469269D);
+       VisitedLocation testVisited = new VisitedLocation(UUID.randomUUID(), testLocation, new Date());*/
        User userA = new User(UUID.randomUUID(), "Jon", "000", "@@");
        User userB = new User(UUID.randomUUID(), "Robert", "000", "@@");
        User userC = new User(UUID.randomUUID(), "Camy", "000", "@@");
+       userA.setVisitedLocations(new CopyOnWriteArrayList<>());
+       userB.setVisitedLocations(new CopyOnWriteArrayList<>());
+       userC.setVisitedLocations(new CopyOnWriteArrayList<>());
 
-       userA.addToVisitedLocations(testVisited);
-       userB.addToVisitedLocations(testVisited);
-       userC.addToVisitedLocations(testVisited);
 
        List<User> users = new ArrayList<>();
        users.add(userA);
        users.add(userB);
        users.add(userC);
 
-       List<Location> result = gpsUtilService.getAllTheList(users);
+       List<User> result = gpsUtilService.getAllTheList(users);
 
-       assertTrue(result.size() == 3 && result.get(2) == testLocation && result.get(1) == testLocation && result.get(0)== testLocation);
+       assertTrue(result.size() == 3 && result.get(2).getVisitedLocations().size() == 1 && result.get(1).getVisitedLocations().size() == 1  && result.get(0).getVisitedLocations().size() == 1 );
 
    }
 
@@ -82,6 +82,7 @@ public class UnitTest {
 
        UUID x = UUID.randomUUID();
        User userA = new User(x, "Jon", "000", "@@");
+       userA.setVisitedLocations(new CopyOnWriteArrayList<>());
        userA.addToVisitedLocations(testVisitedA);
 
 

@@ -1,9 +1,6 @@
 package GpsUtilApp.controller;
 
-import GpsUtilApp.model.Attraction;
-import GpsUtilApp.model.Location;
-import GpsUtilApp.model.User;
-import GpsUtilApp.model.UserNearbyAttraction;
+import GpsUtilApp.model.*;
 import GpsUtilApp.service.GpsUtilService;
 
 import org.slf4j.Logger;
@@ -24,10 +21,9 @@ public class GpsUtilController {
 
 
     @PostMapping("/getLocation")
-    public User getTheCrapingLocation(@RequestBody User theId){
+    public User getTheLocationOfAUser(@RequestBody User theId){
 
-
-        logger.info("i'd like that he goes there " + theId.getUserName());
+        logger.info("The User " + theId.getUserName() + " has entered GetLocation ");
         User result = gpsUtilService.trackTheUser(theId);
 
         return result;
@@ -43,17 +39,21 @@ public class GpsUtilController {
     @PostMapping("/getNearbyAttractions")
     public List<UserNearbyAttraction> getNearbyAttractions(@RequestBody User user){
 
+        logger.info("The User " + user.getUserName() + " has entered getNearbyAttractions ");
 
         return gpsUtilService.getNearByFifthClosestAttractions(user);
     }
 
 
     @PostMapping("/getAllCurrentLocations")
-    public List<Location> getAllCurrentLocation(@RequestBody List<User> users){
+    public List<User> getAllCurrentLocation(@RequestBody List<User> users){
 
-        List<Location> visitedLocations = gpsUtilService.getAllTheList(users);
 
-        return visitedLocations;
+        List<User> Users = gpsUtilService.getAllTheList(users);
+
+
+
+        return Users;
     }
 
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.*;
 
 @Service
 public class GpsUtilService {
@@ -23,6 +23,7 @@ public class GpsUtilService {
     private int defaultProximityBuffer = Integer.MAX_VALUE;
     private int proximityBuffer = defaultProximityBuffer;
     private int attractionProximityRange = Integer.MAX_VALUE;
+    public  ExecutorService executorService;
 
     private final GpsUtil gpsUtil;
 
@@ -149,16 +150,29 @@ public class GpsUtilService {
         return statuteMiles;
     }
 
-    public List<Location> getAllTheList(List<User> users) {
+    public List<User> getAllTheList(List<User> users) {
+        executorService = Executors.newFixedThreadPool(1000);
 
-        CopyOnWriteArrayList<Location> result = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<User> result = new CopyOnWriteArrayList<>();
+
         for(User u : users){
 
-            Location visitedLocation = (u.getVisitedLocations().size() > 0) ? u.TheLastVisitedLocation().location
-                    : trackTheUser(u).TheLastVisitedLocation().location;
+            logger.info("---The user : " + u.getUserName() +" / TrackTheUser to getAllList");
 
-            result.add(visitedLocation);
+            CompletableFuture.supplyAsync(() -> result.add(trackTheUser(u)), executorService);
+
         }
+
+
+
+        try {
+            executorService.shutdown();
+            executorService.awaitTermination(15, TimeUnit.MINUTES);
+        }catch(Exception e){
+            executorService.shutdown();
+        }
+        logger.info("===List size sent from GpsUtilApp : " + result.size());
+
 
         return result;
     }

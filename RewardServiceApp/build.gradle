@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot' version '2.5.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'jacoco'
+
 }
 
 apply plugin: 'org.springframework.boot'
@@ -18,6 +20,17 @@ repositories {
         dirs 'libs'
     }
 }
+jacoco {
+    toolVersion = "0.8.7"
+}
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -30,8 +43,25 @@ dependencies {
     testImplementation("junit:junit")
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.1.6.RELEASE'
     implementation group: 'org.zalando', name: 'jackson-datatype-money', version: '1.2.2'
+    testRuntimeOnly "org.junit.platform:junit-platform-commons:1.7.0"
 
 }
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.5
+            }
+        }
+    }
+}
+
 
 test {
     useJUnitPlatform()

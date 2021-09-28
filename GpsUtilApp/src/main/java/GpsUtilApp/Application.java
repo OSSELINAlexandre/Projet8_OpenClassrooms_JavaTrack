@@ -1,5 +1,6 @@
 package GpsUtilApp;
 
+import GpsUtilApp.service.GpsUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
@@ -12,9 +13,8 @@ import java.util.concurrent.Executors;
 
 @SpringBootApplication
 @EnableFeignClients
-public class Application implements ExitCodeGenerator {
+public class Application {
 
-    public static ExecutorService executorService = Executors.newFixedThreadPool(3);;
 
 
 
@@ -23,9 +23,4 @@ public class Application implements ExitCodeGenerator {
         SpringApplication.run(Application.class, args);
     }
 
-    @Override
-    public int getExitCode() {
-        executorService.shutdown();
-        return 0;
-    }
 }

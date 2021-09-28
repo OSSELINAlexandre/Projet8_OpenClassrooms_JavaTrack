@@ -66,7 +66,11 @@ public class User {
 	public  CopyOnWriteArrayList<VisitedLocation> getVisitedLocations() {
 		return visitedLocations;
 	}
-	
+
+	public void setVisitedLocations(CopyOnWriteArrayList<VisitedLocation> visitedLocations) {
+		this.visitedLocations = visitedLocations;
+	}
+
 	public void clearVisitedLocations() {
 		visitedLocations.clear();
 	}

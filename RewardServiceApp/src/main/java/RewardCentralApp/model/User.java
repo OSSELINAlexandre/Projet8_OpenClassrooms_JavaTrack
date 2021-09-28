@@ -63,7 +63,11 @@ public class User {
 	public Date getLatestLocationTimestamp() {
 		return latestLocationTimestamp;
 	}
-	
+
+	public void setUserRewards(CopyOnWriteArrayList<UserReward> userRewards) {
+		this.userRewards = userRewards;
+	}
+
 	public void addToVisitedLocations(VisitedLocation visitedLocation) {
 		visitedLocations.add(visitedLocation);
 	}
@@ -71,14 +75,18 @@ public class User {
 	public  CopyOnWriteArrayList<VisitedLocation> getVisitedLocations() {
 		return visitedLocations;
 	}
-	
+
+	public void setVisitedLocations(CopyOnWriteArrayList<VisitedLocation> visitedLocations) {
+		this.visitedLocations = visitedLocations;
+	}
+
 	public void clearVisitedLocations() {
 		visitedLocations.clear();
 	}
 	
 	public void addUserReward(UserReward userReward) {
 		if(userRewards.stream().filter(r -> r.attraction.attractionName.equals(userReward.attraction.attractionName)).count() == 0) {
-			logger.info("pretty sure it never goes even there man ! :)");
+			logger.info(" A Reward has been added to : " + this.getUserName() +" --- ");
 			userRewards.add(userReward);
 		}
 	}

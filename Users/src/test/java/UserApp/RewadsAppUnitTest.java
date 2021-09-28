@@ -1,6 +1,5 @@
 package UserApp;
 
-
 import UserApp.dto.UserAndAttractionDTO;
 import UserApp.model.Attraction;
 import UserApp.model.User;
@@ -8,13 +7,11 @@ import UserApp.model.UserReward;
 import UserApp.model.VisitedLocation;
 import UserApp.proxy.RewardProxy;
 import UserApp.service.UserService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -24,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class RewadsAppUnitTest {
 
@@ -36,14 +32,16 @@ public class RewadsAppUnitTest {
 
     User user;
 
-    @Before
+    @BeforeEach
     public void init(){
+        userService.setTheProfileTrueForTestFalseForExperience(true);
         String userName = "TestUser";
         String phone = "000";
         String email = userName + "@tourguide.com";
         user = new User(UUID.randomUUID(), userName, phone, email);
         user.addToVisitedLocations(new VisitedLocation());
         user.addToVisitedLocations(new VisitedLocation());
+        userService.setRewardProxy(rewardProxy);
     }
 
     @Test
@@ -51,7 +49,7 @@ public class RewadsAppUnitTest {
 
         when(rewardProxy.getTheReward(any(), any())).thenReturn(50);
 
-        userService.setRewardProxy(rewardProxy);
+
 
         int result = userService.getAttractionRewardsPoints(UUID.randomUUID(), UUID.randomUUID());
 
@@ -72,7 +70,6 @@ public class RewadsAppUnitTest {
         intermediaryResult.setUserRewards(testing);
 
         when(rewardProxy.calculateTheUserReward(any())).thenReturn(intermediaryResult);
-        userService.setRewardProxy(rewardProxy);
 
         User result = userService.calculateTheRewardsOfUser(user, new ArrayList<Attraction>());
 

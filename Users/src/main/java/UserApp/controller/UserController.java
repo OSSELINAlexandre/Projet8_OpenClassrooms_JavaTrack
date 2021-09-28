@@ -5,20 +5,17 @@ import UserApp.model.*;
 import UserApp.proxy.GpsUtilProxy;
 import UserApp.proxy.RewardProxy;
 import UserApp.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @RestController
 public class UserController {
 
-
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
 
 
     @Autowired
@@ -35,22 +32,33 @@ public class UserController {
     // ***********************************************************************************************************
 
     @PostMapping("/addUser")
-    public User addAUser(@RequestBody User userName){
+    public String addAUser(@RequestBody User userName){
 
-        logger.info("======= Do we get here ? ");
-        return userService.addAUser(userName);
+        User result = userService.addAUser(userName);
+
+        if(result != null){
+
+            return "Added user to the users of the application";
+
+        }else{
+
+            return "Could not add the user to the application, the user already exists.";
+        }
 
     }
 
     @GetMapping("/deleteUser")
-    public String deleteAUser(@RequestParam("userName") String userName){
+    public String deleteAUser(@RequestParam("userName") String userName) {
 
         Boolean result = userService.deleteAUser(userName);
 
         if(result) {
-            return "Deleted";
+
+            return "The user has been deleted.";
+
         }else{
-            return "Couldn't delete the given user";
+
+            return "Could not delete the given user, does not exist in the list.";
         }
 
     }
@@ -58,7 +66,18 @@ public class UserController {
     @PostMapping("/updateUserPreference")
     public User updateThePreferences(@RequestParam("userName") String user, @RequestBody UserPreferencesDTO userPref){
 
-        return userService.updateUserPreferences(user, userPref);
+        User result = userService.updateUserPreferences(user, userPref);
+
+        if(result != null){
+
+            return result;
+
+        }else{
+
+            return null;
+
+        }
+
 
     }
 
@@ -114,7 +133,7 @@ public class UserController {
     @GetMapping("/getAllCurrentLocations")
     public List<VisitedLocation> getAllTheLastLocationOfAllUsers(){
 
-        return userService.getAllLastLocationUsers();
+        return userService.getAllLocationOfUsers();
     }
 
 
@@ -123,7 +142,7 @@ public class UserController {
     // ************                            LIEE AU TripPricerProxy                    ************************
     // ***********************************************************************************************************
     @GetMapping("/getTripDeals")
-    public List<Provider> getTheDifferentTripDeals(@RequestParam String userName){
+    public List<Provider> getTheDifferentTripDeals(@RequestParam("userName") String userName){
         return userService.getAllTheDeals(userName);
     }
 
@@ -137,6 +156,12 @@ public class UserController {
 
 
         return userService.getAttractionRewardsPoints(attraction, user);
+    }
+
+    @PostMapping("/calculateAllRewardsOfUsers")
+    public Map<String, List<UserReward>> findAllResultsOfUsers(@RequestBody List<Attraction> attractionList){
+
+        return userService.getAllRewardsPointsOfUsers(attractionList);
     }
 
 

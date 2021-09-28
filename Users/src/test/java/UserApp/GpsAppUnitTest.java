@@ -8,13 +8,11 @@ import UserApp.model.VisitedLocation;
 import UserApp.proxy.GpsUtilProxy;
 import UserApp.proxy.RewardProxy;
 import UserApp.service.UserService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class GpsAppUnitTest {
 
@@ -39,21 +36,26 @@ public class GpsAppUnitTest {
 
     User user;
 
-    @Before
+    @BeforeEach
     public void init(){
+        userService.setTheProfileTrueForTestFalseForExperience(true);
         String userName = "TestUser";
         String phone = "000";
         String email = userName + "@tourguide.com";
         user = new User(UUID.randomUUID(), userName, phone, email);
         user.addToVisitedLocations(new VisitedLocation());
         user.addToVisitedLocations(new VisitedLocation());
+
+        userService.setGpsUtilProxy(gpsUtilProxy);
+        userService.setRewardProxy(rewardProxy);
+
     }
 
 
     @Test
     public void unitTest_getUserLocation(){
 
-        userService.setGpsUtilProxy(gpsUtilProxy);
+
 
 
         userService.users.add(user);
@@ -70,7 +72,7 @@ public class GpsAppUnitTest {
     @Test
     public void unitTest_getAllAttraction(){
 
-        userService.setGpsUtilProxy(gpsUtilProxy);
+
         when(gpsUtilProxy.getAllAttraction()).thenReturn(new ArrayList<Attraction>());
 
         List<Attraction> result = userService.getAllAttraction();
@@ -82,8 +84,7 @@ public class GpsAppUnitTest {
     @Test
     public void unitTest_getAllFifthClosestAttraction(){
 
-        userService.setGpsUtilProxy(gpsUtilProxy);
-        userService.setRewardProxy(rewardProxy);
+
 
         userService.users.add(user);
 

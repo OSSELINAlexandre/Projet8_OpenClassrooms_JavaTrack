@@ -1,12 +1,10 @@
 package UserApp.tracker;
 
-import UserApp.model.User;
 import UserApp.service.UserService;
 import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -58,10 +56,9 @@ public class Tracker extends Thread{
 
             }
 
-            List<User> users = userService.users;
-            logger.info("========Begin Tracker. Tracking " + users.size() + " users.");
+            logger.info("========Begin Tracker. Tracking " + userService.users.size() + " users.");
             stopWatch.start();
-            users.forEach(u -> userService.trackUserLocation(u));
+            userService.trackUserLocation();
             stopWatch.stop();
             logger.info("========Tracker Time Elapsed: " + TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime()) + " seconds.");
             stopWatch.reset();

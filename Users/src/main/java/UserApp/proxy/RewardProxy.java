@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
 import java.util.UUID;
 
-@FeignClient(name="RewardCentralApp", url="http://rewardapp:8082")
+@FeignClient(name="RewardCentralApp", url="localhost:8082")
+//@FeignClient(name="RewardCentralApp", url="http://rewardapp:8082")
 public interface RewardProxy {
 
     @GetMapping("/getReward?attId={x}&userId={y}")
@@ -18,4 +20,7 @@ public interface RewardProxy {
 
     @PostMapping("/calculateReward")
     UserAndAttractionDTO calculateTheUserReward(@RequestBody UserAndAttractionDTO user);
+
+    @PostMapping("/calculateAllRewardsOfUsers")
+    List<UserAndAttractionDTO> calculateTheRewardsForAllTheUsers(@RequestBody List<UserAndAttractionDTO> users);
 }

@@ -5,13 +5,11 @@ import UserApp.model.User;
 import UserApp.model.VisitedLocation;
 import UserApp.proxy.TripPricerProxy;
 import UserApp.service.UserService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 public class TripPricerAppUnitTest {
 
@@ -33,14 +31,18 @@ public class TripPricerAppUnitTest {
 
     User user;
 
-    @Before
+    @BeforeEach
     public void init(){
+        userService.setTheProfileTrueForTestFalseForExperience(true);
         String userName = "TestUser";
         String phone = "000";
         String email = userName + "@tourguide.com";
         user = new User(UUID.randomUUID(), userName, phone, email);
         user.addToVisitedLocations(new VisitedLocation());
         user.addToVisitedLocations(new VisitedLocation());
+
+        userService.setTripPricerProxy(tripPricerProxy);
+
     }
 
     @Test
@@ -48,7 +50,6 @@ public class TripPricerAppUnitTest {
 
         userService.users.add(user);
 
-        userService.setTripPricerProxy(tripPricerProxy);
 
         when(tripPricerProxy.getPrices(any(String.class), any(UUID.class), any(Integer.class), any(Integer.class), any(Integer.class), any(Integer.class))).thenReturn(new ArrayList<Provider>());
         List<Provider> result = userService.getAllTheDeals(user.getUserName());

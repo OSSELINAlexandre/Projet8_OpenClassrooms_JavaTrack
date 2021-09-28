@@ -1,6 +1,5 @@
 package RewardCentralApp;
 
-import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,7 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @SpringBootApplication
-public class Application implements ExitCodeGenerator {
+public class Application {
     
     public static ExecutorService executorService = Executors.newFixedThreadPool(3);;
 
@@ -18,9 +17,5 @@ public class Application implements ExitCodeGenerator {
         SpringApplication.run(Application.class, args);
     }
 
-    @Override
-    public int getExitCode() {
-        executorService.shutdown();
-        return 0;
-    }
+
 }
