@@ -38,7 +38,6 @@ public class GpsAppFunctionalitiesUnitTest {
 
     @BeforeEach
     public void init(){
-        userService.setTheProfileTrueForTestFalseForExperience(true);
         String userName = "TestUser";
         String phone = "000";
         String email = userName + "@tourguide.com";
@@ -89,10 +88,10 @@ public class GpsAppFunctionalitiesUnitTest {
         userService.users.add(user);
 
 
-        when(gpsUtilProxy.getFifthClosestAttraction(any())).thenReturn(new ArrayList<UserNearbyAttraction>());
+        when(gpsUtilProxy.getFiveClosestAttraction(any())).thenReturn(new ArrayList<UserNearbyAttraction>());
         when(rewardProxy.getTheReward(any(), any())).thenReturn(5);
 
-        List<UserNearbyAttraction> result = userService.getAllFifthClosestAttraction(user.getUserName());
+        List<UserNearbyAttraction> result = userService.getAllFiveClosestAttraction(user.getUserName());
 
         assertTrue(result != null);
 

@@ -2,6 +2,19 @@ package GpsUtilApp.model;
 
 import java.util.UUID;
 
+/**
+ * <p>The Attraction class represent an attraction in our system. It's a copy of the type available in gpsUtil.jar.</p>
+ * <p>We needed to copy the type for standardization purposes in the whole system.</p>
+ * <p>An Attraction is represented by the followings traits.</p>
+ * <ul>
+ *     <li>The name of the attraction.</li>
+ *     <li>The city of the attraction.</li>
+ *     <li>The state of the attraction.</li>
+ *     <li>The ID of the attraction.</li>
+ * </ul>
+ *
+ *
+ */
 public class Attraction extends Location{
 
     public  String attractionName;

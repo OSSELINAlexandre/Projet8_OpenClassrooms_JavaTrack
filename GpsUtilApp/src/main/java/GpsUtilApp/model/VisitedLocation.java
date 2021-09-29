@@ -3,6 +3,10 @@ package GpsUtilApp.model;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * <p>The VisitedLocation class represents a visited location by a specific user.</p>
+ *
+ */
 public class VisitedLocation {
 
     public  UUID userId;

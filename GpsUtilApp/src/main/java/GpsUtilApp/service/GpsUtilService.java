@@ -12,19 +12,23 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.*;
 
+/**
+ * <p>GpsUtilService is the service in charge of the business logic, making the link between the client (via the controller) and the library by providing added value.</p>
+ * <p>The library is present for building the whole structure of the microservices of this project : once the application is validated, we can simply communicate with an online API instead of a library.</p>
+ * <p>There is some noticeable attributes :</p>
+ * <ul>
+ *     <li>The executorService is our thread pool.</li>
+ *     <li>GpsUtil is the library provided by the client.</li>
+ * </ul>
+ *
+ */
 @Service
 public class GpsUtilService {
 
 
     private static Logger logger = LoggerFactory.getLogger(GpsUtilService.class);
-
     private static final double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
-
-    private int defaultProximityBuffer = Integer.MAX_VALUE;
-    private int proximityBuffer = defaultProximityBuffer;
-    private int attractionProximityRange = Integer.MAX_VALUE;
     public  ExecutorService executorService;
-
     private final GpsUtil gpsUtil;
 
 
@@ -34,6 +38,14 @@ public class GpsUtilService {
     }
 
 
+    /**
+     *
+     * <p>getTheUser generate a new visited location for the user entered as a parameter.</p>
+     * <p>getTheUser is also a utility method that makes the link between the type of the library and the type of the whole system (VisitedLocation and Location).</p>
+     *
+     * @param theId
+     * @return
+     */
     public VisitedLocation getTheUser(UUID theId) {
 
         gpsUtil.location.VisitedLocation intermediaryResult = gpsUtil.getUserLocation(theId);
@@ -46,6 +58,11 @@ public class GpsUtilService {
 
     }
 
+    /**
+     * <p>getAllAttraction recuperate form the GpsUtilLibrary the list of all the attraction available. Therefore, it does not need any parameters.</p>
+     * <p>It is also a utility method because it transform from the type of the library to a standard type understood by all the microservices of the system.</p>
+     * @return List<Attraction>
+     */
     public List<Attraction> getAllAttraction() {
 
         List<gpsUtil.location.Attraction> mediumResult = gpsUtil.getAttractions();
@@ -55,6 +72,15 @@ public class GpsUtilService {
         return result;
     }
 
+    /**
+     *
+     * <p>TrackTheUser is the method that add a new 'VisitedLocation' to the user.</p>
+     *
+     * @param user
+     *          The user from whom we want to add a new 'VisitedLocation'.
+     *
+     * @return User
+     */
     public User trackTheUser(User user) {
 
         VisitedLocation visitedLocation = getTheUser(user.getUserId());
@@ -65,9 +91,18 @@ public class GpsUtilService {
     }
 
 
-    public List<UserNearbyAttraction> getNearByFifthClosestAttractions(User u) {
+    /**
+     * <p>getNearByFiveClosestAttractions is the method that return the five closest attractions from a user.</p>
+     * <p>If the user has not saved visited location, the method will track him in order to know its current location.</p>
+     * <p>If the user already has at least one visited location, the method will return the closest five attraction from the last visited location available in the attributes of the user.</p>
+     *
+     *
+     * @param user
+     * @return
+     */
+    public List<UserNearbyAttraction> getNearByFiveClosestAttractions(User user) {
 
-        VisitedLocation visitedLocation = (u.getVisitedLocations().size() > 0 ? u.TheLastVisitedLocation() : trackTheUser(u).TheLastVisitedLocation());
+        VisitedLocation visitedLocation = (user.getVisitedLocations().size() > 0 ? user.TheLastVisitedLocation() : trackTheUser(user).TheLastVisitedLocation());
         List<UserNearbyAttraction> nearbyAttractions = new ArrayList<>();
         List<Attraction> resultAttraction = new ArrayList<>();
 
@@ -118,15 +153,8 @@ public class GpsUtilService {
 
             UserNearbyAttraction newItem = new UserNearbyAttraction();
             newItem.setUserLocation(visitedLocation.location);
-            newItem.setTouristAttractionName(e.attractionName);
-            Location attractionLoc = new Location(e.latitude, e.longitude);
-            newItem.setAttractionLocation(attractionLoc);
+            newItem.setTheAttraction(e);
             newItem.setDistanceInMilesBetweenUserAndAttraction(getDistance(e, visitedLocation.location));
-
-            /**
-             * Think to see about the attractionRewardsPoint and send the user, not some
-             * null thing.
-             */
 
             nearbyAttractions.add(newItem);
         }
@@ -135,7 +163,14 @@ public class GpsUtilService {
     }
 
 
-
+    /**
+     *
+     * <p>getDistance if the mathematical formula needed to calculate a distance on a plan.</p>
+     *
+     * @param loc1
+     * @param loc2
+     * @return
+     */
     public double getDistance(Location loc1, Location loc2) {
         double lat1 = Math.toRadians(loc1.latitude);
         double lon1 = Math.toRadians(loc1.longitude);
@@ -150,6 +185,15 @@ public class GpsUtilService {
         return statuteMiles;
     }
 
+    /**
+     * <p>getAllTheList is the principal method used by the User Application.</p>
+     * <p>With a list of users as a parameters, it will send back an updated list with new visited location.</p>
+     * <p>Because of performance requirements by our client, and because of preinstalled latencies in the library, we created a fixeThreadPool.</p>
+     *
+     * @param users
+     *          The list of users from which we want to have new visited locations.
+     * @return List<User>
+     */
     public List<User> getAllTheList(List<User> users) {
         executorService = Executors.newFixedThreadPool(1000);
 

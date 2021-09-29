@@ -5,6 +5,15 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * <p>The User class represent the user in our system. As we have seen in the User App (the client application that runs the whole logic)
+ * , this User class is stripped of useless information's for this application.
+ * </p>
+ * <p>The equivalent type in our UserApp is the UserGpsDTO.</p>
+ *
+ * <p>This class does not instantiate any of its attributes because all the attributes are instantiated in the User Application</p>
+ *
+ */
 public class User {
 
 	private Logger logger = LoggerFactory.getLogger(User.class);

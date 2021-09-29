@@ -25,10 +25,10 @@ import java.util.List;
  * </ul>
  *
  * <p>If you launch the app with the java -jar, no further modifications need to be done.</p>
- * <p>If you use docker, you still use the second url (localhost), but you need to set the ports in the docker run with -p 8081:8081</p>
+ * <p>If you use docker, you still use the second url (localhost), but you need to set the ports in the docker run with -p 8081:8081.</p>
  */
-//@FeignClient(name="GpsUtilApp", url="http://gpsutilapp:8081")
-@FeignClient(name="GpsUtilApp", url="localhost:8081")
+@FeignClient(name="GpsUtilApp", url="http://gpsutilapp:8081")
+//@FeignClient(name="GpsUtilApp", url="localhost:8081")
 public interface GpsUtilProxy {
 
     //TODO check if better be UUID or User
@@ -39,7 +39,7 @@ public interface GpsUtilProxy {
     public List<Attraction> getAllAttraction();
 
     @PostMapping("/getNearbyAttractions")
-    public List<UserNearbyAttraction> getFifthClosestAttraction(@RequestBody UserGpsDTO user);
+    public List<UserNearbyAttraction> getFiveClosestAttraction(@RequestBody UserGpsDTO user);
 
     @PostMapping("/getAllCurrentLocations")
     public List<UserGpsDTO> getAllLocationOfUsers(@RequestBody List<UserGpsDTO> users);

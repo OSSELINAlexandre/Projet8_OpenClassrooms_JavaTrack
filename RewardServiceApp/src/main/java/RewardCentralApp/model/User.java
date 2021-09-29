@@ -9,6 +9,17 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * <p>The User class represent the user in our system. As we have seen in the User App (the client application that runs the whole logic)
+ * , this User class is stripped of useless information's for this application.
+ * </p>
+ * <p>The equivalent type in our UserApp is the UserGpsDTO.</p>
+ *
+ * <p>This class does not instantiate any of its attributes because all the attributes are instantiated in the User Application</p>
+ *
+ * <p>Compared to the User type in the UserApp, we added as an attribute the list of all attractions. We did it in order for the rewardApp to stay autonomous, and so that the
+ * application does not need to call another microservices in order to function properly. This attribute therefore reduce the coupling between the application, make it more reliable.</p>
+ */
 public class User {
 	private Logger logger = LoggerFactory.getLogger(User.class);
 

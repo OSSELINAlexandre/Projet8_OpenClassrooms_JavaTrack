@@ -25,7 +25,7 @@ import java.util.stream.IntStream;
  * <p>UserService is the service class that centralizes all the logic of the Users Application. </p>
  *
  * <p> UserService makes the link between all the proxies (which are the method signatures of all endpoints of the microservices).</p>
- * <p>It also makes the link between theses proxies and the tracker (which is the simulation of functioning of the real life application);</p>
+ * <p>It also makes the link between theses proxies and the tracker (which is the simulation of functioning of the real life application).</p>
  *
  *
  */
@@ -48,6 +48,7 @@ public class UserService {
     public static Boolean testMode = false;
 
 
+
     // ***********************************************************************************************************
     // ************ This part of the code is used in order to simulate the usage by users ************************
     // ***********************************************************************************************************
@@ -55,16 +56,14 @@ public class UserService {
     /**
      * <p>The constructor of the UserService</p>
      * <p>If testMode is set to true, it creates a list of Users and launch the tracker for these users.</p>
-     *
-     *
-     *
      */
     public UserService(){
-        if(!testMode) {
-            initializeAListOfUser();
-            tracker = new Tracker(this);
-        }
+            if(!testMode) {
+                initializeAListOfUser();
+                tracker = new Tracker(this);
+            }
     }
+
 
     /**
      * <p>initializeAListOfUser initialize a list of 'users' of type User that would be registered to the app for testing purposes.</p>
@@ -87,9 +86,10 @@ public class UserService {
     }
 
     /**
-     * generateUserLocationHistory is called by initializeUser in order to create mock visited Location of the user.
+     * generateUserLocationHistory is called by initializeUser in order to create mocks of visited Location of the user.
      *
      * @param user
+     *          A user from whom we want to generate a location history for testing purposes.
      */
     private void generateUserLocationHistory(User user) {
         IntStream.range(0, 3).forEach(i -> {
@@ -138,10 +138,11 @@ public class UserService {
 
     /**
      * <p> addAUser takes a User as an argument and add it to the list of the application's users.</p>
-     *  <p>The method returns null if the users already exists in the list of the application's users.</p>
-     * <p>The list of all current registered users is called 'users' in the userService.</p>
+     * <p> The method returns null if the users already exist in the list of the application's users.</p>
+     * <p> The list of all current registered users is called 'users' in the userService.</p>
      * @param user
-     * @return
+     *            The user that was posted by the client of our application.
+     * @return User
      */
     public User addAUser(User user) {
 
@@ -167,9 +168,11 @@ public class UserService {
      *
      * <p>deleteAUser delete a user from the list of the user's of the application. </p>
      * <p>The list of all current registered users is called 'users' in the userService.</p>
+     * <p>It returns true if the user exists, and false otherwise.</p>
      *
      * @param userName
-     * @return
+     *                The userName posted by the client of our application.
+     * @return Boolean
      */
     public Boolean deleteAUser(String userName) {
 
@@ -186,14 +189,16 @@ public class UserService {
     /**
      *
      * <p>updateUserPreferences takes a string and UserPreferences as arguments. </p>
-     * <p>The method first check if the users exists in the list of the current users of the applicaiton</p>
-     * <p>It then changes the preferences of the given users to news preferences (that where given as argument).</p>
+     * <p>The method first check if the users exist in the list of the current users of the application</p>
+     * <p>It then changes the preferences of the given users to news preferences (that's where given as argument).</p>
      * <p>Because of some incompatibility with JavaMoney library and Jackson (and more generally with Java to Json libraries) we use a DTO to register the new preferences.</p>
      * <p>The list of all current registered users is called 'users' in the userService.</p>
      * @see UserPreferencesDTO
      * @see UserPreferences
      * @param user
+     *            The user's 'post' by the client of our application.
      * @param userPref
+     *            The new preferences wanted by the client of our application to change the current one's.
      * @return User
      */
     public User updateUserPreferences(String user, UserPreferencesDTO userPref) {
@@ -228,6 +233,7 @@ public class UserService {
      * <p>The list of all current registered users is called 'users' in the userService.</p>
      * @see UserPreferences
      * @param userName
+     *              The userName posted by the client of our application.
      * @return
      */
     public UserPreferences getUserPreference(String userName) {
@@ -240,15 +246,16 @@ public class UserService {
 
     /**
      *
-     * <p> getUserRewards takes a userName as an argument and returns the list of all rewards for this given user</p>
+     * <p> getUserRewards takes a userName as an argument and returns the list of all rewards for this given user.</p>
      *
-     * <p>This methods will return and empty list if the User hasn't received any rewards</p>
+     * <p>This method will return and empty list if the User hasn't received any rewards.</p>
      * <p>The rewards policy is fixed by the Microservice (RewardsApp in our case).</p>
-     * <p>Therefore, depending on the reward policy set, a user can received all possible rewards for every attraction or really few.</p>
-     * <p>The return results of this method will depends on this.</p>
+     * <p>Therefore, depending on the reward policy set, a user can receive all possible rewards for every attraction or really few.</p>
+     * <p>The return results of this method will depend on this.</p>
      * <p>It returns null if the user does not exist in the current users of the application.</p>
      * <p>The list of all current registered users is called 'users' in the userService.</p>
      * @param userName
+     *              The userName posted by the client of our application.
      * @return CopyOnWriteArrayList<UserReward>
      */
     public CopyOnWriteArrayList<UserReward> getUserRewards(String userName) {
@@ -259,13 +266,14 @@ public class UserService {
     }
 
     /**
-     * <p>getASpecificUser take a string as an argument, check if the user exist in the current list of all users of the application</p>
+     * <p>getASpecificUser take a string as an argument, check if the user exists in the current list of all users of the application</p>
      * <p>The method return the user.</p>
      * <p>The list of all current registered users is called 'users' in the userService.</p>
      *
      * @see User
      * @param user
-     * @return
+     *          The userName that we intend to find in the list of users.
+     * @return User
      */
     public User getASpecificUser(String user) {
         User theUser = getTheUserBasedOnName(user);
@@ -274,13 +282,14 @@ public class UserService {
 
     /**
      *
-     * <p>getAllUserLocationGivenUser take a string as an argument, check if the provided name relate to a user of the application and
-     * returns the list of all visited location for this given user.
+     * <p>getAllUserLocationGivenUser take a string as an argument, check if the provided name relates to a user of the application and
+     * returns the list of all visited locations for this given user.
      * </p>
      * <p>It returns null if the user isn't registered as a user of the application.</p>
      * <p>The list of all current registered users is called 'users' in the userService.</p>
      * @see VisitedLocation
      * @param userName
+     *              The userName posted by the client of our application.
      * @return CopyOnWriteArrayList<VisitedLocation>
      */
     public CopyOnWriteArrayList<VisitedLocation> getAllUserLocationGivenUser(String userName) {
@@ -301,7 +310,7 @@ public class UserService {
      * <p>The list of all current registered users is called 'users' in the userService.</p>
      *
      * @see VisitedLocation
-     * @return
+     * @return List<VisitedLocation>
      */
     public List<VisitedLocation> getAllLastLocationUsers() {
         CopyOnWriteArrayList<VisitedLocation> result = new CopyOnWriteArrayList<VisitedLocation>();
@@ -316,13 +325,14 @@ public class UserService {
 
     /**
      *
-     * <p>getUserLocation takes a userName as a parameter. It firsts check if the given name correspond to a user in the Users list.</p>
+     * <p>getUserLocation takes a userName as a parameter. It firsts checks if the given name corresponds to a user in the Users list.</p>
      * <p>it then send solely the required information's (explaining the transformation into a DTO) via the GpsUtil proxy.</p>
-     * <p>It finally return the last visited location of the user (that has been added by the API).</p>
+     * <p>It finally returns the last visited location of the user (that has been added by the API).</p>
      * <p>If the user does not exist in the application current users, it returns null. </p>
      *
      * @param userName
-     * @return
+     *              The user's name from who we want to know the location.
+     * @return VisitedLocation
      */
     public VisitedLocation getUserLocation(String userName) {
 
@@ -345,7 +355,7 @@ public class UserService {
      * <p>getAllAttraction returns all the attractions provided by the provided microservice via the proxy.</p>
      *
      *
-     * @return
+     * @return List<Attraction>
      */
     public List<Attraction> getAllAttraction() {
 
@@ -358,18 +368,19 @@ public class UserService {
      *
      * <p>getAllFifthClosestAttraction is a requirement from the client.</p>
      * <p>getAllFifthClosestAttraction takes a userName as a parameter.</p>
-     * <p>The method first check if the given name correspond to a current user of the application.</p>
+     * <p>The method first check if the given name corresponds to a current user of the application.</p>
      * <p>It then send solely the required information's (explaining the transformation into a DTO) via the GpsUtil proxy.</p>
-     * <p>It returns a list of five UserNearbyAttraction, that are the closest attractions from the last saved VisitedLocation.</p>
+     * <p>It returns a list of five UserNearbyAttraction, that are the closest attractions from the last saved 'VisitedLocation'.</p>
      * <p>The method then calculates the rewards points related to the attractions via the RewardProxy.</p>
      *
      *
      * @see RewardProxy
      * @see GpsUtilProxy
      * @param userName
+     *              The user's name from whom we want to find the five closest attraction.
      * @return
      */
-    public List<UserNearbyAttraction> getAllFifthClosestAttraction(String userName) {
+    public List<UserNearbyAttraction> getAllFiveClosestAttraction(String userName) {
 
         User theUser = getTheUserBasedOnName(userName);
 
@@ -377,11 +388,11 @@ public class UserService {
 
             UserGpsDTO resultToBeSend = transformUserIntoUserGpsDto(theUser);
 
-            List<UserNearbyAttraction> result = gpsUtilProxy.getFifthClosestAttraction(resultToBeSend);
+            List<UserNearbyAttraction> result = gpsUtilProxy.getFiveClosestAttraction(resultToBeSend);
 
 
             //TODO remettre une boucle dans le getRewards.
-            result.forEach(n -> n.setRewardsLinkedToTheAttraction(rewardProxy.getTheReward(UUID.randomUUID(), resultToBeSend.getUserId())));
+            result.forEach(n -> n.setRewardsLinkedToTheAttraction(rewardProxy.getTheReward(n.getTheAttraction().attractionId, resultToBeSend.getUserId())));
 
             return result;
 
@@ -392,13 +403,13 @@ public class UserService {
 
 
     /**
-     * <p>getAllLocationOfUsers returns all the last Visited Locations of all the users' registered in the application.</p>
-     * <p>It first transform the list of all current user into the corresponding DTO in order to send solely the required informations. </p>
-     * <p>It then send the list to the API in charge of the Localization of the users (in our case, GpsUtilApp) via the Proxy.</p>
-     * <p>Once the result is returned, it transform back the DTO to the corresponding User type and returns a list of the last VistedLocation</p>
+     * <p>getAllLocationOfUsers returns all the last visited locations of all the users' registered in the application.</p>
+     * <p>It first transform the list of all current users into the corresponding DTO in order to send solely the required information's. </p>
+     * <p>It then sends the list to the API in charge of the localization of the users (in our case, GpsUtilApp) via the Proxy.</p>
+     * <p>Once the result is returned, it transforms back the DTO to the corresponding User type and returns a list of the last 'VisitedLocation'</p>
      *
      *
-     * @return
+     * @return List<VisitedLocation>
      */
     public List<VisitedLocation> getAllLocationOfUsers() {
 
@@ -434,6 +445,7 @@ public class UserService {
      *
      * @see Provider
      * @param userName
+     *              The user's name from who we want to know the get all the deals.
      * @return List<Provider>
      */
     public List<Provider> getAllTheDeals(String userName) {
@@ -457,7 +469,10 @@ public class UserService {
      *
      * @see RewardProxy
      * @param attraction
+     *              The attraction UUID from which we want to generate rewards points.
      * @param user
+     *              The UUID of the user that want to generate rewards points.
+     *
      * @return
      */
     public int getAttractionRewardsPoints(UUID attraction, UUID user) {
@@ -475,13 +490,15 @@ public class UserService {
      *
      * @see UserReward
      * @see UserAndAttractionDTO
-     * @param u
+     * @param user
+     *            The user (from the list of users) from whom we want to calculate the rewards.
      * @param attractions
+     *             The list of all attractions that can generate rewards points.
      * @return
      */
-    public User calculateTheRewardsOfUser(User u, List<Attraction> attractions){
+    public User calculateTheRewardsOfUser(User user, List<Attraction> attractions){
 
-        UserAndAttractionDTO sendingResult = transformUserIntoUserAndAttractionDTO(u, attractions);
+        UserAndAttractionDTO sendingResult = transformUserIntoUserAndAttractionDTO(user, attractions);
         UserAndAttractionDTO updatedResultTwo = rewardProxy.calculateTheUserReward(sendingResult);
         User result = saveTheUserAndAttractionDTOreturnUser(updatedResultTwo);
         return result;
@@ -491,14 +508,15 @@ public class UserService {
     /**
      *
      * <p>getAllRewardsPointsOfUsers take a list of attraction as a parameter.</p>
-     * <p>it transform the list of all users of the application into a corresponding list of DTO's in oder to solely send required information's.</p>
+     * <p>it transform the list of all users of the application into a corresponding list of DTO's in order to solely send required information's.</p>
      * <p>It send the list of DTO's to the API via the proxy (in our case, the API is RewardApp)</p>
      * <p>The proxy returns a list of DTO'S with updated UserRewards.</p>
      * <p>It transform the list of DTO's back into a UserType and save all the information provided back by the proxy.</p>
      * <p>It returns a Map composed of UserName and of all rewards related to the given user.</p>
      *
      * @param attractionList
-     * @return
+     *             The list of all attraction that can generate rewards points.
+     * @return Map<String, List<UserReward>
      */
     public Map<String, List<UserReward>> getAllRewardsPointsOfUsers(List<Attraction> attractionList) {
 
@@ -534,7 +552,7 @@ public class UserService {
 
     /**
      * <p>trackUserLocation centralized all the needed business logic of the application</p>
-     * <p>It assemble all the previous capabilities in order to furnish the service to the Tracker.</p>
+     * <p>It assembles all the previous capabilities in order to furnish the service to the Tracker.</p>
      * <p>It first send the list of all users to the API in charge of the localization (in our case, GpsUtil) via the proxy.</p>
      * <p>It then send the updated list of users (therefore with new visited location) to the API in charge of the calculus of rewards (in our case, RewardApp) via the proxy.</p>
      * <p>At each step, it transform the list of current users' of the application into the corresponding DTO (in order to solely send needed information) and save the updated results.</p>
@@ -581,9 +599,10 @@ public class UserService {
 
     /**
      *
-     * <p>getTheUserBasedOnName is a utility method. It check if the provided userName exist in the list of all the current users of the application.</p>
+     * <p>getTheUserBasedOnName is a utility method. It checks if the provided userName exists in the list of all the current users of the application.</p>
      * @param userName
-     * @return
+     *              The user's name from whom we intend to find the corresponding User in the list of current users.
+     * @return User
      */
     public User getTheUserBasedOnName(String userName) {
 
@@ -597,6 +616,7 @@ public class UserService {
      * <p>saveTheUserDTOAndReturnUser is a utility method. It takes a DTO as argument, update the corresponding user with the new information's (originated from the proxy) and save the new data's.</p>
      *
      * @param newResult
+     *          The returned DTO from the API which we want to convert back to a User type.
      * @return User
      */
     public User saveTheUserDTOAndReturnUser(UserGpsDTO newResult) {
@@ -611,10 +631,11 @@ public class UserService {
 
 
     /**
-     * <p>getTheUserBasedOnId is a utility method. It check if the provided UUID correspond to a user in the current users' of the application.</p>
+     * <p>getTheUserBasedOnId is a utility method. It checks if the provided UUID correspond to a user in the current users' of the application.</p>
      *
      * @param theId
-     * @return
+     *          The UUID from which we intend to find a user corresponding.
+     * @return User
      */
     public User getTheUserBasedOnId(UUID theId){
 
@@ -629,8 +650,9 @@ public class UserService {
      *
      * <p>transformUserIntoUserGpsDto is a utility method. It takes a User type as argument and transform it into a DTO.</p>
      * <p>The DTO in question (UserGpsDTO) centralize solely the needed information's of the API for the supply the related services.</p>
-     * <p>It returns a ready to be send DTO.</p>
+     * <p>It returns a ready to be sent DTO.</p>
      * @param theUser
+     *              the User instance that we want to convert to a DTO to communicate with the API.
      * @return UserGpsDTO
      */
     public UserGpsDTO transformUserIntoUserGpsDto(User theUser) {
@@ -652,6 +674,7 @@ public class UserService {
      * <p>It saves the updated user (with the data from the DTO) into the list of all users of the applications.</p>
      *
      * @param updatedResultTwo
+     *        The result from the DTO that we want to convert back to a User Type.
      * @return User
      */
     public User saveTheUserAndAttractionDTOreturnUser(UserAndAttractionDTO updatedResultTwo) {
@@ -670,9 +693,11 @@ public class UserService {
      *
      * <p>transformUserIntoUserAndAttractionDTO is a utility method. It takes a User type as argument and transform it into a DTO.</p>
      * <p>The DTO in question (UserAndAttractionDTO) centralize solely the needed information's of the API for the supply the related services.</p>
-     * <p>It returns a ready to be send DTO.</p>
+     * <p>It returns a ready to be sent DTO.</p>
      * @param newResult
+     *              The instance of user that we want to convert into a DTO to send to the API.
      * @param attractions
+     *              The list of all existing attractions from which we want to calculate rewards.
      * @return
      */
     public UserAndAttractionDTO transformUserIntoUserAndAttractionDTO(User newResult, List<Attraction> attractions) {
@@ -720,10 +745,7 @@ public class UserService {
         this.rewardProxy = rewardProxy;
     }
 
-    public void setTheProfileTrueForTestFalseForExperience(Boolean result){
 
-        this.testMode = result;
-    }
 
 
 }

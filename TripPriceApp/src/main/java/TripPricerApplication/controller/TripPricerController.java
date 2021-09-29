@@ -12,6 +12,10 @@ import tripPricer.Provider;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * <p>TripPricerController is the controller in charge of routing the client request to the proper service.</p>
+ *
+ */
 @RestController
 public class TripPricerController {
 
@@ -22,6 +26,25 @@ public class TripPricerController {
     TripPricerService tripPricerService;
 
 
+    /**
+     *
+     * <p>getThePrice generate a price depending on different attributes.</p>
+     *
+     *
+     * @param key
+     *          The API key.
+     * @param userId
+     *          The Id of the user to whom we want to obtain a price.
+     * @param adults
+     *          The number of adults.
+     * @param children
+     *          The number of children.
+     * @param duration
+     *          The trip duration.
+     * @param rewardcumulated
+     *          The cumulated rewards.
+     * @return List<Provider>
+     */
     @GetMapping("/getPrice")
     public List<Provider> getThePrices(@RequestParam("Apikey") String key, @RequestParam("userId") UUID userId, @RequestParam("adults") int adults, @RequestParam("children") int children, @RequestParam("duration") int duration, @RequestParam("rewards") int rewardcumulated){
 

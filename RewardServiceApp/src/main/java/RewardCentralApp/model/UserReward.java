@@ -1,6 +1,16 @@
 package RewardCentralApp.model;
 
 
+/**
+ * <p>UserReward is the class representing the rewards.</p>
+ * <p>As we have said before, the rewards depend on the proximity policy available in the API in charge of the rewards (in our case RewardApp).</p>
+ *<p>It is composed as follow :</p>
+ * <ul>
+ *     <li>The visited location that gathers the reward.<li>
+ *     <li>The attraction that generated the reward.</li>
+ *     <li>The points of rewards for it.</li>
+ * </ul>
+ */
 public class UserReward {
 
 	public  VisitedLocation visitedLocation;

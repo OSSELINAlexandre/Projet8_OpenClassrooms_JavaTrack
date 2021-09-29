@@ -50,7 +50,6 @@ public class UserIntegrationTest {
         userService.setRewardProxy(rewardProxy);
         userService.setTripPricerProxy(tripPricerProxy);
 
-        userService.setTheProfileTrueForTestFalseForExperience(true);
         String userName = "TestUser";
         String phone = "000";
         String email = userName + "@tourguide.com";
@@ -86,7 +85,7 @@ public class UserIntegrationTest {
 
         userService.users.add(user);
 
-        List<UserNearbyAttraction> result = userService.getAllFifthClosestAttraction(user.getUserName());
+        List<UserNearbyAttraction> result = userService.getAllFiveClosestAttraction(user.getUserName());
 
         assertTrue(result != null);
 

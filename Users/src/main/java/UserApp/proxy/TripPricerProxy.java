@@ -22,10 +22,10 @@ import java.util.UUID;
  * </ul>
  *
  * <p>If you launch the app with the java -jar, no further modifications need to be done.</p>
- * <p>If you use docker, you still use the second url (localhost), but you need to set the ports in the docker run with -p 8083:8083</p>
+ * <p>If you use docker, you still use the second url (localhost), but you need to set the ports in the docker run with -p 8083:8083.</p>
  */
-//@FeignClient(name="TripPricerApp", url="http://tripapp:8083")
-@FeignClient(name="TripPricerApp", url="localhost:8083")
+@FeignClient(name="TripPricerApp", url="http://tripapp:8083")
+//@FeignClient(name="TripPricerApp", url="localhost:8083")
 public interface TripPricerProxy {
 
     @GetMapping("/getPrice?Apikey={api}&userId={id}&adults={adults}&children={children}&duration={duration}&rewards={rewards}")

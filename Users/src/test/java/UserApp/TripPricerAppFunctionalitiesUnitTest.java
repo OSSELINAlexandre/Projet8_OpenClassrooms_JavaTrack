@@ -33,7 +33,6 @@ public class TripPricerAppFunctionalitiesUnitTest {
 
     @BeforeEach
     public void init(){
-        userService.setTheProfileTrueForTestFalseForExperience(true);
         String userName = "TestUser";
         String phone = "000";
         String email = userName + "@tourguide.com";

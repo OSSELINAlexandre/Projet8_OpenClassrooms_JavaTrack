@@ -87,7 +87,7 @@ public class UnitTest {
 
 
 
-       List<UserNearbyAttraction> result = gpsUtilService.getNearByFifthClosestAttractions(userA);
+       List<UserNearbyAttraction> result = gpsUtilService.getNearByFiveClosestAttractions(userA);
 
        List<Double> testingTheDistance = new ArrayList<>();
 

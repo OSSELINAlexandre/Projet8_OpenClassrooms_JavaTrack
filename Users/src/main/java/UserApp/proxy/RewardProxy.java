@@ -26,10 +26,10 @@ import java.util.UUID;
  * </ul>
  *
  * <p>If you launch the app with the java -jar, no further modifications need to be done.</p>
- * <p>If you use docker, you still use the second url (localhost), but you need to set the ports in the docker run with -p 8082:8082</p>
+ * <p>If you use docker, you still use the second url (localhost), but you need to set the ports in the docker run with -p 8082:8082.</p>
  */
-@FeignClient(name="RewardCentralApp", url="localhost:8082")
-//@FeignClient(name="RewardCentralApp", url="http://rewardapp:8082")
+@FeignClient(name="RewardCentralApp", url="http://rewardapp:8082")
+//@FeignClient(name="RewardCentralApp", url="localhost:8082")
 public interface RewardProxy {
 
     @GetMapping("/getReward?attId={x}&userId={y}")

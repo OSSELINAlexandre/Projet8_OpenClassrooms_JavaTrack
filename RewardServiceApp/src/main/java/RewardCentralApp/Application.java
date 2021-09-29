@@ -7,6 +7,10 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * <p>RewardCentralApp is our microservice that regroups all the logic for the rewards policy.</p>
+ * <p>This microservice is founded on a library provided by our client. (see libs/RewardCentral.jar). </p>
+ */
 @SpringBootApplication
 public class Application {
     

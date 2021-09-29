@@ -31,11 +31,10 @@ public class UserPerformanceTest {
     UserService userService;
 
 
+
     @BeforeEach
     public void init() {
-        userService.setTheProfileTrueForTestFalseForExperience(true);
         Locale.setDefault(Locale.ENGLISH);
-
 
     }
 
@@ -55,7 +54,6 @@ public class UserPerformanceTest {
             String phone = "000";
             String email = userName + "@tourguide.com";
             User user = new User(UUID.randomUUID(), userName, phone, email);
-
             usersTemp.add(user);
         });
 
@@ -87,19 +85,19 @@ public class UserPerformanceTest {
         // minutes
 
         CopyOnWriteArrayList<User> usersTemp = new CopyOnWriteArrayList<>();
-        Location testLocation = new Location(28.012804D, -82.469269D);
-        VisitedLocation testVisited = new VisitedLocation(UUID.randomUUID(), testLocation, new Date());
+        Location testLocation = new Location(39.937778D, -82.40667D);
         List<Attraction> attractions = userService.getAllAttraction();
 
-        Integer wantedOccurences = 100000;
-
+        Integer wantedOccurences = 50000;
 
         IntStream.range(0, wantedOccurences).forEach(i -> {
             String userName = "internalUser" + i;
             String phone = "000";
             String email = userName + "@tourguide.com";
             User user = new User(UUID.randomUUID(), userName, phone, email);
-            user.addToVisitedLocations(testVisited);
+            VisitedLocation testVisitedLocation = new VisitedLocation(user.getUserId(), testLocation, new Date());
+            user.addToVisitedLocations(testVisitedLocation);
+
             usersTemp.add(user);
         });
 
@@ -111,8 +109,15 @@ public class UserPerformanceTest {
 
         Map<String, List<UserReward>> result =  userService.getAllRewardsPointsOfUsers(attractions);
 
-        assertTrue(result.size() == wantedOccurences);
         stopWatch.stop();
+
+        assertTrue(result.size() == wantedOccurences);
+
+        for(Map.Entry<String, List<UserReward>> s : result.entrySet()){
+            assertTrue(s.getValue().size() == 1);
+        }
+
+
         System.out.println("Size of result from Rewards central : " + result.size());
         System.out.println("highVolumeGetRewards: Time Elapsed: " + TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime())
                 + " seconds.");

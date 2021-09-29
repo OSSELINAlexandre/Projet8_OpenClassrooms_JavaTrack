@@ -1,37 +1,42 @@
 package GpsUtilApp.model;
 
-
-
-
+/**
+ * <p>UserNearbyAttraction is the class that is generated when an attraction is one of the five closest one from a given user's location.</p>
+ * <p>it is composed of several attributes :</p>
+ * <ul>
+ *     <li>The attraction itself.</li>
+ *     <li>The location of the user.</li>
+ *     <li>The distance between the user's location and the attraction's one.</li>
+ *     <li>The rewards points linked to it.</li>
+ * </ul>
+ *
+ */
 public class UserNearbyAttraction {
 
-	private String touristAttractionName;
+	private Attraction theAttraction;
 	private Location userLocation;
-	private Location attractionLocation;
 	private Double distanceInMilesBetweenUserAndAttraction;
 	private int rewardsLinkedToTheAttraction;
 	
 	public UserNearbyAttraction() {
 		super();
 	}
-	public String getTouristAttractionName() {
-		return touristAttractionName;
+
+	public Attraction getTheAttraction() {
+		return theAttraction;
 	}
-	public void setTouristAttractionName(String touristAttractionName) {
-		this.touristAttractionName = touristAttractionName;
+
+	public void setTheAttraction(Attraction theAttraction) {
+		this.theAttraction = theAttraction;
 	}
+
 	public Location getUserLocation() {
 		return userLocation;
 	}
 	public void setUserLocation(Location userLocation) {
 		this.userLocation = userLocation;
 	}
-	public Location getAttractionLocation() {
-		return attractionLocation;
-	}
-	public void setAttractionLocation(Location attractionLocation) {
-		this.attractionLocation = attractionLocation;
-	}
+
 	public Double getDistanceInMilesBetweenUserAndAttraction() {
 		return distanceInMilesBetweenUserAndAttraction;
 	}

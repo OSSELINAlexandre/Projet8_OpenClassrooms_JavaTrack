@@ -217,7 +217,7 @@ public class UserController {
     /**
      *
      * <p>getNearbyAttractions request a userName as a parameter,
-     * and returns the fifth closest attractions to the last visited location of the given user (according to the attractions provided by the API).</p>
+     * and returns the five closest attractions to the last visited location of the given user (according to the attractions provided by the API).</p>
      * <p>It returns null if the user isn't registered to the application. </p>
      *
      * @see UserNearbyAttraction
@@ -228,7 +228,7 @@ public class UserController {
     public List<UserNearbyAttraction> getNearbyAttractions(@RequestParam("userName") String userName) {
 
 
-        return userService.getAllFifthClosestAttraction(userName);
+        return userService.getAllFiveClosestAttraction(userName);
     }
 
 
@@ -236,7 +236,7 @@ public class UserController {
      *  <p>getAllTheLastLocationOfAllUsers returns a list of all the 'VisitedLocation' of all the users of the application.</p>
      *  <p>The 'VisitedLocation' has an attribute of the UserId, allowing the requester to analyze the data. </p>
      * @see VisitedLocation
-     * @return
+     * @return List<VisitedLocation>
      */
     @GetMapping("/getAllCurrentLocations")
     public List<VisitedLocation> getAllTheLastLocationOfAllUsers(){

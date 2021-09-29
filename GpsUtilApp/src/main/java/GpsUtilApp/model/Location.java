@@ -1,5 +1,11 @@
 package GpsUtilApp.model;
 
+/**
+ *
+ * <p>The Location class represents a location with its latitude and longitude.</p>
+ *
+ *
+ */
 public class Location  {
 
 
