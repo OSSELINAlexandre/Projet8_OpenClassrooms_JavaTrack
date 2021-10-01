@@ -41,7 +41,7 @@ docker-compose up
 ```
 Well done ! The application is running. 
 
-You can now access all endpoints on http://localhost:8080.
+You can now access all endpoints on http://localhost:8080
 
 If you want to access specific endpoints defined by a microservice itself in a container, instead of passing by the UserApp here are the adresses :
 
