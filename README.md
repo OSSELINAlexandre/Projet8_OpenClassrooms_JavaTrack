@@ -1,4 +1,4 @@
-# Tour Guide - Project 8 OpenClassrooms
+# Tour Guide - Project 8 OpenClassrooms - Check the Branch fourthIntervention for the final work
 
 TourGuide is the back-end of a web application. The purpose of the software is to track users, and find activities close to them with a choice of providers and prices for these activities depending on their preferences.
 
