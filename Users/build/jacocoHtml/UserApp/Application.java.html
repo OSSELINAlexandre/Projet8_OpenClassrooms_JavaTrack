@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Application.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Users</a> &gt; <a href="index.source.html" class="el_package">UserApp</a> &gt; <span class="el_source">Application.java</span></div><h1>Application.java</h1><pre class="source lang-java linenums">package UserApp;
+
+import UserApp.proxy.GpsUtilProxy;
+import UserApp.proxy.RewardProxy;
+import UserApp.proxy.TripPricerProxy;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+import java.util.Locale;
+
+
+/**
+ * &lt;b&gt;The Application class is our main class for the Users application&lt;/b&gt;
+ *
+ * &lt;p&gt;The Application class is annotated with EnableFeignClients and  SpringBootApplication&lt;/p&gt;
+ *
+ * &lt;ul&gt;
+ *     &lt;li&gt;SpringBootApplication is the annotation that construct the basic parameters for a spring boot application&lt;/li&gt;
+ *     &lt;li&gt;EnableFeignClients provide the application with the Feign library functionality easing the communication between microservices&lt;/li&gt;
+ * &lt;/ul&gt;
+ *
+ */
+@EnableFeignClients
+@SpringBootApplication
+<span class="fc" id="L27">public class Application {</span>
+
+    /**
+    *
+    * &lt;p&gt;We put these two autowired proxies in order for the proxies to be initialized before the service, and so that the tracker can be automatically launched.&lt;/p&gt;
+    *
+    * &lt;p&gt;Indeed, the proxies (and therefore the links with the API) were set after the service and the tracker, failing to automatically launch the app with no other interventions.&lt;/p&gt;
+    *
+     * &lt;p&gt;A Locale.ENGLISH is set because the format provided by the API are in the an Anglo-Saxon format (with commas instead of points) leading to errors if not set.&lt;/p&gt;
+    *
+    * */
+
+    @Autowired
+    GpsUtilProxy gpsUtilProxy;
+
+    @Autowired
+    TripPricerProxy tripPricerProxy;
+
+    @Autowired
+    RewardProxy rewardProxy;
+
+    public static void main(String[] args) {
+<span class="nc" id="L49">        Locale.setDefault(Locale.ENGLISH);</span>
+<span class="nc" id="L50">        SpringApplication.run(Application.class, args);</span>
+
+<span class="nc" id="L52">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

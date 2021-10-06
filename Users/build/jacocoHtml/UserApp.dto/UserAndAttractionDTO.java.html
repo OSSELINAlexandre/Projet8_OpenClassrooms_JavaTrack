@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserAndAttractionDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Users</a> &gt; <a href="index.source.html" class="el_package">UserApp.dto</a> &gt; <span class="el_source">UserAndAttractionDTO.java</span></div><h1>UserAndAttractionDTO.java</h1><pre class="source lang-java linenums">package UserApp.dto;
+
+import UserApp.model.Attraction;
+import UserApp.model.UserReward;
+import UserApp.model.VisitedLocation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.locks.ReentrantLock;
+
+/**
+ *
+ * &lt;p&gt;UserAndAttractionDTO is the type corresponding to the API in charge if the rewards (in our case, RewardApp). &lt;/p&gt;
+ * &lt;p&gt;It centralizes less information's than User in order to avoid useless transfer of information's.&lt;/p&gt;
+ * &lt;p&gt;The type also has an additional attribute (attractions) to facilitate the independence of the API. &lt;/p&gt;
+ * &lt;p&gt;Indeed, the API can be completely autonomous and stateless if the DTO itself provided the list of attractions (the Reward API does not need to communicate with the API in charge of the attractions.)&lt;/p&gt;
+ *
+ */
+public class UserAndAttractionDTO{
+<span class="fc" id="L25">    private Logger logger = LoggerFactory.getLogger(UserAndAttractionDTO.class);</span>
+<span class="fc" id="L26">    private ReentrantLock lock = new ReentrantLock();</span>
+
+    private UUID userId;
+    private String userName;
+    private String phoneNumber;
+    private String emailAddress;
+    private Date latestLocationTimestamp;
+<span class="fc" id="L33">    private CopyOnWriteArrayList&lt;VisitedLocation&gt; visitedLocations = new CopyOnWriteArrayList&lt;&gt;();</span>
+<span class="fc" id="L34">    private CopyOnWriteArrayList&lt;UserReward&gt; userRewards = new  CopyOnWriteArrayList&lt;&gt;();</span>
+<span class="fc" id="L35">    private List&lt;Attraction&gt; attractions = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L37">    public UserAndAttractionDTO() {</span>
+<span class="fc" id="L38">    }</span>
+
+    public UUID getUserId() {
+<span class="fc" id="L41">        return userId;</span>
+    }
+
+    public void setUserId(UUID userId) {
+<span class="fc" id="L45">        this.userId = userId;</span>
+<span class="fc" id="L46">    }</span>
+
+    public String getUserName() {
+<span class="fc" id="L49">        return userName;</span>
+    }
+
+    public void setUserName(String userName) {
+<span class="fc" id="L53">        this.userName = userName;</span>
+<span class="fc" id="L54">    }</span>
+
+    public String getPhoneNumber() {
+<span class="fc" id="L57">        return phoneNumber;</span>
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+<span class="fc" id="L61">        this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L62">    }</span>
+
+    public String getEmailAddress() {
+<span class="fc" id="L65">        return emailAddress;</span>
+    }
+
+    public void setEmailAddress(String emailAddress) {
+<span class="fc" id="L69">        this.emailAddress = emailAddress;</span>
+<span class="fc" id="L70">    }</span>
+
+    public Date getLatestLocationTimestamp() {
+<span class="fc" id="L73">        return latestLocationTimestamp;</span>
+    }
+
+    public void setLatestLocationTimestamp(Date latestLocationTimestamp) {
+<span class="fc" id="L77">        this.latestLocationTimestamp = latestLocationTimestamp;</span>
+<span class="fc" id="L78">    }</span>
+
+    public List&lt;Attraction&gt; getAttractions() {
+<span class="fc" id="L81">        return attractions;</span>
+    }
+
+    public void setAttractions(List&lt;Attraction&gt; attractions) {
+<span class="fc" id="L85">        this.attractions = attractions;</span>
+<span class="fc" id="L86">    }</span>
+
+    public CopyOnWriteArrayList&lt;VisitedLocation&gt; getVisitedLocations() {
+<span class="fc" id="L89">        return visitedLocations;</span>
+    }
+
+    public void setVisitedLocations(CopyOnWriteArrayList&lt;VisitedLocation&gt; visitedLocations) {
+<span class="fc" id="L93">        this.visitedLocations = visitedLocations;</span>
+<span class="fc" id="L94">    }</span>
+
+    public CopyOnWriteArrayList&lt;UserReward&gt; getUserRewards() {
+<span class="fc" id="L97">        return userRewards;</span>
+    }
+
+    public void setUserRewards(CopyOnWriteArrayList&lt;UserReward&gt; userRewards) {
+<span class="fc" id="L101">        this.userRewards = userRewards;</span>
+<span class="fc" id="L102">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,4 +1,4 @@
-package UserApp;
+package UserApp.UnitAndIntegration;
 
 import UserApp.dto.UserAndAttractionDTO;
 import UserApp.model.Attraction;
@@ -44,7 +44,7 @@ public class RewardsAppFunctionalitiesUnitTest {
     }
 
     @Test
-    public void unitTest_getAttractionRewardsPoints(){
+    public void UnitTest_getAttractionRewardsPoints(){
 
         when(rewardProxy.getTheReward(any(), any())).thenReturn(50);
 
@@ -56,7 +56,7 @@ public class RewardsAppFunctionalitiesUnitTest {
     }
 
     @Test
-    public void unitTest_CalculateTheRewardsOfUser(){
+    public void UnitTest_CalculateTheRewardsOfUser(){
 
         userService.users.add(user);
 

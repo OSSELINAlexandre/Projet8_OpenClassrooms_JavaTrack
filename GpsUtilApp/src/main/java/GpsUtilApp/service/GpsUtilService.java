@@ -120,7 +120,6 @@ public class GpsUtilService {
                 for (int i = 0; i < resultAttraction.size(); i++) {
 
                     Location attractionLoc = new Location(attraction.latitude, attraction.longitude);
-
                     Double attractionTestDist = getDistance(attractionLoc, visitedLocation.location);
                     Double attractionBeingTested = getDistance(resultAttraction.get(i),
                             visitedLocation.location);

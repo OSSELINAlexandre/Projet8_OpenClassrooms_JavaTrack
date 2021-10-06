@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Users</a> &gt; <a href="index.source.html" class="el_package">UserApp.controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package UserApp.controller;
+
+import UserApp.dto.UserPreferencesDTO;
+import UserApp.model.*;
+import UserApp.proxy.GpsUtilProxy;
+import UserApp.proxy.RewardProxy;
+import UserApp.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+/**
+ *
+ * &lt;b&gt;UserController is the controller of our 'Users' application.&lt;/b&gt;
+ *
+ * &lt;p&gt;The controller centralize all the endpoints needed for the application to direct the client request to the proper service.&lt;/p&gt;
+ *
+ */
+@RestController
+<span class="fc" id="L24">public class UserController {</span>
+
+
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    RewardProxy rewardProx;
+
+    @Autowired
+    GpsUtilProxy gpsProxy;
+
+    // ***********************************************************************************************************
+    // ************                            LIEE AU Users themselves                   ************************
+    // ***********************************************************************************************************
+
+    /**
+     * &lt;b&gt;addUser request a User from the client and add it to the list of current user of the application.&lt;/b&gt;
+     *
+     * @param userName
+     * @return String
+     */
+    @PostMapping(&quot;/addUser&quot;)
+    public String addAUser(@RequestBody User userName){
+
+<span class="nc" id="L50">        User result = userService.addAUser(userName);</span>
+
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if(result != null){</span>
+
+<span class="nc" id="L54">            return &quot;Added user to the users of the application&quot;;</span>
+
+        }else{
+
+<span class="nc" id="L58">            return &quot;Could not add the user to the application, the user already exists.&quot;;</span>
+        }
+
+    }
+
+    /**
+     * &lt;b&gt;deleteAUser request the name of a user of the application in order to delete it from the users' list.&lt;/b&gt;
+     *
+     * @param userName
+     * @return String
+     */
+    @GetMapping(&quot;/deleteUser&quot;)
+    public String deleteAUser(@RequestParam(&quot;userName&quot;) String userName) {
+
+<span class="nc" id="L72">        Boolean result = userService.deleteAUser(userName);</span>
+
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        if(result) {</span>
+
+<span class="nc" id="L76">            return &quot;The user has been deleted.&quot;;</span>
+
+        }else{
+
+<span class="nc" id="L80">            return &quot;Could not delete the given user, does not exist in the list.&quot;;</span>
+        }
+
+    }
+
+    /**
+     *
+     * &lt;b&gt;updateThePreferences request a userName as parameter and new preferences as body and update the preferences of a user of the application&lt;/b&gt;
+     * &lt;p&gt;The preferences of a user are the registered preferences of a user .&lt;/p&gt;
+     * &lt;p&gt;The main function of preferences is to set a price for different trip by different travel agencies&lt;/p&gt;
+     *
+     *
+     * @see UserPreferences
+     * @param user
+     * @param userPref
+     * @return User
+     */
+    @PostMapping(&quot;/updateUserPreference&quot;)
+    public User updateThePreferences(@RequestParam(&quot;userName&quot;) String user, @RequestBody UserPreferencesDTO userPref){
+
+<span class="nc" id="L100">        User result = userService.updateUserPreferences(user, userPref);</span>
+
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        if(result != null){</span>
+
+<span class="nc" id="L104">            return result;</span>
+
+        }else{
+
+<span class="nc" id="L108">            return null;</span>
+
+        }
+
+
+    }
+
+    /**
+     *
+     * &lt;p&gt;getTheUserPreferences request a userName as parameter and send the preferences of the given user.&lt;/p&gt;
+     *
+     * &lt;p&gt;It sends Null if the user does not exist in the application.&lt;/p&gt;
+     *
+     * @see UserPreferences
+     * @param user
+     * @return UserPreferences
+     */
+    @GetMapping(&quot;/getUserPreference&quot;)
+    public UserPreferences getTheUserPreference(@RequestParam(&quot;userName&quot;) String user){
+<span class="nc" id="L127">        return userService.getUserPreference(user);</span>
+    }
+
+    /**
+     * &lt;b&gt;getTheRewards request a userName as parameter and send all the rewards for this given user.&lt;/b&gt;
+     * &lt;p&gt;It returns an empty list if the user has no rewards (this result is dependant on the API in charge of the rewards, in our case, RewardApp).&lt;/p&gt;
+     * &lt;p&gt;It returns null if the user does not exist in the application.&lt;/p&gt;
+     *
+     *
+     * @see UserReward
+     * @param user
+     * @return CopyOnWriteArrayList&lt;UserReward&gt;
+     */
+    @GetMapping(&quot;/getRewardsOfUser&quot;)
+    public CopyOnWriteArrayList&lt;UserReward&gt; getTheRewards(@RequestParam(&quot;userName&quot;) String user){
+<span class="nc" id="L142">        return userService.getUserRewards(user);</span>
+
+    }
+
+    /**
+     * &lt;p&gt;getTheUser requests a UserName as parameter and return all the attributes of this given user.&lt;/p&gt;
+     * &lt;p&gt;It returns null if the user does not exist in the application.&lt;/p&gt;
+     *
+     * @see User
+     * @param user
+     * @return User
+     */
+    @GetMapping(&quot;/getUser&quot;)
+    public User getTheUser(@RequestParam(&quot;userName&quot;) String user){
+<span class="nc" id="L156">        return userService.getASpecificUser(user);</span>
+    }
+
+
+    /**
+     *
+     * &lt;p&gt;getAllTheLocationOfGivenUser request a userName as a parameter and returns all the visited location of this given user. &lt;/p&gt;
+     *
+     * &lt;p&gt;It returns an empty list if no 'visitedLocation' has been added to the user (therefore if the 'tracker' hasn't yet provided the updated list of users to the others microservices.)&lt;/p&gt;
+     * &lt;p&gt;It returns null if the user does not exist in the application.&lt;/p&gt;
+     *
+     * @see VisitedLocation
+     * @param user
+     * @return CopyOnWriteArrayList&lt;VisitedLocation&gt;
+     */
+    @GetMapping(&quot;/getAllLocationOfUser&quot;)
+    public CopyOnWriteArrayList&lt;VisitedLocation&gt; getAllTheLocationOfGivenUser(@RequestParam(&quot;userName&quot;) String user){
+
+<span class="nc" id="L174">        return userService.getAllUserLocationGivenUser(user);</span>
+    }
+
+
+    // ***********************************************************************************************************
+    // *****       All the below functionalities are related to the GpsUtillApplication microservice         *****
+    // ***********************************************************************************************************
+
+    /**
+     *
+     * &lt;b&gt;getTheLocationOfUser request as a parameter the name of a user and it returns the current
+     * location of the  given user.&lt;/b&gt;
+     *
+     *
+     * &lt;p&gt;For coherence with the application, solely the tracker save a new visited location to a user.&lt;/p&gt;
+     * &lt;p&gt;Therefore getTheLocationOfUser will not update the given user with the 'VisitedLocation' sent back by this method.&lt;/p&gt;
+     *
+     *
+     * @see VisitedLocation
+     * @param user
+     * @return VisitedLocation
+     */
+    @GetMapping(&quot;/getLocation&quot;)
+    public VisitedLocation getTheLocationOfUser(@RequestParam(&quot;userName&quot;) String user){
+
+<span class="nc" id="L199">        return userService.getUserLocation(user);</span>
+    }
+
+    /**
+     *
+     * &lt;b&gt;getAllTheAttractions returns a list of all the attractions provided by the API (GpsUtillApp in our case).&lt;/b&gt;
+     *
+     *
+     * @see Attraction
+     * @return List&lt;Attraction&gt;
+     */
+    @GetMapping(&quot;/getAttraction&quot;)
+    public List&lt;Attraction&gt; getAllTheAttractions(){
+
+<span class="nc" id="L213">        return userService.getAllAttraction();</span>
+    }
+
+
+    /**
+     *
+     * &lt;p&gt;getNearbyAttractions request a userName as a parameter,
+     * and returns the five closest attractions to the last visited location of the given user (according to the attractions provided by the API).&lt;/p&gt;
+     * &lt;p&gt;It returns null if the user isn't registered to the application. &lt;/p&gt;
+     *
+     * @see UserNearbyAttraction
+     * @param userName
+     * @return List&lt;UserNearbyAttraction&gt;
+     */
+    @GetMapping(&quot;/getNearbyAttractions&quot;)
+    public List&lt;UserNearbyAttraction&gt; getNearbyAttractions(@RequestParam(&quot;userName&quot;) String userName) {
+
+
+<span class="nc" id="L231">        return userService.getAllFiveClosestAttraction(userName);</span>
+    }
+
+
+    /**
+     *  &lt;p&gt;getAllTheLastLocationOfAllUsers returns a list of all the 'VisitedLocation' of all the users of the application.&lt;/p&gt;
+     *  &lt;p&gt;The 'VisitedLocation' has an attribute of the UserId, allowing the requester to analyze the data. &lt;/p&gt;
+     * @see VisitedLocation
+     * @return List&lt;VisitedLocation&gt;
+     */
+    @GetMapping(&quot;/getAllCurrentLocationsUsers&quot;)
+    public List&lt;VisitedLocation&gt; getAllTheLastLocationOfAllUsers(){
+
+<span class="nc" id="L244">        return userService.getAllLocationOfUsers();</span>
+    }
+
+
+
+    // ***********************************************************************************************************
+    // *******       All the below functionalities are related to the TripApplication microservice         *******
+    // ***********************************************************************************************************
+
+    /**
+     * &lt;p&gt;getTheDifferentTripDeals requests a userName as a parameter and finds all the offered deals in function of his preferences.&lt;/p&gt;
+     *
+     *
+     * @param userName
+     * @return List&lt;Provider&gt;
+     */
+    @GetMapping(&quot;/getTripDeals&quot;)
+    public List&lt;Provider&gt; getTheDifferentTripDeals(@RequestParam(&quot;userName&quot;) String userName){
+<span class="nc" id="L262">        return userService.getAllTheDeals(userName);</span>
+    }
+
+    // ***********************************************************************************************************
+    // *******      All the below functionalities are related to the RewardApplication microservice        *******
+    // ***********************************************************************************************************
+
+
+    /**
+     *
+     * &lt;p&gt;getTheReward requests the UUID of an attraction and the UUID of a User and returns the rewards points related to it.&lt;/p&gt;
+     *
+     * @param attraction
+     * @param user
+     * @return
+     */
+    @GetMapping(&quot;/getReward&quot;)
+    public int getTheReward(@RequestParam(&quot;attId&quot;) UUID attraction, @RequestParam(&quot;userId&quot;) UUID user){
+
+
+<span class="nc" id="L282">        return userService.getAttractionRewardsPoints(attraction, user);</span>
+    }
+
+    /**
+     *
+     * &lt;p&gt;findAllResultsOfUsers request a list of attraction as a body.&lt;/p&gt;
+     * &lt;p&gt;It will return a Map composed with all the users of the applications and the rewards points given to every user if have been attributed.&lt;/p&gt;
+     *
+     *
+     * @param attractionList
+     * @return Map&lt;String, List&lt;UserReward&gt;&gt;
+     */
+    @PostMapping(&quot;/calculateAllRewardsOfUsers&quot;)
+    public Map&lt;String, List&lt;UserReward&gt;&gt; findAllResultsOfUsers(@RequestBody List&lt;Attraction&gt; attractionList){
+
+<span class="nc" id="L297">        return userService.getAllRewardsPointsOfUsers(attractionList);</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

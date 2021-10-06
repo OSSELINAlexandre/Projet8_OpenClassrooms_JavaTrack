@@ -1,4 +1,4 @@
-package UserApp;
+package UserApp.Performances;
 
 import UserApp.model.*;
 import UserApp.proxy.GpsUtilProxy;
@@ -33,8 +33,10 @@ public class UserPerformanceTest {
 
 
     @BeforeEach
-    public void init() {
+    public void init() throws InterruptedException {
         Locale.setDefault(Locale.ENGLISH);
+
+        Thread.currentThread().sleep(1000);
 
     }
 
@@ -61,12 +63,12 @@ public class UserPerformanceTest {
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-
+        System.out.println(userService.users.size() + " highVolumeTrackLocation I don't wish them evil ");
         List<VisitedLocation> result = userService.getAllLocationOfUsers();
+        System.out.println("highVolumeTrackLocation result size " + result.size());
 
         stopWatch.stop();
 
-        System.out.println("What is the size of it ???? " + result.size());
         assertTrue(result.size() == wantedOccurences);
 
 
@@ -88,7 +90,7 @@ public class UserPerformanceTest {
         Location testLocation = new Location(39.937778D, -82.40667D);
         List<Attraction> attractions = userService.getAllAttraction();
 
-        Integer wantedOccurences = 50000;
+        Integer wantedOccurences = 1000;
 
         IntStream.range(0, wantedOccurences).forEach(i -> {
             String userName = "internalUser" + i;

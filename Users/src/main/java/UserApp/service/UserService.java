@@ -383,15 +383,11 @@ public class UserService {
     public List<UserNearbyAttraction> getAllFiveClosestAttraction(String userName) {
 
         User theUser = getTheUserBasedOnName(userName);
-
         if(theUser != null){
 
             UserGpsDTO resultToBeSend = transformUserIntoUserGpsDto(theUser);
 
             List<UserNearbyAttraction> result = gpsUtilProxy.getFiveClosestAttraction(resultToBeSend);
-
-
-            //TODO remettre une boucle dans le getRewards.
             result.forEach(n -> n.setRewardsLinkedToTheAttraction(rewardProxy.getTheReward(n.getTheAttraction().attractionId, resultToBeSend.getUserId())));
 
             return result;

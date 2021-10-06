@@ -1,4 +1,4 @@
-package UserApp;
+package UserApp.UnitAndIntegration;
 
 import UserApp.model.Provider;
 import UserApp.model.User;
@@ -45,7 +45,7 @@ public class TripPricerAppFunctionalitiesUnitTest {
     }
 
     @Test
-    public void getAllTheDeals(){
+    public void GetAllTheDeals(){
 
         userService.users.add(user);
 

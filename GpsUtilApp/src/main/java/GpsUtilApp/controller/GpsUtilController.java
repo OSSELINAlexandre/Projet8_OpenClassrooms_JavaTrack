@@ -67,8 +67,6 @@ public class GpsUtilController {
     @PostMapping("/getNearbyAttractions")
     public List<UserNearbyAttraction> getNearbyAttractions(@RequestBody User user){
 
-        logger.info("The User " + user.getUserName() + " has entered getNearbyAttractions ");
-
         return gpsUtilService.getNearByFiveClosestAttractions(user);
     }
 

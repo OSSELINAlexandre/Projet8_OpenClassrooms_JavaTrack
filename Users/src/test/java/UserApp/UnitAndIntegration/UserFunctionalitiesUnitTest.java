@@ -1,4 +1,4 @@
-package UserApp;
+package UserApp.UnitAndIntegration;
 
 import UserApp.dto.UserPreferencesDTO;
 import UserApp.model.User;
@@ -36,7 +36,7 @@ public class UserFunctionalitiesUnitTest {
     }
 
     @Test
-    public void test_deleteAUser_ShouldReturnFalseIfUserDoesExists(){
+    public void Test_deleteAUser_ShouldReturnFalseIfUserDoesExists(){
 
         String userName = "TestUserDoesNotExists";
         String phone = "000";
@@ -50,14 +50,14 @@ public class UserFunctionalitiesUnitTest {
     }
 
     @Test
-    public void test_AddAUser(){
+    public void Test_AddAUser(){
 
         User result = userService.addAUser(user);
         assertTrue(result != null);
     }
 
     @Test
-    public void test_deleteAUser_ShouldReturnTrueIfUserExists(){
+    public void Test_deleteAUser_ShouldReturnTrueIfUserExists(){
 
         userService.users.add(user);
 
@@ -70,7 +70,7 @@ public class UserFunctionalitiesUnitTest {
 
 
     @Test
-    public void test_updateUserPreferences(){
+    public void Test_updateUserPreferences(){
 
         userService.users.add(user);
 
@@ -92,7 +92,7 @@ public class UserFunctionalitiesUnitTest {
     }
 
     @Test
-    public void test_getUserPreference(){
+    public void Test_getUserPreference(){
         UserPreferences result = user.getUserPreferences();
 
         assertTrue(result != null );
@@ -100,14 +100,14 @@ public class UserFunctionalitiesUnitTest {
     }
 
     @Test
-    public void test_getUserRewards(){
+    public void Test_getUserRewards(){
 
         assertTrue(user.getUserRewards() != null);
 
     }
 
     @Test
-    public void test_getASpecificUser(){
+    public void Test_getASpecificUser(){
 
         userService.users.add(user);
         User result = userService.getASpecificUser(user.getUserName());
@@ -117,7 +117,7 @@ public class UserFunctionalitiesUnitTest {
 
     @Ignore
     @Test
-    public void test_getAllUserLocationGivenUser(){
+    public void Test_getAllUserLocationGivenUser(){
 
         userService.users.add(user);
 

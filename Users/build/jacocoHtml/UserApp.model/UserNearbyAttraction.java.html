@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserNearbyAttraction.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Users</a> &gt; <a href="index.source.html" class="el_package">UserApp.model</a> &gt; <span class="el_source">UserNearbyAttraction.java</span></div><h1>UserNearbyAttraction.java</h1><pre class="source lang-java linenums">package UserApp.model;
+
+/**
+ * &lt;p&gt;UserNearbyAttraction is a requirement from the client.&lt;/p&gt;
+ * &lt;p&gt;The class centralizes different information's in order to identify one of the fifth closest attraction of a user.&lt;/p&gt;
+ * &lt;ul&gt;
+ *     &lt;li&gt;The name of the attraction close by.&lt;/li&gt;
+ *     &lt;li&gt;The location of the User.&lt;/li&gt;
+ *     &lt;li&gt;The location of the Attraction.&lt;/li&gt;
+ *     &lt;li&gt;The distance between the attraction and the last visited location of the user that generate this instance.&lt;/li&gt;
+ *     &lt;li&gt;The rewards point linked to the attraction (if the user visit it, which depends on the API in charge of the rewards, setting the perimeter of acceptable proximity to gather rewards. &lt;/li&gt;
+ * &lt;/ul&gt;
+ * &lt;p&gt;Of course, it depends on the last localization of a user.&lt;/p&gt;
+ *
+ */
+public class UserNearbyAttraction {
+
+    private Attraction theAttraction;
+    private Location userLocation;
+    private Double distanceInMilesBetweenUserAndAttraction;
+    private int rewardsLinkedToTheAttraction;
+
+    public UserNearbyAttraction() {
+<span class="fc" id="L24">        super();</span>
+<span class="fc" id="L25">    }</span>
+
+    public Location getUserLocation() {
+<span class="nc" id="L28">        return userLocation;</span>
+    }
+    public void setUserLocation(Location userLocation) {
+<span class="fc" id="L31">        this.userLocation = userLocation;</span>
+<span class="fc" id="L32">    }</span>
+
+    public Attraction getTheAttraction() {
+<span class="fc" id="L35">        return theAttraction;</span>
+    }
+
+    public void setTheAttraction(Attraction theAttraction) {
+<span class="fc" id="L39">        this.theAttraction = theAttraction;</span>
+<span class="fc" id="L40">    }</span>
+
+    public Double getDistanceInMilesBetweenUserAndAttraction() {
+<span class="nc" id="L43">        return distanceInMilesBetweenUserAndAttraction;</span>
+    }
+    public void setDistanceInMilesBetweenUserAndAttraction(Double distanceInMilesBetweenUserAndAttraction) {
+<span class="fc" id="L46">        this.distanceInMilesBetweenUserAndAttraction = distanceInMilesBetweenUserAndAttraction;</span>
+<span class="fc" id="L47">    }</span>
+    public int getRewardsLinkedToTheAttraction() {
+<span class="nc" id="L49">        return rewardsLinkedToTheAttraction;</span>
+    }
+    public void setRewardsLinkedToTheAttraction(int rewardsLinkedToTheAttraction) {
+<span class="fc" id="L52">        this.rewardsLinkedToTheAttraction = rewardsLinkedToTheAttraction;</span>
+<span class="fc" id="L53">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

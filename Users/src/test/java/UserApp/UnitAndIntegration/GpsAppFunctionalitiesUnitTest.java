@@ -1,4 +1,4 @@
-package UserApp;
+package UserApp.UnitAndIntegration;
 
 import UserApp.dto.UserGpsDTO;
 import UserApp.model.Attraction;
@@ -23,6 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
+
 public class GpsAppFunctionalitiesUnitTest {
 
     @Mock
@@ -52,7 +53,7 @@ public class GpsAppFunctionalitiesUnitTest {
 
 
     @Test
-    public void unitTest_getUserLocation(){
+    public void UnitTest_getUserLocation(){
 
 
 
@@ -69,7 +70,7 @@ public class GpsAppFunctionalitiesUnitTest {
     }
 
     @Test
-    public void unitTest_getAllAttraction(){
+    public void UnitTest_getAllAttraction(){
 
 
         when(gpsUtilProxy.getAllAttraction()).thenReturn(new ArrayList<Attraction>());
@@ -81,7 +82,7 @@ public class GpsAppFunctionalitiesUnitTest {
     }
 
     @Test
-    public void unitTest_getAllFifthClosestAttraction(){
+    public void UnitTest_getAllFifthClosestAttraction(){
 
 
 

@@ -1,4 +1,4 @@
-package UserApp;
+package UserApp.UnitAndIntegration;
 
 import UserApp.model.*;
 import UserApp.proxy.GpsUtilProxy;
@@ -44,7 +44,9 @@ public class UserIntegrationTest {
     User user;
 
     @BeforeEach
-    public void init(){
+    public void init() throws InterruptedException {
+
+        Thread.currentThread().sleep(1500);
 
         userService.setGpsUtilProxy(gpsUtilProxy);
         userService.setRewardProxy(rewardProxy);
@@ -57,7 +59,26 @@ public class UserIntegrationTest {
     }
 
     @Test
-    public void integrationTest_getUserLocation(){
+    public void IntegrationTest_getAllFifthClosestAttraction() throws InterruptedException {
+
+
+        String userName = "TestUserA";
+        String phone = "007";
+        String email = userName + "@tourguide.com";
+        User userTest = new User(UUID.randomUUID(), userName, phone, email);
+        userTest.addToVisitedLocations(new VisitedLocation(userTest.getUserId(), new Location(28.012804D, -82.469269D), new Date()));
+        userService.addAUser(userTest);
+
+
+        Thread.currentThread().sleep(1500);
+        List<UserNearbyAttraction> result = userService.getAllFiveClosestAttraction(userTest.getUserName());
+
+        assertTrue(result != null);
+
+    }
+
+    @Test
+    public void IntegrationTest_getUserLocation(){
 
         userService.users.add(user);
 
@@ -69,7 +90,7 @@ public class UserIntegrationTest {
     }
 
     @Test
-    public void integrationTest_getAllAttraction(){
+    public void IntegrationTest_getAllAttraction(){
 
 
         List<Attraction> result = userService.getAllAttraction();
@@ -78,22 +99,11 @@ public class UserIntegrationTest {
 
     }
 
-    @Test
-    public void integrationTest_getAllFifthClosestAttraction(){
 
-        user.addToVisitedLocations(new VisitedLocation(user.getUserId(), new Location(28.012804D, -82.469269D), new Date()));
-
-        userService.users.add(user);
-
-        List<UserNearbyAttraction> result = userService.getAllFiveClosestAttraction(user.getUserName());
-
-        assertTrue(result != null);
-
-    }
 
 
     @Test
-    public void integrationTest_getAllLastLocationUsers(){
+    public void IntegrationTest_getAllLastLocationUsers(){
 
         CopyOnWriteArrayList<User> usersTemp = new CopyOnWriteArrayList<>();
 
@@ -117,7 +127,7 @@ public class UserIntegrationTest {
     }
 
     @Test
-    public void integrationTest_getAttractionRewardsPoints(){
+    public void IntegrationTest_getAttractionRewardsPoints(){
 
         Integer result = userService.getAttractionRewardsPoints(UUID.randomUUID(), UUID.randomUUID());
 
@@ -125,7 +135,7 @@ public class UserIntegrationTest {
     }
 
     @Test
-    public void integrationTest_CalculateTheRewardsOfUser(){
+    public void IntegrationTest_CalculateTheRewardsOfUser(){
 
         userService.setRewardProxy(rewardProxy);
 

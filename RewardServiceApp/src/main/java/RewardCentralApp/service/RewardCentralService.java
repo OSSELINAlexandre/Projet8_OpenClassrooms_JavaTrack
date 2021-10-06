@@ -24,7 +24,7 @@ public class RewardCentralService {
 
     private static final double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
 
-    public static int distanceRequired = 10;
+    public static int distanceRequired = 5;
 
     private ExecutorService executorService;
 

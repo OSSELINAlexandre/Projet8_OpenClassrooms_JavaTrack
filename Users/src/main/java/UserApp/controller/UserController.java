@@ -137,7 +137,7 @@ public class UserController {
      * @param user
      * @return CopyOnWriteArrayList<UserReward>
      */
-    @GetMapping("/getRewards")
+    @GetMapping("/getRewardsOfUser")
     public CopyOnWriteArrayList<UserReward> getTheRewards(@RequestParam("userName") String user){
         return userService.getUserRewards(user);
 
@@ -168,7 +168,7 @@ public class UserController {
      * @param user
      * @return CopyOnWriteArrayList<VisitedLocation>
      */
-    @GetMapping("/getAllLocationUser")
+    @GetMapping("/getAllLocationOfUser")
     public CopyOnWriteArrayList<VisitedLocation> getAllTheLocationOfGivenUser(@RequestParam("userName") String user){
 
         return userService.getAllUserLocationGivenUser(user);
@@ -238,7 +238,7 @@ public class UserController {
      * @see VisitedLocation
      * @return List<VisitedLocation>
      */
-    @GetMapping("/getAllCurrentLocations")
+    @GetMapping("/getAllCurrentLocationsUsers")
     public List<VisitedLocation> getAllTheLastLocationOfAllUsers(){
 
         return userService.getAllLocationOfUsers();
