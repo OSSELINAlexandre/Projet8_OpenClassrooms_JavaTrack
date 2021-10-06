@@ -53,3 +53,4 @@ GpsUtilProxy : http://localhost:8081
 
 
 ## Tips - Get the API documentation easily
+ Once the DockerCompose is up, do a http://localhost:8080/swagger-ui/ to see the API Documentation.
